@@ -18,7 +18,8 @@ namespace AFSS.Controllers
             this.afssDbContext = afssDbContext;
         }
         [HttpGet]
-        public List<PiTask> Get(DateTime date, int gas, double tmp0, double pressure, int water, string key)
+        //public List<PiTask> Get(DateTime date, int gas, double tmp0, double pressure, int water, string key)
+        public List<PiTask> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int ServoStove, int ServoPipe, string key)
         {
             var user = afssDbContext.PiUsers.SingleOrDefault(u => u.CpuSerial == key);
             if (user == null)
@@ -29,16 +30,16 @@ namespace AFSS.Controllers
             }
             afssDbContext.PiData.Add(new PiDatum()
             {
-                Gas = gas,
-                Pressure = pressure,
-                Water = water,
+                Gas = gasRoom,
+                Pressure = pressureTank,
+                Water = waterLevelTank,
                 Date = date,
                 PiUser = user,
-                Tmp0 = tmp0,
-                Tmp1 = -1,
-                Tmp2 = -1,
-                Servo0 = 1,
-                Servo1 = -1
+                Tmp0 = temperatureTank,
+                Tmp1 = temperatureStove,
+                Tmp2 = temperatureRoom,
+                Servo0 = ServoStove,
+                Servo1 = ServoPipe
 
             });
             afssDbContext.SaveChanges();

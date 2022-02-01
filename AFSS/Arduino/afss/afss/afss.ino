@@ -27,9 +27,7 @@ void setup() {
     Serial.begin(9600);
     //while(!Serial);    // time to get serial running;
     pinMode(SERVO_STOVE_PIN, OUTPUT);
-    pinMode(SERVO_PIPE_PIN, OUTPUT);
-    Serial.println("Servo is ready");
-    
+    pinMode(SERVO_PIPE_PIN, OUTPUT); 
     bmeTank.begin(0x76);  
 }
 
@@ -43,9 +41,9 @@ void loop() {
      {
           valueServoStove = valueServoStove - 10; // convert to numerical variable
           valueServoStove = valueServoStove * (90 / 9); // convert number to angle
-          Serial.print("moving servo stove to ");
-          Serial.print(valueServoStove);
-          Serial.println();
+          //Serial.print("moving servo stove to ");
+          //Serial.print(valueServoStove);
+          //Serial.println();
           // giving the servo time 
           //to rotate to commanded position
           for (int i = 0; i <= 50; i++) 
@@ -57,9 +55,9 @@ void loop() {
      {
           valueServoPipe = valueServoPipe - 20; // convert to numerical variable
           valueServoPipe = valueServoPipe * (90 / 9); // convert number to angle
-          Serial.print("moving servo pipe to ");
-          Serial.print(valueServoPipe);
-          Serial.println();
+          //Serial.print("moving servo pipe to ");
+          //Serial.print(valueServoPipe);
+          //Serial.println();
           // giving the servo time 
           //to rotate to commanded position
           for (int i = 0; i <= 50; i++) 
@@ -84,8 +82,8 @@ void printValues() {
     String ServoPipeStr = String(valueServoPipe);
   
     //String resultStr = thermocoupleStr + ";" + thermocouple2Str + ";" + temperatureStr + ";" + pressureStr + ";" + waterLevelStr + ";" + gasStr;
-    String resultStr = temperatureStoveStr + ";" + temperatureTankStr + ";" + temperatureRoomStr + ";" + pressureTankStr + ";" + waterLevelTankStr + ";" + gasRoomStr + ";" + ServoStoveStr + ";" + ServoPipeStr + ";";
-  Serial.println(resultStr);
+    String resultStr = temperatureStoveStr + ";" + temperatureTankStr + ";" + temperatureRoomStr + ";" + pressureTankStr + ";" + waterLevelTankStr + ";" + gasRoomStr + ";" + ServoStoveStr + ";" + ServoPipeStr;
+    Serial.println(resultStr);
 }
 
 // define a servo pulse function
