@@ -1,0 +1,3 @@
+pyserial
+datetime
+requests
