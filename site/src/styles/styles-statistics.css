@@ -1,0 +1,258 @@
+.info__items {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.item__chart {
+    border: 12.5px solid #7A0B14;
+    width: 375px;
+    height: 175px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    background-color: white;
+}
+
+.item__servo {
+    border: 12.5px solid #7A0B14;
+    width: 375px;
+    height: 175px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    background-color: white;
+}
+
+.item__tank {
+    border: 12.5px solid #7A0B14;
+    width: 375px;
+    height: 175px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    background-color: white;
+}
+
+.item__time {
+    border: 12.5px solid #7A0B14;
+    width: 375px;
+    height: 175px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    background-color: white;
+}
+
+.item__events {
+    border: 12.5px solid #7A0B14;
+    width: 800px;
+    height: 175px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    background-color: white;
+}
+.events__item {
+    margin-left: 25px;
+    margin-top: 10px;
+    text-align: left;
+}
+.image__servo-stove {
+    width: 375px;
+    height: 100px;
+    background-color: white;
+}
+
+.text__servo {
+    text-align: left;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.servo-stove__items {
+    justify-content: center;
+    width: 375px;
+    height: 75px;
+    background-color: #F7FBF5;
+    display: flex;
+}
+
+.image__servo-pipe {
+    width: 375px;
+    height: 100px;
+    background-color: white;
+}
+
+.servo-pipe__items {
+    justify-content: center;
+    width: 375px;
+    height: 75px;
+    background-color: #F7FBF5;
+    display: flex;
+}
+.servo-pipe__value {
+    margin-top: 20px;
+}
+
+.image__water-level {
+    width: 375px;
+    height: 100px;
+    background-color: yellow;
+}
+
+.tank__items {
+    justify-content: center;
+    width: 375px;
+    height: 75px;
+    background-color: #F7FBF5;
+    display: flex;
+}
+.water-level__value {
+    margin-top: 20px;
+}
+
+.image__heating-time {
+    width: 375px;
+    height: 100px;
+    background-color: orange;
+}
+
+.heating-time__items {
+    justify-content: center;
+    width: 375px;
+    height: 75px;
+    background-color: #F7FBF5;
+    display: flex;
+}
+.heating-time__value {
+    margin-top: 20px;
+}
+
+.servo-stove__subtract {
+    margin-top: 15px;
+    width: 45px;
+    height: 45px;
+}
+
+.servo-stove__subtract > .button--orange {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 45px;
+}
+
+.servo-stove__add {
+    margin-top: 15px;
+    width: 45px;
+    height: 45px;
+}
+
+.servo-stove__add > .button--orange {
+    border-radius: 50%;
+    font-size: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.servo-stove__value {
+    margin-right: 25px;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+
+.events__items {
+    width: 800px;
+    height: 145px;
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+.events__items::-webkit-scrollbar {
+    width: 12.5px;
+}
+
+.events__items::-webkit-scrollbar-thumb {
+    background-color:#FE611E;
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+}
+
+.events__items::-webkit-scrollbar-thumb:hover{
+    background-color: #FEC715;
+}
+
+.sub-menu__items {
+    text-align: center;
+    display: flex;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+}
+
+.sub-menu__item {
+    width: 293.75px;
+    height: 45px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+}
+
+.sub-menu__item > .button--orange {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+}
+
+.sub-menu__item:nth-child(1) {
+    margin-left: 0px;
+}
+
+.sub-menu__item:nth-child(4) {
+    margin-right: 0px;
+}
+
+@media screen and (min-width: 875px) and (max-width: 1300px) {
+    .sub-menu__item {
+        width: 187.5px;
+        height: 45px;
+    }
+    .item__events {
+        width: 375px;
+        height: 175px;
+    }
+
+    .events__items {
+        width: 375px;
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:875px) {
+
+    .sub-menu__item {
+        width: 81.25px;
+        height: 81.25px;
+    }
+
+    .sub-menu__item > .button--orange {
+        border-radius: 50%;
+        font-size: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 0px;
+        display: block;
+    }
+    .item__events {
+        width: 375px;
+        height: 175px;
+    }
+    .events__items {
+        width: 375px;
+    }
+}

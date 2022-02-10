@@ -1,0 +1,218 @@
+*,
+*:before,
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Stem-Bold';
+    src: url(../fonts/Stem-Bold/Stem-Bold.ttf);
+    src: url(../fonts/Stem-Bold/Stem-Bold.otf);
+}
+
+@font-face {
+    font-family: 'Stem-Light';
+    src: url(../fonts/Stem-Light/Stem-Light.ttf);
+}
+
+body {
+    background-color: white;
+    height: auto ;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1275px;
+    padding-left: 12.5px;
+    padding-right: 12.5px;
+    justify-content: center;
+    align-items: center;
+}
+
+/*text-*/
+
+.text-light {
+    font-family: "Stem-Light";
+    font-size: 24px;
+    color: white;
+}
+
+.text-light--black {
+    font-family: "Stem-Light";
+    font-size: 24px;
+    color: black;
+}
+
+.text-bold {
+    font-family: "Stem-Bold";
+    font-size: 24px;
+    color: white;
+}
+
+.text-bold--black {
+    color: black;
+}
+
+.input-text{
+    font-family: "Stem-Light";
+    padding-left: 15px;
+    font-size: 24px;
+    width: 300px;
+    height: 45px;
+    border: none;
+    background: #F7FBF5;
+    color: black;
+}
+
+/*button*/
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*display: inline-block;*/
+    cursor: pointer;
+    vertical-align: middle;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+    outline: none;
+    height: 45px;
+    text-align: center;
+    background: black;
+    border-radius: 30px;
+    color: white;
+    font-family: "Stem-Bold";
+    font-size: 24px;
+}
+
+.button--red {
+    background: #E00E0F;
+}
+
+.button--red:hover {
+    background: #FE611E;
+}
+
+.button--purple {
+    background: purple;
+}
+
+.button--yellow {
+    background: #FEC715;
+}
+
+.button--orange {
+    background: #FE611E;
+}
+.button--orange:hover {
+    background: #FEC715;
+}
+
+/*image*/
+
+.image__logo--mini {
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 45px;
+    height: 45px;
+}
+
+/*media*/
+
+@media screen and (min-width: 875px) and (max-width: 1300px) {
+    /*body {
+        background-color: #EE4266;
+    }*/
+    .container {
+        max-width: 850px;
+    }
+
+}
+
+@media screen and (min-width:0px) and (max-width:875px) {
+    /*body {
+        background-color: green;
+    }*/
+
+    .container {
+        width: 425px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*scrollbar*/
+
+:root {
+    --scrollbarBgColor: rgba(63, 0, 9,1);
+    --scrollbarThumbColor: rgba(122, 11, 20,1);
+    --scrollbarThumbColorSecond: rgba(224, 14, 15,1);
+    --scrollbarWidth: 25px;
+    --scrollbarBorder: 0 solid var(--scrollbarBgColor);
+    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 4);
+
+
+}
+
+body {
+    scrollbar-width: var(--scrollbarWidth);
+    scrollbar-color: var(--scrollbarThumbColor) var(--scrollbarBgColor);
+    overflow-x: hidden;
+   /* --scrollbarWidth: 0px;*/
+}
+
+body::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--scrollbarBgColor);
+    border-radius: var(--scrollbarBorderRadius);
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumbColor);
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+    background-image: linear-gradient(
+            180deg,
+            var(--scrollbarThumbColor) 0%,
+            var(--scrollbarThumbColorSecond) 90%
+    );
+}
+
+@media screen and (min-width:0px) and (max-width:500px) {
+    body {
+        --scrollbarWidth: 0px;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:875px) {
+    body {
+        --scrollbarWidth: 12.5px;
+    }
+}

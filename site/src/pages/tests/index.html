@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../../actions/jquery.js"></script>
+    <link rel="import" href="../tests/intro.html">
+    <link rel="import" href="../tests/intro2.html">
+</head>
+
+    <div class="load-html" data-source="intro.html"></div>
+    <div class="load-html2" data-source="intro2.html"></div>
+
+<script>
+/*    $(".load-html").load("intro.html #in", function(data) {
+        var scripts = $(data).find("script");
+
+        if (scripts.length) {
+            $(scripts).each(function() {
+                if ($(this).attr("src")) {
+                    $.getScript($(this).attr("src"));
+                }
+                else {
+                    eval($(this).html());
+                }
+            });
+        }
+
+    });*/
+
+    $(function () {
+        $(".load-html ").each(function () {
+            $(this).load("intro.html");
+        });
+        $(".load-html2").each(function () {
+            $(this).load(this.dataset.source);
+        });
+
+    });
+
+</script>
+
+<script  src="../../actions/actions.js"></script>
+</body>
+</html>

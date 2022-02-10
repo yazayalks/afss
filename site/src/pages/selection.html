@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>selection</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../styles/styles-selection.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <script src="../actions/jquery.js"></script>
+
+    <!--menu-input--> <!--footer-->
+    <link rel="import" href="menu-input.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu-input").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="add__menu-input" data-source="menu-input.html"></div>
+
+<div class="container">
+    <div class="sub-menu">
+        <div class="sub-menu__items">
+            <div id = "authorization" class="sub-menu__item"><div class = "button button--orange">Авторизация</div></div>
+            <div id = "registration" class="sub-menu__item"><div class = "button button--orange">Регистрация</div></div>
+            <div id = "observation" class="sub-menu__item"><div class = "button button--orange">Наблюдение</div></div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+<div class="add__footer" data-source="footer.html"></div>
+
+<script src="../actions/actions-selection.js"></script>
+</html>

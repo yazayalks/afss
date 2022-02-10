@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>statistics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../styles/styles-statistics.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <script src="../actions/jquery.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
+    <!--menu--> <!--footer-->
+    <link rel="import" href="menu.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu ").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+<div class="add__menu" data-source="menu.html"></div>
+
+<div class="container">
+    <div class="sub-menu">
+        <div class="sub-menu__items">
+            <div id = "statistics" class="sub-menu__item"><div class = "button button--orange">Статистика</div></div>
+            <div id = "information" class="sub-menu__item"><div class = "button button--orange">Информация</div></div>
+            <div id = "data" class="sub-menu__item"><div class = "button button--orange">Данные</div></div>
+            <div id = "settings" class="sub-menu__item"><div class = "button button--orange">Настройки</div></div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="info__items">
+            <div class ="item__chart" style="width: 375px; height: 175px"><canvas id="barChart" ></canvas></div>
+           <!-- <div class="item__chart"><div id="chart1"></div></div>-->
+            <div class="item__chart"><div id="chart2"></div></div>
+            <div class="item__chart"><div id="chart3"></div></div>
+            <div class="item__servo">
+                <div class="text__servo">
+                    <div class = "text-bold text-bold--black">Тяга печи</div>
+                </div>
+                <div class="image__servo-stove">
+                    <img src="../images/servo-stove-1.png" width="375" height="100" alt="servo-stove-1">
+                </div>
+                <div class="servo-stove__items">
+                    <div id = "subtract" class="servo-stove__subtract"><div class = "button button--orange">-</div></div>
+                    <div class="servo-stove__value"><div class = "text-bold text-bold--black">60°</div></div>
+                    <div id = "add" class="servo-stove__add"><div class = "button button--orange">+</div></div>
+                </div>
+            </div>
+            <div class="item__servo">
+                <div class="text__servo">
+                    <div class = "text-bold text-bold--black">Тяга трубы</div>
+                </div>
+                <div class="image__servo-pipe">
+                    <img src="../images/servo-pipe-1.png" width="375" height="100" alt="servo-pipe-1">
+                </div>
+                <div class="servo-pipe__items">
+                    <div class="servo-pipe__value"><div class = "text-bold text-bold--black">80°</div></div>\
+                </div>
+            </div>
+            <div class="item__tank">
+                <div class="image__water-level">
+                    <img src="../images/water-level-1.png" width="375" height="100" alt="water-level-1">
+                </div>
+                <div class="tank__items">
+                    <div class="water-level__value"><div class = "text-bold text-bold--black">60%</div></div>
+                </div>
+            </div>
+            <div class="item__time">
+                <div class="image__heating-time">
+                    <img src="../images/heating-time-1.png" width="375" height="100" alt="heating-time-1">
+                </div>
+                <div class="heating-time__items">
+                    <div class="heating-time__value"><div class = "text-bold text-bold--black">~57мин</div></div>
+                </div>
+            </div>
+            <div class="item__events">
+                <div class="text__events"><div class = "text-bold text-bold--black">События</div></div>
+                <div class="events__items">
+                    <div class="events__item"><div class = "text-light text-light--black">Система запущена;</div></div>
+                    <div class="events__item"><div class = "text-light text-light--black">Идёт автоматическая растопка бани;</div></div>
+                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
+                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
+                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
+                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<div class="add__footer" data-source="footer.html"></div>
+
+<script src="../actions/actions.js"></script>
+<script src="../actions/actions-statistics.js"></script>
+
+</html>

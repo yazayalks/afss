@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>authorization</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../styles/styles-authorization.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <script src="../actions/jquery.js"></script>
+
+    <!--menu-input--> <!--footer-->
+    <link rel="import" href="menu-input.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu-input").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="add__menu-input" data-source="menu-input.html"></div>
+
+<div class="container">
+    <div class="input-data">
+        <div class="input-data__items">
+            <div class = "text-bold text-bold--black">Авторизация</div>
+            <input class="input-text" name="example_email" type="login" placeholder="Логин"></input>
+            <input class="input-text" name="password" type="password" placeholder="Пароль"> </input>
+            <div id ="authorization" class = "button button--orange">Войти</div></div>
+    </div>
+</div>
+</body>
+
+<div class="add__footer" data-source="footer.html"></div>
+<script src="../actions/actions-authorization.js"></script>
+</html>
