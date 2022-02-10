@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Link
+Name=Thonny Python IDE
+Icon=/usr/lib/python3/dist-packages/thonny/res/thonny.png
+URL=/usr/share/applications/Thonny.desktop
