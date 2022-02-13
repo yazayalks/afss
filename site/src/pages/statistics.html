@@ -11,7 +11,8 @@
     <script src="../actions/jquery.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!--menu--> <!--footer-->
     <link rel="import" href="menu.html">
@@ -45,10 +46,27 @@
 
     <div class="info">
         <div class="info__items">
-            <div class ="item__chart" style="width: 375px; height: 175px"><canvas id="barChart" ></canvas></div>
-           <!-- <div class="item__chart"><div id="chart1"></div></div>-->
-            <div class="item__chart"><div id="chart2"></div></div>
-            <div class="item__chart"><div id="chart3"></div></div>
+
+
+            <div class="item__chart">
+
+                <canvas id="chartTemperatureStove"></canvas>
+            </div>
+
+            <div class="item__chart">
+
+                <canvas id="chartTemperatureRoom"></canvas>
+            </div>
+
+            <div class="item__chart">
+                <canvas id="chartPressureTank"></canvas>
+            </div>
+
+
+
+
+
+
             <div class="item__servo">
                 <div class="text__servo">
                     <div class = "text-bold text-bold--black">Тяга печи</div>
@@ -73,12 +91,19 @@
                     <div class="servo-pipe__value"><div class = "text-bold text-bold--black">80°</div></div>\
                 </div>
             </div>
-            <div class="item__tank">
+            <!--<div class="item__tank">
                 <div class="image__water-level">
                     <img src="../images/water-level-1.png" width="375" height="100" alt="water-level-1">
                 </div>
                 <div class="tank__items">
-                    <div class="water-level__value"><div class = "text-bold text-bold--black">60%</div></div>
+                    <div class="water-level__value"><div class = "text-bold text-bold&#45;&#45;black">60%</div></div>
+                </div>
+            </div>-->
+            <div class="item__tank">
+                <div class="item__chart__inner">
+
+                    <canvas  id="chartWaterLevelTank"></canvas>
+                    <canvas id="chartTemperatureTank"></canvas>
                 </div>
             </div>
             <div class="item__time">
@@ -105,10 +130,26 @@
 </div>
 
 </body>
+<script src="../actions/actions.js"></script>
+<script src="../actions/pressureTank.js"></script>
+<script src="../actions/temperatureStove.js"></script>
+<script src="../actions/temperatureRoom.js"></script>
+<script src="../actions/temperatureTank.js"></script>
+<script src="../actions/waterLevelTank.js"></script>
+<script src="../actions/actions-statistics.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+
+<script>
+    addChartTemperatureStove();
+    addChartTemperatureRoom();
+    addChartPressureTank();
+    addChartWaterLevelTank();
+    addChartTemperatureTank();
+</script>
 
 <div class="add__footer" data-source="footer.html"></div>
 
-<script src="../actions/actions.js"></script>
-<script src="../actions/actions-statistics.js"></script>
+
 
 </html>
