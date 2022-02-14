@@ -50,6 +50,12 @@ a {
     color: black;
 }
 
+.text-light--link {
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
 .text-bold {
     font-family: "Stem-Bold";
     font-size: 24px;

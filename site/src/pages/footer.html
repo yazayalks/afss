@@ -1,17 +1,49 @@
-<!--<meta charset="UTF-8">
+<meta charset="UTF-8">
 <title>footer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../styles/styles.css">-->
+<link rel="stylesheet" href="../styles/styles.css">
 <link rel="stylesheet" href="../styles/styles-footer.css">
 
-
-
     <div class="container">
-        <div class="contacts">
-            <div class="contacts__items">
+        <div class="footer">
+            <div class="footer__items">
+                <div class="image__logo image__logo--mini">
+                    <img src="../images/logo.svg" width="45" height="45" alt="logo">
+                </div>
+                <div class="footer__info">
+
+                    <div class="back-to-the-top">
+                        <div onclick = "backToTheTop()" class="text-item">
+                        <div class = "text-light text-light--link">Вернуться наверх</div>
+                        </div>
+                    </div>
+
+                <div class="politics">
+                    <div class="text-item">
+                        <a class = "text-light text-light--link">Политика конфиденциальноси</a>
+                    </div>
+                    <div class="text-item">
+                        <a class = "text-light text-light--link">Все права защищены</a>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="text-item__project">
+                        <a class = "text-light text-light--link">О проекте</a>
+                    </div>
+                    <div class="text-item__rights">
+                        <a class = "text-light">© 2022 - AFSS все права защищены </a>
+                    </div>
+                </div>
+
+                <div class="contacts">
+                    <a href=""><img id = "vk" src='../images/vkontakte.svg' width="45" height="45"></a>
+                    <a href=""><img id = "whatsapp" src='../images/whatsapp.svg' width="45" height="45"></a>
+                    <a href=""><img id = "email" src='../images/email.svg' width="45" height="45"></a>
+                </div>
+                </div>
             </div>
         </div>
     </div>
-
 
 <script src="../actions/actions-footer.js"></script>
