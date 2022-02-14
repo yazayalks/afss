@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .item__chart__inner {
     display: flex;
     align-items: center;
@@ -35,28 +36,15 @@
     background-color: white;
 }
 
-.item__tank {
-    border: 12.5px solid #7A0B14;
-    width: 375px;
-    height: 175px;
-    margin-top: 25px;
-    margin-left: 12.5px;
-    margin-right: 12.5px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.item__servo:hover, .item__chart:hover, .item__time:hover, .item__events:hover  {
+    border: 12.5px solid #FE611E;
 }
 
 #chartWaterLevelTank {
-    position: relative;
-    /* margin-right: -200px;*/
-    left: 210px;
 }
 #chartTemperatureTank {
-    position: relative;
-    left: -6px;
 }
+
 .item__time {
     border: 12.5px solid #7A0B14;
     width: 375px;
@@ -119,23 +107,6 @@
     margin-top: 20px;
 }
 
-.image__water-level {
-    width: 375px;
-    height: 100px;
-    background-color: yellow;
-}
-
-.tank__items {
-    justify-content: center;
-    width: 375px;
-    height: 75px;
-    background-color: #F7FBF5;
-    display: flex;
-}
-.water-level__value {
-    margin-top: 20px;
-}
-
 .image__heating-time {
     width: 375px;
     height: 100px;
@@ -149,45 +120,54 @@
     background-color: #F7FBF5;
     display: flex;
 }
+
 .heating-time__value {
     margin-top: 20px;
 }
 
 .servo-stove__subtract {
     margin-top: 15px;
-    width: 45px;
-    height: 45px;
 }
 
-.servo-stove__subtract > .button--orange {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 45px;
+.button-subtract {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: none;
+    width: 45px;
+    height: 45px;
+    background: url(../images/subtract.svg);
+}
+.button-subtract:hover {
+    background: url(../images/subtract--active.svg);
 }
 
 .servo-stove__add {
     margin-top: 15px;
-    width: 45px;
-    height: 45px;
 }
 
-.servo-stove__add > .button--orange {
-    border-radius: 50%;
-    font-size: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.button-add {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: none;
+    width: 45px;
+    height: 45px;
+    background: url(../images/add.svg);
+}
+
+.button-add:hover {
+    background: url(../images/add--active.svg);
 }
 
 .servo-stove__value {
     margin-right: 25px;
     margin-left: 25px;
     margin-top: 20px;
+    width: 40px;
 }
-
 
 .events__items {
     width: 800px;
@@ -239,6 +219,7 @@
 .sub-menu__item:nth-child(4) {
     margin-right: 0px;
 }
+
 .item__chart__value {
     position: absolute;
     margin-top: 5px;
@@ -246,10 +227,12 @@
 }
 
 @media screen and (min-width: 875px) and (max-width: 1300px) {
+
     .sub-menu__item {
         width: 187.5px;
         height: 45px;
     }
+
     .item__events {
         width: 375px;
         height: 175px;
@@ -275,10 +258,12 @@
         padding-top: 0px;
         display: block;
     }
+
     .item__events {
         width: 375px;
         height: 175px;
     }
+
     .events__items {
         width: 375px;
     }

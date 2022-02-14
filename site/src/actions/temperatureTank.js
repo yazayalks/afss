@@ -32,21 +32,30 @@ function addChartTemperatureTank() {
         type: 'bar',
         data,
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             layout: {
                 padding: {
-                    top: 10,
-                    bottom: 5,
-                    right: 250,
+                   /* top: 10,
+                    bottom: 5,*/
+                   /* right: 250,*/
                 },
             },
             plugins: {
+                legend: {
+                    padding: {
+                        right: 100,
+                    },
+                    display: true,
+                    labels: {
+
+                    },
+                },
                 /*tooltip: {
                     enabled: false, // отключает наводку на точки
                 },*/
             },
-            legend: {
-                display: false // Легенда сверху
-            },
+
             animation: {
                 duration: 0, // general animation time
             },
@@ -71,7 +80,7 @@ function addChartTemperatureTank() {
                         display: true,
                         text: 'Время',
                         align: 'center',
-                        padding: 10,
+                        /*padding: 10,*/
                     }
                 },
             },
@@ -116,4 +125,6 @@ function addChartTemperatureTank() {
         document.getElementById('chartTemperatureTank'),
         config
     );
+    chartTemperatureTank.canvas.parentNode.style.height = '176px';
+    chartTemperatureTank.canvas.parentNode.style.width = '191px';
 }
