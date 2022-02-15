@@ -51,20 +51,13 @@
 }
 
 .status-image {
+    display: block;
+    background: #FE611E;
     width: 45px;
     height: 45px;
     margin-top: 15px;
     margin-left: 25px;
     border-radius: 50%;
-}
-
-.status-image--active {
-    background: #FEC715;
-}
-
-.status-image--inactive {
-    display: none;
-    background: #FE611E;
 }
 
 .button-out {

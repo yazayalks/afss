@@ -36,7 +36,7 @@
     background-color: white;
 }
 
-.item__servo:hover, .item__chart:hover, .item__time:hover, .item__events:hover  {
+.item__servo:hover, .item__chart:hover, .item__gas-room:hover, .item__events:hover  {
     border: 12.5px solid #FE611E;
 }
 
@@ -45,7 +45,7 @@
 #chartTemperatureTank {
 }
 
-.item__time {
+.item__gas-room {
     border: 12.5px solid #7A0B14;
     width: 375px;
     height: 175px;
@@ -104,16 +104,19 @@
     display: flex;
 }
 .servo-pipe__value {
+    margin-right: 25px;
+    margin-left: 25px;
     margin-top: 20px;
+    width: 40px;
 }
 
-.image__heating-time {
+.image__gas-room {
     width: 375px;
     height: 100px;
     background-color: orange;
 }
 
-.heating-time__items {
+.gas-room__items {
     justify-content: center;
     width: 375px;
     height: 75px;
@@ -121,11 +124,15 @@
     display: flex;
 }
 
-.heating-time__value {
+.gas-room__value {
     margin-top: 20px;
 }
 
 .servo-stove__subtract {
+    margin-top: 15px;
+}
+
+.servo-pipe__subtract {
     margin-top: 15px;
 }
 
@@ -144,6 +151,10 @@
 }
 
 .servo-stove__add {
+    margin-top: 15px;
+}
+
+.servo-pipe__add {
     margin-top: 15px;
 }
 

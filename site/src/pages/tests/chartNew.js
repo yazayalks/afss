@@ -580,7 +580,7 @@ function resizeCtxFunction(iter, ctx, data, config) {
 
         function getCSSVal(source, srch) {
             if (source.indexOf(" " + srch + ":") >= 0) {
-                value = source.substring(source.indexOf(" " + srch + ":") + srch.length + 2, 100);
+                valueStove = source.substring(source.indexOf(" " + srch + ":") + srch.length + 2, 100);
                 value = value.substring(0, value.indexOf(";"));
                 return value;
             }

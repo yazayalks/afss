@@ -64,16 +64,13 @@
                     <div class = "text-bold text-bold--black">Тяга печи</div>
                 </div>
                 <div class="image__servo-stove">
-                    <img id = "imageServoStove" src='../images/servo-stove-0.png' width="375" height="100">
+                    <img id = "imageServoStove" src='../images/servo-stove-0.png' width="375" height="100" alt="servo-stove">
                 </div>
                 <div class="servo-stove__items">
-                    <div id = "subtract" class="servo-stove__subtract"><div class = "button-subtract"></div></div>
+                    <div id ="subtractForStove" class="servo-stove__subtract"><div class = "button-subtract"></div></div>
                     <div class="servo-stove__value"><div id = "servoStoveValue" class = "text-bold text-bold--black">0°</div></div>
-                    <div id = "add" class="servo-stove__add"><div class = "button-add"></div></div>
+                    <div id ="addForStove" class="servo-stove__add"><div class = "button-add"></div></div>
                 </div>
-                <!--<script>
-                    document.getElementById("imageServoStove").src=
-                </script>-->
             </div>
 
             <div class="item__servo">
@@ -81,10 +78,12 @@
                     <div class = "text-bold text-bold--black">Тяга трубы</div>
                 </div>
                 <div class="image__servo-pipe">
-                    <img src="../images/servo-pipe-1.png" width="375" height="100" alt="servo-pipe-1">
+                    <img id = "imageServoPipe" src="../images/servo-pipe-0.png" width="375" height="100" alt="servo-pipe">
                 </div>
                 <div class="servo-pipe__items">
-                    <div class="servo-pipe__value"><div class = "text-bold text-bold--black">80°</div></div>\
+                    <div id ="subtractForPipe" class="servo-pipe__subtract"><div class = "button-subtract"></div></div>
+                    <div class="servo-pipe__value"><div id = "servoPipeValue" class = "text-bold text-bold--black">0°</div></div>
+                    <div id ="addForPipe" class="servo-pipe__add"><div class = "button-add"></div></div>
                 </div>
             </div>
 
@@ -95,12 +94,12 @@
                 </div>
             </div>
 
-            <div class="item__time">
-                <div class="image__heating-time">
-                    <img src="../images/heating-time-1.png" width="375" height="100" alt="heating-time-1">
+            <div class="item__gas-room">
+                <div class="image__gas-room">
+                    <img id = "imageGasRoom"  src="../images/gas-room-0.png" width="375" height="100" alt="gas-room">
                 </div>
-                <div class="heating-time__items">
-                    <div class="heating-time__value"><div class = "text-bold text-bold--black">~57мин</div></div>
+                <div class="gas-room__items">
+                    <div class="gas-room__value"><div id = "gasRoomValue" class = "text-bold text-bold--black">CO и CO<sub>2</sub> не обнаружены</div></div>
                 </div>
             </div>
 
