@@ -1,13 +1,13 @@
 authorization.onclick = function() {
-    document.location.href = "../pages/authorization.html";
+    document.location.href = "/Authorization";
 };
 
 registration.onclick = function() {
-    document.location.href = "../pages/registration.html";
+    document.location.href = "/Registration";
 };
 
 observation.onclick = function() {
-    document.location.href = "../pages/observation.html";
+    document.location.href = "/Observation";
 };
 
 

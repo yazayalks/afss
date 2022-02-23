@@ -147,7 +147,9 @@ a {
     /*body {
         background-color: green;
     }*/
-
+    body{
+        zoom:90%
+    }
     .container {
         width: 425px;
     }

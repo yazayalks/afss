@@ -7,6 +7,11 @@ var gasStatus = false;
 changeImageGas(gasStatus);
 changeTypeUser(typeUser);
 
+function changeEventsText(text) {
+    var eventsText = document.getElementById("eventsText");
+    eventsText.innerHTML +=  ' <div class="events__item"><div class = "text-light text-light--black">'+ text + '</div></div>';
+}
+
 function changeImageGas(value) {
     var imageGasRoom = document.getElementById("imageGasRoom");
     var gasRoomValue = document.getElementById("gasRoomValue");

@@ -14,7 +14,7 @@ namespace AFSS.Controllers
             this.afssDbContext = afssDbContext;
         }
         [HttpGet]
-        public List<PiData> Index(string key, int count = 20)
+        public IEnumerable<PiData> Index(string key, int count = 20)
         {
             var user = afssDbContext.PiUsers.SingleOrDefault(u => u.CpuSerial == key);
             if (user != null)
@@ -24,7 +24,7 @@ namespace AFSS.Controllers
             }
             else
             {
-                return null;
+                return Enumerable.Empty<PiData>();
             }
         }
 

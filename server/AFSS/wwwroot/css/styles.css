@@ -18,7 +18,8 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
     background-color: white;
-    height: auto ;
+    height: auto;
+    width: auto;
 }
 
 a {
@@ -48,6 +49,12 @@ a {
     font-family: "Stem-Light";
     font-size: 24px;
     color: black;
+}
+
+.text-light--link {
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: underline;
 }
 
 .text-bold {
@@ -141,7 +148,9 @@ a {
     /*body {
         background-color: green;
     }*/
-
+    body {
+        zoom: 90%
+    }
     .container {
         width: 425px;
     }

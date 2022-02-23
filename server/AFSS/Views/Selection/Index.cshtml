@@ -1,0 +1,19 @@
+﻿<title>Selection</title>
+
+<link rel="stylesheet" href="~/css/styles-selection.css">
+
+@await Html.PartialAsync("MenuInput")
+
+<div class="container">
+    <div class="sub-menu">
+        <div class="sub-menu__items">
+            <div id = "authorization" class="sub-menu__item"><div class = "button button--orange">Авторизация</div></div>
+            <div id = "registration" class="sub-menu__item"><div class = "button button--orange">Регистрация</div></div>
+            <div id = "observation" class="sub-menu__item"><div class = "button button--orange">Наблюдение</div></div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("Footer")
+
+<script src="~/js/actions-selection.js"></script>

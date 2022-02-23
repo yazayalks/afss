@@ -1,221 +1,83 @@
+var servoStoveValue = document.getElementById('servoStoveValue');
+var servoPipeValue = document.getElementById('servoPipeValue');
+var typeUserArray = ["user", "admin", "guest"];
+var typeUser = typeUserArray[0];
+var gasStatus = false;
 
+changeImageGas(gasStatus);
+changeTypeUser(typeUser);
 
-subtract.onclick = function() {
-    alert('Отняли');
+function changeEventsText(text) {
+    var eventsText = document.getElementById("eventsText");
+    eventsText.innerHTML +=  ' <div class="events__item"><div class = "text-light text-light--black">'+ text + '</div></div>';
+}
+
+function changeImageGas(value) {
+    var imageGasRoom = document.getElementById("imageGasRoom");
+    var gasRoomValue = document.getElementById("gasRoomValue");
+    if (gasStatus) {
+        imageGasRoom.src = "../images/gas-room-1.png";
+        gasRoomValue.innerText = "Задымление помещения"
+    }
+    else {
+        imageGasRoom.src = "../images/gas-room-0.png";
+        gasRoomValue.innerHTML = "CO и CO<sub>2</sub> не обнаружены";
+    }
+}
+
+function changeTypeUser(type) {
+    if (type === typeUserArray[2]) {
+        subtractForStove.style.display = "none";
+        addForStove.style.display = "none";
+        subtractForPipe.style.display = "none";
+        addForPipe.style.display = "none";
+        data.style.display = "none";
+        settings.style.display = "none";
+    }
+}
+
+var valueStove = parseInt(servoStoveValue.textContent);
+var valuePipe = parseInt(servoPipeValue.textContent);
+
+subtractForStove.onclick = function() {
+    if (valueStove > 0) {
+        servoStoveValue.innerText = (valueStove -= 10).toString() + "°";
+        changeImageStove(valueStove);
+    }
 };
 
-add.onclick = function() {
-    alert('Прибавили');
+addForStove.onclick = function() {
+    if (valueStove < 90) {
+        servoStoveValue.innerText = (valueStove += 10).toString() + "°";
+        changeImageStove(valueStove);
+    }
 };
 
-
-
-
-/*google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(callback);
-google.charts.setOnLoadCallback(callback2);
-google.charts.setOnLoadCallback(callback3);*/
-/*
-
-function callback() {
-
-    var chart1 = new google.visualization.LineChart(document.getElementById('chart1'));
-
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'TimeStamp');
-    data.addColumn('number', 'Value');
-    drawChart();
-    setInterval(drawChart, 1000);
-    function drawChart() {
-        var time = (moment().format('h:mm:ss'));
-        number = Math.random() * 1000;
-        var option = {
-            title: "Температура печи " + number.toFixed(3),
-            width: 375,
-            height: 175,
-
-            series: {
-                0: {
-                    color: 'red',
-                    lineWidth: 3
-                },
-            },
-            hAxis: { gridlines: { color: '#7A0B14' },
-                gridlineColor: '#7A0B14',
-                baselineColor: '#7A0B14',
-                /!*viewWindow: { min: -1, max: 6 },*!/
-                baselineColor: 'transparent',   },
-            vAxis: {
-                gridlines: { color: '#7A0B14' },
-                gridlineColor: '#7A0B14',
-                baselineColor: '#7A0B14', viewWindow: { min: -1, max: 1000 }, baselineColor: 'transparent',   },
-            chartArea: { height: '80%', width: '85%', left: 50,
-                backgroundColor: { stroke: "gray", strokeWidth: 1 } },
-
-            pointSize: 10
-        };
-
-
-
-        data.addRow([time.toString(), number]);
-        if (data.getNumberOfRows() > 6)
-        {
-            data.removeRow(0);
-        }
-        chart1.draw(data, option);
+subtractForPipe.onclick = function() {
+    if (valuePipe > 0) {
+        servoPipeValue.innerText = (valuePipe -= 10).toString() + "°";
+        changeImagePipe(valuePipe);
     }
+};
+
+addForPipe.onclick = function() {
+    if (valuePipe < 90) {
+        servoPipeValue.innerText = (valuePipe += 10).toString() + "°";
+        changeImagePipe(valuePipe);
+    }
+};
+
+function changeImageStove(value) {
+    var imageServoStove = document.getElementById("imageServoStove");
+    imageServoStove.src = "../images/servo-stove-" + value / 10 +".png";
 }
 
-function callback2() {
-
-    var chart2 = new google.visualization.LineChart(document.getElementById('chart2'));
-
-    var data2 = new google.visualization.DataTable();
-    data2.addColumn('string', 'TimeStamp');
-    data2.addColumn('number', 'Value');
-    drawChart2();
-    setInterval(drawChart2, 1000);
-    function drawChart2() {
-        var time = (moment().format('h:mm:ss'));
-        number = Math.random() * 100 + 30;
-        var option = {
-            title: "Температура парной " + number.toFixed(3),
-            width: 375,
-            height: 175,
-
-            series: {
-                0: {
-                    color: 'red',
-                    lineWidth: 3
-                },
-            },
-            hAxis: { gridlines: { color: '#7A0B14' },
-                gridlineColor: '#7A0B14',
-                baselineColor: '#7A0B14',
-                /!*viewWindow: { min: -1, max: 6 },*!/
-                baselineColor: 'transparent',   },
-            vAxis: {
-                gridlines: { color: '#7A0B14' },
-                gridlineColor: '#7A0B14',
-                baselineColor: '#7A0B14', viewWindow: { min: -1, max: 1000 }, baselineColor: 'transparent',   },
-            chartArea: { height: '80%', width: '85%', left: 50,
-                backgroundColor: { stroke: "gray", strokeWidth: 1 } },
-
-            pointSize: 10
-        };
-
-        data2.addRow([time.toString(), number]);
-        if (data2.getNumberOfRows() > 6)
-        {
-            data2.removeRow(0);
-        }
-        chart2.draw(data2, option);
-    }
+function changeImagePipe(value) {
+    var imageServoPipe = document.getElementById("imageServoPipe");
+    imageServoPipe.src = "../images/servo-pipe-" + value / 10 +".png";
 }
 
-function callback3() {
 
-    var chart3 = new google.visualization.LineChart(document.getElementById('chart3'));
 
-    var data3 = new google.visualization.DataTable();
-    data3.addColumn('string', 'TimeStamp');
-    data3.addColumn('number', 'Value');
-    drawChart3();
-    setInterval(drawChart3, 1000);
-    function drawChart3() {
-        var time = (moment().format('h:mm:ss'));
-        number = Math.random() * 1000;
-        number2 = Math.random() * 100 + 20;
-        var option = {
-            title: "Давление в баке " + number.toFixed(3) + "; Температура в баке " + number2.toFixed(3),
-            width: 375,
-            height: 175,
 
-            series: {
-                0: {
-                    color: 'red',
-                    lineWidth: 3
-                },
-            },
-            hAxis: { gridlines: { color: '#7A0B14' },
-                gridlineColor: '#7A0B14',
-                baselineColor: '#7A0B14',
-                /!*viewWindow: { min: -1, max: 6 },*!/
-                baselineColor: 'transparent',   },
-            vAxis: {
-                gridlines: { color: '#7A0B14' },
-                gridlineColor: '#7A0B14',
-                baselineColor: '#7A0B14', viewWindow: { min: -1, max: 1000 }, baselineColor: 'transparent',   },
-            chartArea: { height: '80%', width: '85%', left: 50,
-                backgroundColor: { stroke: "gray", strokeWidth: 1 } },
 
-            pointSize: 10
-        };
-
-        data3.addRow([time.toString(), number]);
-        if (data3.getNumberOfRows() > 6)
-        {
-            data3.removeRow(0);
-        }
-        chart3.draw(data3, option);
-    }
-}
-
-*/
-//value for x-axis
-var emotions = ["calm", "happy", "angry", "disgust"];
-
-//colours for each bar
-var colouarray = ['red', 'green', 'yellow', 'blue'];
-
-//Let's initialData[] be the initial data set
-var initialData = [0.1, 0.4, 0.3, 0.6];
-
-//Let's updatedDataSet[] be the array to hold the upadted data set with every update call
-var updatedDataSet;
-
-/*Creating the bar chart*/
-var ctx = document.getElementById("barChart");
-var barChart = new Chart(ctx, {
-    type: 'line',
-
-    data: {
-        labels: emotions,
-        datasets: [{
-            backgroundColor: colouarray,
-            label: 'Prediction',
-            data: initialData
-        }]
-    },
-    options: {
-        /*        width: 375,
-                height: 175,*/
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 1,
-                    stepSize: 0.5,
-                }
-            }]
-        }
-    }
-});
-
-/*Function to update the bar chart*/
-function updateBarGraph(chart, label, color, data) {
-    chart.data.datasets.pop();
-    chart.data.datasets.push({
-        label: label,
-        backgroundColor: color,
-        data: data
-    });
-    chart.update();
-}
-
-/*Updating the bar chart with updated data in every second. */
-setInterval(function() {
-    updatedDataSet = [Math.random(), Math.random(), Math.random(), Math.random()];
-    updateBarGraph(barChart, 'Prediction', colouarray, updatedDataSet);
-}, 1000);

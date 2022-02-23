@@ -113,6 +113,10 @@
         order: 2;
     }
 
+    .contacts > a:last-child {
+        margin-right: 15px;
+    }
+
     .project {
         margin: auto;
         order: 3;

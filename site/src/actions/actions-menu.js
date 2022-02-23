@@ -18,3 +18,13 @@ function changeStatus() {
         statusImage.style.background = "#FE611E";
     }
 }
+
+function changeKey(text) {
+    var key = document.getElementById("key");
+    key.innerText = text;
+}
+
+function changeLogin(text) {
+    var login = document.getElementById("login");
+    login.innerText = text;
+}

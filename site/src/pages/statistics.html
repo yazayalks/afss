@@ -3,15 +3,14 @@
 <head>
     <title>statistics</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="../styles/styles-statistics.css">
     <link rel="stylesheet" href="../styles/styles.css">
 
     <script src="../actions/jquery.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script src="https://momentjs.com/downloads/moment.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!--menu--> <!--footer-->
@@ -37,10 +36,10 @@
 <div class="container">
     <div class="sub-menu">
         <div class="sub-menu__items">
-            <div id = "statistics" class="sub-menu__item"><div class = "button button--orange">Статистика</div></div>
-            <div id = "information" class="sub-menu__item"><div class = "button button--orange">Информация</div></div>
-            <div id = "data" class="sub-menu__item"><div class = "button button--orange">Данные</div></div>
-            <div id = "settings" class="sub-menu__item"><div class = "button button--orange">Настройки</div></div>
+            <div id = "statistics" class="sub-menu__item"><div class = "button button--orange"><div class = "statisticsImage"></div>Статистика</div></div>
+            <div id = "information" class="sub-menu__item"><div class = "button button--orange"><div class = "informationImage"></div>Информация</div></div>
+            <div id = "data" class="sub-menu__item"><div class = "button button--orange"><div class = "dataImage"></div>Данные</div></div>
+            <div id = "settings" class="sub-menu__item"><div class = "button button--orange"><div class = "settingsImage"></div>Настройки</div></div>
         </div>
     </div>
 
@@ -105,7 +104,7 @@
 
             <div class="item__events">
                 <div class="text__events"><div class = "text-bold text-bold--black">События</div></div>
-                <div class="events__items">
+                <div id = "eventsText" class="events__items">
                     <div class="events__item"><div class = "text-light text-light--black">Система запущена;</div></div>
                     <div class="events__item"><div class = "text-light text-light--black">Идёт автоматическая растопка бани;</div></div>
                     <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>

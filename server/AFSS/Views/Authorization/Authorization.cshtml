@@ -1,0 +1,20 @@
+﻿<title>Authorization</title>
+
+<link rel="stylesheet" href="~/css/styles-authorization.css">
+@*<link rel="stylesheet" href="~/css/styles-menu-input.css">*@
+
+@await Html.PartialAsync("MenuInput")
+
+<div class="container">
+    <div class="input-data">
+        <div class="input-data__items">
+            <div class = "text-bold text-bold--black">Авторизация</div>
+            <input class="input-text" name="example_email" type="login" placeholder="Логин"></input>
+            <input class="input-text" name="password" type="password" placeholder="Пароль"> </input>
+            <div id ="authorization" class = "button button--orange">Войти</div></div>
+    </div>
+</div>
+
+@await Html.PartialAsync("Footer")
+
+<script src="~/js/actions-authorization.js"></script>

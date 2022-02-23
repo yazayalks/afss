@@ -1,86 +1,25 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AFSS</title>
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" >
-    <link rel="stylesheet" href="~/css/styles-menu.css" asp-append-version="true" >
-    @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-    @*<link rel="stylesheet" href="~/AFSS.styles.css" asp-append-version="true" />*@
-</head>
-<body>
-    @*<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AFSS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>*@
-    <div id = "menu">
-        <div class = "container">
-            <div class = "menu">
-                <div class="menu__items">
-                    <div class="image__logo image__logo--mini">
-                        <img src="~/images/logo.svg" width="45" height="45" alt="logo">
-                    </div>
-                    <div class = "item__key">
-                        <div class = "text-bold">000000002690f5d0</div>
-                    </div>
-                    <div class = "item__login">
-                        <div class = "text-bold">lysak_kirill</div>
-                    </div>
-                    <div class = "status-and-out">
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0" />*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
-                        <div class = "item__status">
-                            <div class = "status-text">
-                                <div class = "text-bold">Offline</div>
-                            </div>
-                            <div class = "status-image status-image--active"></div>
-                            <div class = "status-image status-image--inactive"></div>
-                        </div>
-                        <div class = "button-out">
-                            <div id = "out" class = "button button--red">Выйти</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" >
+</head>
+
+<body>
+
+
+
 
     @RenderBody()
+    
+    @*   <script src="~/js/site.js" asp-append-version="true"></script>*@
 
-   @* <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>*@
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - AFSS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/js/actions-menu.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
+
 </html>

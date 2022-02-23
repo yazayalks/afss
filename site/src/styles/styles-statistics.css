@@ -5,6 +5,22 @@
     width: 100%;
 }
 
+.statisticsImage {
+    display: none;
+}
+
+.informationImage {
+    display: none;
+}
+
+.dataImage {
+    display: none;
+}
+
+.settingsImage {
+    display: none;
+}
+
 .item__chart {
     border: 12.5px solid #7A0B14;
     width: 375px;
@@ -261,13 +277,41 @@
         height: 81.25px;
     }
 
-    .sub-menu__item > .button--orange {
+    .sub-menu__item > .button {
         border-radius: 50%;
         font-size: 0;
         width: 100%;
         height: 100%;
         padding-top: 0px;
         display: block;
+    }
+
+    .statisticsImage {
+        display: block;
+        width: 81.25px;
+        height: 81.25px;
+        background: url(../images/statistics.svg) no-repeat;
+    }
+
+    .informationImage {
+        display: block;
+        width: 81.25px;
+        height: 81.25px;
+        background: url(../images/info.svg) no-repeat;
+    }
+
+    .dataImage {
+        display: block;
+        width: 81.25px;
+        height: 81.25px;
+        background: url(../images/data.svg) no-repeat;
+    }
+
+    .settingsImage {
+        display: block;
+        width: 81.25px;
+        height: 81.25px;
+        background: url(../images/settings.svg) no-repeat;
     }
 
     .item__events {

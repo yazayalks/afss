@@ -1,3 +1,3 @@
 back.onclick = function() {
-    document.location.href = "../pages/selection.html";
+    document.location.href = "/Selection";
 };
