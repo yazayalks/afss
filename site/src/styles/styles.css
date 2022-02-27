@@ -69,12 +69,19 @@ a {
 .input-text{
     font-family: "Stem-Light";
     padding-left: 15px;
+    padding-right: 15px;
     font-size: 24px;
-    width: 300px;
+    width: 285px;
     height: 45px;
     border: none;
     background: #F7FBF5;
     color: black;
+}
+
+.checkbox {
+    margin-top: 15px;
+    height: 15px;
+    width: 15px;
 }
 
 /*button*/

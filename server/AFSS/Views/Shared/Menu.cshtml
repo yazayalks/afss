@@ -1,5 +1,9 @@
 ﻿<title>Menu</title>
 
+<p></p>
+ 
+  
+
 <link rel="stylesheet" href="~/css/styles-menu.css">
 
     <div class = "container">
@@ -12,7 +16,7 @@
                     <div id = "key" class = "text-bold">0000000000000000</div>
                 </div>
                 <div class = "item__login">
-                    <div id = "login" class = "text-bold">name</div>
+                    <div id = "login" class = "text-bold">@User.Identity.Name</div>
                 </div>
                 <div class = "status-and-out">
 
@@ -23,7 +27,11 @@
                         <div id = "statusImage" class = "status-image"></div>
                     </div>
                     <div class = "button-out">
-                        <div id = "out" class = "button button--red">Выйти</div>
+                          <form method="post" asp-controller="Account" asp-action="Logout">
+     
+   
+                        <input type="submit" id = "out" value="Выйти"  class = "button button--red"></input>
+                         </form>
                     </div>
                 </div>
             </div>

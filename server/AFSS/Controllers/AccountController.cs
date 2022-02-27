@@ -68,12 +68,12 @@ namespace AFSS.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Statistics", "Statistics");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                    ModelState.AddModelError("","Неправильный логин и (или) пароль");
                 }
             }
             return View(model);
@@ -85,7 +85,7 @@ namespace AFSS.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Selection");
         }
     }
 }

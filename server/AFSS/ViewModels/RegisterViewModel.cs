@@ -10,7 +10,7 @@ namespace AFSS.ViewModels
 
         [Required]
         [Display(Name = "Ключ")]
-        public int PiKey { get; set; }
+        public string PiKey { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -4,6 +4,6 @@ namespace AFSS.Models
 {
     public class User : IdentityUser
     {
-        public int PiKey { get; set; }
+        public string PiKey { get; set; }
     }
 }

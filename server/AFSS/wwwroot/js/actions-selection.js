@@ -1,5 +1,5 @@
 authorization.onclick = function() {
-    document.location.href = "/Authorization";
+    document.location.href = "/Account/Login";
 };
 
 registration.onclick = function() {

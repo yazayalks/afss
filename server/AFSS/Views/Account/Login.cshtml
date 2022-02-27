@@ -1,4 +1,4 @@
-﻿@model AFSS.ViewModels.LoginViewModel
+﻿@*@model AFSS.ViewModels.LoginViewModel
  
 <h2>Вход в приложение</h2>
 <form method="post" asp-controller="Account" asp-action="Login"
@@ -21,4 +21,74 @@
     <div>
         <input type="submit" value="Войти" />
     </div>
+</form>*@
+
+@{
+    ViewData["Title"] = "Authorization";
+}
+
+@model AFSS.ViewModels.LoginViewModel
+@*<title>Authorization</title>*@
+
+<link rel="stylesheet" href="~/css/styles-authorization.css">
+
+@await Html.PartialAsync("MenuInput")
+
+@*<form method="post" asp-controller="Account" asp-action="Login"
+      asp-route-returnUrl="@Model.ReturnUrl">
+      
+<div class="container">
+    <div class="input-data">
+        <div class="input-data__items">
+            <div class = "text-bold text-bold--black">Авторизация</div>
+            <div asp-validation-summary="ModelOnly"></div>
+            <input asp-for="Email" class="input-text" placeholder="Логин"></input>
+            <span asp-validation-for="Email"></span>
+            <input  asp-for="Password" class="input-text" placeholder="Пароль"> </input>
+             <span asp-validation-for="Password"></span>
+            <input type="submit" value="Войти" id ="authorization" class = "button button--orange"></input>
+        </div>
+    </div>
+</div>
+</form>*@
+
+<form method="post" asp-controller="Account" asp-action="Login"
+      asp-route-returnUrl="@Model.ReturnUrl">
+
+      <div class="container">
+      <div class="input-data">
+        <div class="input-data__items">
+            <div class = "text-bold text-bold--black">Авторизация</div>
+            <div class = "login__inner">
+            <input asp-for="Email" class="input-text" placeholder="Логин"></input>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="Email" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "password__inner">
+            <input  asp-for="Password" class="input-text"placeholder="Пароль"></input>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="Password" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "validation__inner--big">
+                
+                    <div asp-validation-summary="ModelOnly"></div>
+                
+            </div>
+
+            <div class = "checkbox__inner">
+                <spawn class = "checkbox__item">
+                    <input asp-for="RememberMe" class="checkbox" />
+                    <div class = "text-light text-light--black">Запомнить меня</div>
+                </spawn>
+            </div>
+            <input type="submit" value="Войти" id ="authorization" class = "button button--orange"></input>
+        </div>
+    </div>
+    </div>
 </form>
+
+@await Html.PartialAsync("Footer")
+
+@*<script src="~/js/actions-authorization.js"></script>*@

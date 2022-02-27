@@ -7,7 +7,10 @@ namespace AFSS.Controllers
     {
         public IActionResult Menu()
         {
+           /* ViewData["PiKey"] = "123";*/
+
             return PartialView("Menu");
         }
+
     }
 }

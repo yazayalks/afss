@@ -44,8 +44,9 @@
 
 .input-data__items > .button--orange {
     margin: 25px auto;
-    /*margin-top: 25px;*/
-    width: 300px;
+    margin-top: 25px;
+    width: 330px;
+    border: 0px;
 }
 
 .input-data__items >.text-bold--black {
