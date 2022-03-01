@@ -43,6 +43,11 @@
     margin-top: 25px;
 }
 
+.password-confirm__inner {
+    display: block;
+    margin-top: 25px;
+}
+
 .validation__item {
     margin-left: 15px;
     position: absolute;
@@ -63,16 +68,23 @@
     color: #E00E0F;
 }
 
-    .validation-text:invalid {
-        display: block;
-        width: 0px;
-        height: 25px;
-    }
+.validation-text:invalid {
+    display: block;
+    width: 0px;
+    height: 25px;
+
+}
 
 .validation-summary-errors {
     padding-left: 415px;
     justify-content: left;
     text-align: left;
+}
+
+.input-data__items > .button--orange {
+    margin: 25px auto;
+    width: 330px;
+    border: 0px;
 }
 
 @media screen and (min-width: 875px) and (max-width: 1300px) {
@@ -103,11 +115,12 @@
     .validation-text {
         width: 300px;
     }
+    
+    .validation-text:empty {
+        display: block;
+        height: 25px;
 
-        .validation-text:empty {
-            display: block;
-            height: 25px;
-        }
+    }
 
     .key__inner {
         margin-bottom: 0px;
@@ -130,16 +143,30 @@
         flex-direction: column;
         align-items: center;
     }
+    .password-confirm__inner {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     li:first-child {
         margin-top: 0px;
     }
-}
 
-.input-data__items > .button--orange {
-    margin: 25px auto;
-    width: 330px;
-    border: 0px;
+    li:last-child {
+        margin-bottom: 25px;
+    }
+
+    .input-data__items > .button--orange {
+        margin-top: 0px;
+    }
+
+    .password-confirm__inner > .validation__item > span:not(:empty) {
+        margin-bottom: 25px;
+        margin-top: 10px;
+    }
 }
 
 .validation-summary__inner {

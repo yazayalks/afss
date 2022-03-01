@@ -41,18 +41,6 @@ li {
     color: #E00E0F;
 }
 
-/*ul {
-
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-
-}*/
-
 ul {
     padding: 0px;
     margin: 0px;
@@ -165,11 +153,12 @@ ul {
     .validation-text {
         width: 300px;
     }
+    
+    .validation-text:empty {
+        display: block;
+        height: 25px;
 
-        .validation-text:empty {
-            display: block;
-            height: 25px;
-        }
+    }
 
     .login__inner {
         margin-bottom: 0px;
@@ -188,5 +177,20 @@ ul {
 
     li {
         margin-top: 0px;
+    }
+
+    .validation-summary__inner:empty {
+        margin-bottom: 25px;
+    }
+
+    li:last-child {
+        margin-bottom: 25px;
+    }
+
+    .remember__inner {
+        margin-top: 0px;
+    }
+    .password__inner > .validation__item > span:not(:empty) {
+        margin-bottom: 25px;
     }
 }

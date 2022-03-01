@@ -10,6 +10,10 @@ var connectionString = builder.Configuration.GetConnectionString("AFSSContextCon
 builder.Services.AddDbContext<ApplicationContext>(options =>
                options.UseSqlServer(connectionString));
 
+// Добавляем сервис валидатора пароля
+builder.Services.AddTransient<IPasswordValidator<User>,
+        CustomPasswordValidator>(serv => new CustomPasswordValidator(6));
+
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationContext>();
 

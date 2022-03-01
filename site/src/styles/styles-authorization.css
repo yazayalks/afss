@@ -13,20 +13,6 @@
     width: 1250px;
 }
 
-.input-data__items > .input-text {
-    margin-top: 25px;
-}
-
-.input-data__items > .button--orange {
-    margin: 25px auto;
-    width: 330px;
-    border: 0px;
-}
-
-.input-data__items > .text-bold--black {
-    font-size: 48px;
-}
-
 .validation-summary__inner {
     display: flex;
     align-items: center;
@@ -34,33 +20,11 @@
     text-align: center;
 }
 
-
-
 .validation__item {
     margin-left: 15px;
     position: absolute;
     justify-content: left;
     text-align: left;
-
-}
-
-.validation-text {
-    display: flex;
-    font-family: "Stem-Light";
-    font-size: 24px;
-    width: 410px;
-    padding-left: 15px;
-    padding-right: 15px;
-    align-items: center;
-    height: 45px;
-    border: none;
-    color: #E00E0F;
-}
-
-.validation-text:invalid {
-    display: block;
-    width: 0px;
-    height: 25px;
 }
 
 li {
@@ -77,21 +41,22 @@ li {
     color: #E00E0F;
 }
 
-/*ul {
-
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-
-}*/
-
 ul {
     padding: 0px;
     margin: 0px;
+}
+
+.validation-text {
+    display: flex;
+    font-family: "Stem-Light";
+    font-size: 24px;
+    width: 410px;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-items: center;
+    height: 45px;
+    border: none;
+    color: #E00E0F;
 }
 
 .remember__item > .text-light--black {
@@ -132,7 +97,27 @@ ul {
     height: 45px;
 }
 
-.recovery-password__inner{
+.input-data__items > .input-text {
+    margin-top: 25px;
+}
+
+.input-data__items > .button--orange {
+    margin: 25px auto;
+    width: 330px;
+    border: 0px;
+}
+
+.input-data__items > .text-bold--black {
+    font-size: 48px;
+}
+
+.validation-text:invalid {
+    display: block;
+    width: 0px;
+    height: 25px;
+}
+
+.recovery-password__inner {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,14 +148,16 @@ ul {
         margin-left: 0px;
         position: relative;
         width: 330px;
-
     }
+
     .validation-text {
         width: 300px;
     }
+
     .validation-text:empty {
         display: block;
         height: 25px;
+
     }
 
     .login__inner {
@@ -187,7 +174,23 @@ ul {
         flex-direction: column;
         align-items: center;
     }
+
     li {
         margin-top: 0px;
+    }
+
+    .validation-summary__inner:empty {
+        margin-bottom: 25px;
+    }
+
+    li:last-child {
+        margin-bottom: 25px;
+    }
+
+    .remember__inner {
+        margin-top: 0px;
+    }
+    .password__inner > .validation__item > span:not(:empty) {
+        margin-bottom: 25px;
     }
 }

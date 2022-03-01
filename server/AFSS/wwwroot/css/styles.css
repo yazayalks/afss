@@ -46,6 +46,7 @@ a {
 /*text-*/
 
 .text-light {
+    cursor: default;
     font-family: "Stem-Light";
     font-size: 24px;
     color: white;
@@ -64,6 +65,7 @@ a {
 }
 
 .text-bold {
+    cursor: default;
     font-family: "Stem-Bold";
     font-size: 24px;
     color: white;
@@ -86,6 +88,7 @@ a {
 }
 
 .checkbox {
+    cursor: pointer;
     margin-top: 15px;
     height: 15px;
     width: 15px;
