@@ -3,7 +3,7 @@ authorization.onclick = function() {
 };
 
 registration.onclick = function() {
-    document.location.href = "/Registration";
+    document.location.href = "/Account/Register";
 };
 
 observation.onclick = function() {

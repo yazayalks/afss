@@ -3,13 +3,13 @@
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
 .footer__items {
     background-color: #7A0B14;
     min-width: 400px;
     margin-left: 12.5px;
     margin-right: 12.5px;
     display: flex;
-
 }
 
 .footer__info {
@@ -36,6 +36,7 @@
     padding-top: 15px;
     margin-right: 25px;
 }
+
 .text-item {
     text-align: left;
 }
@@ -45,7 +46,6 @@
 }
 
 .text-item__rights > .text-light {
-
     font-size: 20px;
 }
 
@@ -54,9 +54,10 @@
     margin-right: 25px;
     display: flex;
 }
-.contacts > a {
-    margin-left: 15px;
-}
+
+    .contacts > a {
+        margin-left: 15px;
+    }
 
 @media screen and (min-width: 875px) and (max-width: 1300px) {
 
@@ -72,7 +73,9 @@
     .contacts {
         order: 2;
     }
+
     .project {
+        padding-top: 0px;
         margin: auto;
         order: 3;
     }
@@ -86,21 +89,17 @@
 
     .back-to-the-top {
         margin: auto;
-
         display: flex;
     }
-    .back-to-the-top > .text-item {
-        margin-top: 20px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+
+        .back-to-the-top > .text-item {
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
     .image__logo {
         position: absolute;
-    }
-
-    .contacts > a:last-child {
-        margin-right: 15px;
     }
 
     .footer__items {
@@ -117,9 +116,14 @@
         order: 2;
     }
 
+        .contacts > a:last-child {
+            margin-right: 15px;
+        }
+
     .project {
         margin: auto;
         order: 3;
+        padding-top: 0px;
     }
 
     .text-item__rights {
@@ -130,11 +134,12 @@
         text-align: center;
     }
 
-    .text-item:last-child {
-        margin-top: 20px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        .text-item:last-child {
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
     .text-item__project {
         margin-bottom: 20px;
     }

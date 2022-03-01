@@ -3,7 +3,7 @@
 <head>
     <title>authorization</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <link rel="stylesheet" href="../styles/styles-authorization.css">
     <link rel="stylesheet" href="../styles/styles.css">
@@ -32,32 +32,46 @@
 <div class="container">
     <div class="input-data">
         <div class="input-data__items">
+
             <div class = "text-bold text-bold--black">Авторизация</div>
+
             <div class = "login__inner">
-            <input class="input-text" name="example_email" type="login" placeholder="Логин"></input>
+                <input class="input-text" name="example_email" type="login" placeholder="Логин"></input>
                 <spawn class = "validation__item">
-                    <spawn class = "validation-text"></spawn>
-                </spawn>
-            </div>
-            <div class = "password__inner">
-            <input class="input-text" name="password" type="password" placeholder="Пароль"> </input>
-                <spawn class = "validation__item">
-                    <spawn value = "" class = "validation-text"></spawn>
-                </spawn>
-            </div>
-            <div class = "validation__inner--big">
-                <spawn class = "validation__item--big">
-                    <spawn class = "validation-text">Неправильный логин и (или) пароль</spawn>
+                    <span class = "validation-text"><!--Не указан логин--></span>
                 </spawn>
             </div>
 
-            <div class = "checkbox__inner">
-                <spawn class = "checkbox__item">
+            <div class = "password__inner">
+                <input class="input-text" name="password" type="password" placeholder="Пароль"> </input>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не указан пароль--></span>
+                </spawn>
+            </div>
+
+            <div class = "validation-summary__inner">
+                <div class="validation-summary-errors">
+                    <ul>
+                        <li>Неправильный логин и (или) пароль</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "remember__inner">
+                <spawn class = "remember__item">
                     <input class="checkbox" type="checkbox"/>
                     <div class = "text-light text-light--black">Запомнить меня</div>
                 </spawn>
             </div>
-            <input id ="authorization" value = "Войти" class = "button button--orange"></input>
+
+            <input type="submit" id ="authorization" value = "Войти" class = "button button--orange"></input>
+
+            <div class = "recovery-password__inner">
+                <div class = "recovery-password__item">
+                    <a href = "" class = "text-light text-light--black">Восстановить пароль</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@
 }
 
 .item__key {
-    width: 250px;
+    width: 260px;
     height: 35px;
     margin-top: 20px;
     margin-left: 25px;
@@ -26,6 +26,8 @@
     margin-top: 20px;
     margin-left: 25px;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .status-and-out {
@@ -70,6 +72,10 @@
 
     .item__login {
         width: 130px;
+    }
+    .item__login > .text-bold {
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 

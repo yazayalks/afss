@@ -3,7 +3,7 @@
 <head>
     <title>registration</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <link rel="stylesheet" href="../styles/styles-registration.css">
     <link rel="stylesheet" href="../styles/styles.css">
@@ -34,11 +34,45 @@
     <div class="input-data">
         <div class="input-data__items">
             <div class = "text-bold text-bold--black">Регистрация</div>
-            <input class="input-text" name="text" type="text" placeholder="Введите ключ"></input>
-            <input class="input-text" name="example_email" type="login" placeholder="Введите логин"></input>
-            <input class="input-text" name="password" type="password" placeholder="Введите пароль"> </input>
-            <input class="input-text" name="password" type="password" placeholder="Повторите пароль"> </input>
-            <div id="registration" class = "button button--orange">Зарегистрироваться</div></div>
+            <div class = "key__inner">
+                <input class="input-text" name="text" type="text" placeholder="Введите ключ"></input>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Недействительный ключ</span>
+                </spawn>
+            </div>
+            <div class = "login__inner">
+                <input class="input-text" name="example_email" type="login" placeholder="Введите логин"></input>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не указан логин</span>
+                </spawn>
+            </div>
+            <div class = "password__inner">
+                <input class="input-text" name="password" type="password" placeholder="Введите пароль"> </input>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не указан пароль</span>
+                </spawn>
+            </div>
+            <div class = "password__inner">
+                <input class="input-text" name="password" type="password" placeholder="Повторите пароль"> </input>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Пароли не совпадают</span>
+                </spawn>
+            </div>
+
+            <div class = "validation-summary__inner">
+                <div class="validation-summary-errors">
+
+                    <ul>
+                        <li>Passwords must be at least 6 characters.</li>
+                        <li>Passwords must have at least one non alphanumeric character.</li>
+                        <li>Passwords must have at least one lowercase ('a'-'z').</li>
+                        <li>Passwords must have at least one uppercase ('A'-'Z').</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <input type="submit" id="registration" value = "Зарегистрироваться" class = "button button--orange"></input></div>
     </div>
 </div>
 </body>

@@ -13,33 +13,20 @@
     width: 1250px;
 }
 
-.validation__inner--big {
+.validation-summary__inner {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-.validation__item--big {
-    width: 285px;
-    display: flex;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-
 .validation__item {
     margin-left: 15px;
     position: absolute;
     justify-content: left;
     text-align: left;
-    overflow: hidden;
 }
 
-ul {
-    padding: 0px;
-    margin: 0px;
-}
 li {
     margin-top: 25px;
     padding-left: 15px;
@@ -53,11 +40,29 @@ li {
     border: none;
     color: #E00E0F;
 }
+
+/*ul {
+
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+
+}*/
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
 .validation-text {
     display: flex;
     font-family: "Stem-Light";
     font-size: 24px;
-    width: 300px;
+    width: 410px;
     padding-left: 15px;
     padding-right: 15px;
     align-items: center;
@@ -66,7 +71,7 @@ li {
     color: #E00E0F;
 }
 
-.checkbox__item > .text-light--black {
+.remember__item > .text-light--black {
     margin-left: 25px;
     display: flex;
     font-family: "Stem-Light";
@@ -86,10 +91,9 @@ li {
 .password__inner {
     display: block;
     margin-top: 25px;
-
 }
 
-.checkbox__inner {
+.remember__inner {
     margin-top: 25px;
     display: flex;
     margin-bottom: 25px;
@@ -99,7 +103,7 @@ li {
     position: center;
 }
 
-.checkbox__item {
+.remember__item {
     display: flex;
     width: 315px;
     height: 45px;
@@ -111,7 +115,7 @@ li {
 
 .input-data__items > .button--orange {
     margin: 25px auto;
-    width: 285px;
+    width: 330px;
     border: 0px;
 }
 
@@ -121,7 +125,33 @@ li {
 
 .validation-text:invalid {
     display: block;
+    width: 0px;
     height: 25px;
+}
+
+.recovery-password__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.recovery-password__item {
+    width: 285px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+    .recovery-password__item > .text-light--black:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+@media screen and (min-width: 875px) and (max-width: 1300px) {
+
+    .validation-text {
+        width: 200px;
+    }
 }
 
 @media screen and (min-width:0px) and (max-width:875px) {
@@ -130,13 +160,16 @@ li {
         margin-left: 0px;
         position: relative;
         width: 330px;
-
     }
 
-    .validation-text:empty {
-        display: block;
-        height: 25px;
+    .validation-text {
+        width: 300px;
     }
+
+        .validation-text:empty {
+            display: block;
+            height: 25px;
+        }
 
     .login__inner {
         margin-bottom: 0px;
@@ -152,6 +185,7 @@ li {
         flex-direction: column;
         align-items: center;
     }
+
     li {
         margin-top: 0px;
     }

@@ -1,5 +1,12 @@
-﻿@model AFSS.ViewModels.RegisterViewModel
-<h2>Регистрация нового пользователя</h2>
+﻿@{
+    ViewData["Title"] = "Registration";
+}
+@model AFSS.ViewModels.RegisterViewModel
+
+<link rel="stylesheet" href="~/css/styles-registration.css">
+
+@await Html.PartialAsync("MenuInput")
+@*<h2>Регистрация нового пользователя</h2>
 <form method="post" asp-controller="Account" asp-action="Register">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
@@ -25,4 +32,45 @@
     <div>
         <input type="submit" value="Регистрация" />
     </div>
+</form>*@
+
+<form method="post" asp-controller="Account" asp-action="Register">
+<div class="container">
+    <div class="input-data">
+        <div class="input-data__items">
+            <div class = "text-bold text-bold--black">Регистрация</div>
+            
+            <div class = "key__inner">
+                <input asp-for="PiKey" class="input-text" placeholder="Введите ключ"></input>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="PiKey" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "login__inner">
+                <input asp-for="Email" class="input-text" placeholder="Введите логин"></input>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="Email" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "password__inner">
+                <input asp-for="Password" class="input-text" placeholder="Введите пароль"> </input>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="Password" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "password__inner">
+                <input asp-for="PasswordConfirm" class="input-text" placeholder="Повторите пароль"> </input>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="PasswordConfirm" class = "validation-text"></span>
+                </spawn>
+            </div>
+
+            <div class = "validation-summary__inner">
+                <div asp-validation-summary="ModelOnly"></div>
+            </div>
+            <input type="submit" id="registration" value = "Зарегистрироваться" class = "button button--orange"></input></div>
+    </div>
+</div>
 </form>
+
+@await Html.PartialAsync("Footer")

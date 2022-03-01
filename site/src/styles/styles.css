@@ -19,6 +19,8 @@ h1, h2, h3, h4, h5, h6 {
 body {
     background-color: white;
     height: auto ;
+    width: auto;
+    margin: 0px;
 }
 
 a {
@@ -39,6 +41,7 @@ a {
 /*text-*/
 
 .text-light {
+    cursor: default;
     font-family: "Stem-Light";
     font-size: 24px;
     color: white;
@@ -57,6 +60,7 @@ a {
 }
 
 .text-bold {
+    cursor: default;
     font-family: "Stem-Bold";
     font-size: 24px;
     color: white;
@@ -71,7 +75,7 @@ a {
     padding-left: 15px;
     padding-right: 15px;
     font-size: 24px;
-    width: 285px;
+    width: 300px;
     height: 45px;
     border: none;
     background: #F7FBF5;
@@ -80,8 +84,12 @@ a {
 
 .checkbox {
     margin-top: 15px;
+    margin-left: 15px;
     height: 15px;
     width: 15px;
+}
+.checkbox:hover {
+    cursor: pointer;
 }
 
 /*button*/
