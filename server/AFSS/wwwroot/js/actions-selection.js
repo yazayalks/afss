@@ -7,7 +7,7 @@ registration.onclick = function() {
 };
 
 observation.onclick = function() {
-    document.location.href = "/Observation";
+    document.location.href = "/Account/Observe";
 };
 
 

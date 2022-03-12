@@ -20,16 +20,6 @@ namespace AFSS.Models
         {
             List<IdentityError> errors = new List<IdentityError>();
 
-           /* if (String.IsNullOrEmpty(password) || password.Length < RequiredLength)
-            {
-                errors.Add(new IdentityError
-                {
-                    Description = $"Минимальная длина пароля равна {RequiredLength}"
-                });
-            }*/
-            /*string pattern = "^[0-9]+$";*/
-            /*string pattern = "^(?=.*?[0 - 9])(?=.*?[a - z])(?=.*?[A - Z])(?=.*?[@#$%^&+-=!*])(?=\\S+$).{6,}$";*/
-
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpperChar = new Regex(@"[A-Z]+");
             var hasLowerChar = new Regex(@"[a-z]+");

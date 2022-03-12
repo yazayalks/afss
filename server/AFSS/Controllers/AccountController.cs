@@ -87,5 +87,44 @@ namespace AFSS.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Selection");
         }
+
+
+        [HttpGet]
+        public IActionResult Observe()
+        {
+            return View();
+        }
+        /*[HttpGet]
+        public IActionResult Observe(string returnUrl = null)
+        {
+            return View(new ObserveViewModel { ReturnUrl = returnUrl });
+        }*/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Observe(ObserveViewModel model)
+        {
+            /*if (ModelState.IsValid)
+            {
+                var result =
+                    await _signInManager.PasswordSignInAsync(model.Email, model.PiKey, false);
+                if (result.Succeededtrue)
+                {
+                    // проверяем, принадлежит ли URL приложению
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Statistics", "Statistics");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Неправильный ключ");
+                }
+            }*/
+            return View(model);
+        }
     }
 }
