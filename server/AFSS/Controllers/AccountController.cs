@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using AFSS.Models;
 using AFSS.ViewModels;
+using AFSS.DbContexts;
+using System.Text.RegularExpressions;
 
 namespace AFSS.Controllers
 {
@@ -10,9 +12,11 @@ namespace AFSS.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly AfssDbContext afssDbContext;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AfssDbContext afssDbContext)
         {
+            this.afssDbContext = afssDbContext;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -84,6 +88,15 @@ namespace AFSS.Controllers
         public async Task<IActionResult> Logout()
         {
             // удаляем аутентификационные куки
+            if (Request.Cookies.ContainsKey("PiKey"))
+            {
+                Response.Cookies.Delete("PiKey");
+               
+            }
+            if (Request.Cookies.ContainsKey("UserName"))
+            {
+                Response.Cookies.Delete("UserName");
+            }
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Selection");
         }
@@ -103,27 +116,52 @@ namespace AFSS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Observe(ObserveViewModel model)
         {
-            /*if (ModelState.IsValid)
+            List<IdentityError> errors = new List<IdentityError>();
+
+            if (ModelState.IsValid)
             {
-                var result =
-                    await _signInManager.PasswordSignInAsync(model.Email, model.PiKey, false);
-                if (result.Succeededtrue)
+                var piKey = model.PiKey.ToLower();
+                var hasNumChar = new Regex(@"^[a-z0-9]+$");
+                var hasMinChars = new Regex(@".{16,16}");
+                if (!hasNumChar.IsMatch(piKey))
                 {
-                    // проверяем, принадлежит ли URL приложению
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    errors.Add(new IdentityError
                     {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Statistics", "Statistics");
-                    }
+                        Description = "Неправильное содержимое ключа"
+                    });
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Неправильный ключ");
+                    if (!hasMinChars.IsMatch(piKey))
+                    {
+                        errors.Add(new IdentityError
+                        {
+                            Description = "Неправильная длинна ключа"
+                        });
+                    }
+                    else
+                    {
+                        if (!afssDbContext.PiUsers.Any(u => u.CpuSerial == piKey))
+                        {
+                            errors.Add(new IdentityError
+                            {
+                                Description = "Данный ключ не существует"
+                            });
+                        }
+                    }
                 }
-            }*/
+
+                if (errors.Count == 0)
+                { 
+                    Response.Cookies.Append("PiKey", model.PiKey);
+                    Response.Cookies.Append("UserName", model.Name);
+
+
+                    return RedirectToAction("Statistics", "Statistics");
+                }
+
+            }
+
             return View(model);
         }
     }

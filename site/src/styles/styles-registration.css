@@ -76,9 +76,11 @@
 }
 
 .validation-summary-errors {
-    padding-left: 415px;
+    /*overflow: visible;*/
+    white-space: nowrap;
     justify-content: left;
     text-align: left;
+    width: 300px;
 }
 
 .input-data__items > .button--orange {
@@ -94,7 +96,11 @@
     }
 
     .validation-summary-errors {
-        padding-left: 262.5px;
+        /*padding-left: 262.5px;*/
+    }
+    .validation-summary-errors {
+        /*overflow: visible;*/
+        white-space: normal;
     }
 }
 

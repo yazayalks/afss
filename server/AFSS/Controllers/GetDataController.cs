@@ -22,8 +22,26 @@ namespace AFSS.Controllers
         [HttpGet]
         public IEnumerable<PiData> Index(int count = 20)
         {
+            
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userPiKey = applicationContext.Users.SingleOrDefault(u => u.Id == userId).PiKey;
+            string userPiKey = string.Empty;
+            if (userId != null)
+            {
+                userPiKey = applicationContext.Users.SingleOrDefault(u => u.Id == userId).PiKey;
+            }
+            else
+            {
+                if (Request.Cookies.ContainsKey("PiKey"))
+                {
+                    userPiKey = Request.Cookies["PiKey"];
+                }
+                else
+                {
+                    return Enumerable.Empty<PiData>();
+                }
+            }
+           
+
 
             var user = afssDbContext.PiUsers.SingleOrDefault(u => u.CpuSerial == userPiKey.ToString());
             if (user != null)

@@ -15,11 +15,17 @@ namespace AFSS.Controllers
 
         }
 
-        [Authorize]
+        /*[Authorize]*/
+        [AllowAnonymous]
         public IActionResult Statistics()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userPiKey = applicationContext.Users.SingleOrDefault(u=> u.Id == userId).PiKey;
+            if ((userId == null) && (!Request.Cookies.ContainsKey("PiKey")))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            /*var userPiKey = applicationContext.Users.SingleOrDefault(u=> u.Id == userId).PiKey;*/
             /*ViewBag["UserKeyValue"] = "000000002690f5d0";*/
             return View();
         }
