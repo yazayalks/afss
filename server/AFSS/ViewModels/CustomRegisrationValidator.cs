@@ -1,5 +1,4 @@
-﻿using AFSS.DbContexts;
-using AFSS.Models;
+﻿using AFSS.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Text.RegularExpressions;
 
@@ -9,8 +8,8 @@ namespace AFSS.ViewModels
     public class CustomRegisrationValidator : IUserValidator<User>
     {
         private readonly ApplicationContext applicationContext;
-        private readonly AfssDbContext afssDbContext;
-        public CustomRegisrationValidator(ApplicationContext applicationContext, AfssDbContext afssDbContext)
+        private readonly AfssContext afssDbContext;
+        public CustomRegisrationValidator(ApplicationContext applicationContext, AfssContext afssDbContext)
         {
             this.afssDbContext = afssDbContext;
             this.applicationContext = applicationContext;
@@ -49,7 +48,7 @@ namespace AFSS.ViewModels
                 } 
                 else 
                 { 
-                    if (!afssDbContext.PiUsers.Any(u => u.CpuSerial == piKey))
+                    if (!afssDbContext.PiUser.Any(u => u.CpuSerial == piKey))
                     {
                         errors.Add(new IdentityError
                         {

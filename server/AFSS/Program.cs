@@ -1,4 +1,3 @@
-using AFSS.DbContexts;
 using AFSS.Models;
 using AFSS.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -24,7 +23,7 @@ builder.Services.AddIdentity<User, IdentityRole>()
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AfssDbContext>();
+builder.Services.AddDbContext<AfssContext>();
 
 var app = builder.Build();
 

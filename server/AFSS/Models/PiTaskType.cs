@@ -2,6 +2,7 @@
 {
     public enum PiTaskType
     {
-        SERVO = 0
+        SERVO1 = 0,
+        /*SERVO2 = 0,*/
     }
 }

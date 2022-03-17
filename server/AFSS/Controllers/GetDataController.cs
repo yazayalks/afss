@@ -1,4 +1,4 @@
-﻿using AFSS.DbContexts;
+﻿
 using AFSS.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +13,8 @@ namespace AFSS.Controllers
     {
         private readonly ApplicationContext applicationContext;
 
-        private readonly AfssDbContext afssDbContext;
-        public GetDataController(AfssDbContext afssDbContext, ApplicationContext applicationContext)
+        private readonly AfssContext afssDbContext;
+        public GetDataController(AfssContext afssDbContext, ApplicationContext applicationContext)
         {
             this.afssDbContext = afssDbContext;
             this.applicationContext = applicationContext;
@@ -43,7 +43,7 @@ namespace AFSS.Controllers
            
 
 
-            var user = afssDbContext.PiUsers.SingleOrDefault(u => u.CpuSerial == userPiKey.ToString());
+            var user = afssDbContext.PiUser.SingleOrDefault(u => u.CpuSerial == userPiKey.ToString());
             if (user != null)
             {
                 return afssDbContext.PiData.Where(a => a.PiUserId == user.Id).OrderByDescending(a => a.Date).Take(count).Select(ToPiData).ToList();
@@ -55,7 +55,7 @@ namespace AFSS.Controllers
             }
         }
 
-        private PiData ToPiData(PiDatum piDatum)
+        private PiData ToPiData(PiData piDatum)
         {
             return new PiData()
             {

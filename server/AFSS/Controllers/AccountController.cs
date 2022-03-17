@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using AFSS.Models;
 using AFSS.ViewModels;
-using AFSS.DbContexts;
+
 using System.Text.RegularExpressions;
 
 namespace AFSS.Controllers
@@ -12,9 +12,9 @@ namespace AFSS.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly AfssDbContext afssDbContext;
+        private readonly AfssContext afssDbContext;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AfssDbContext afssDbContext)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AfssContext afssDbContext)
         {
             this.afssDbContext = afssDbContext;
             _userManager = userManager;
@@ -141,7 +141,7 @@ namespace AFSS.Controllers
                     }
                     else
                     {
-                        if (!afssDbContext.PiUsers.Any(u => u.CpuSerial == piKey))
+                        if (!afssDbContext.PiUser.Any(u => u.CpuSerial == piKey))
                         {
                             errors.Add(new IdentityError
                             {
