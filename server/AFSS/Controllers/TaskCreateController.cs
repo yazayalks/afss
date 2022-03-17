@@ -21,13 +21,11 @@ namespace AFSS.Controllers
         
         public void Get(PiTaskType type, int value)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string userPiKey = string.Empty;
-            
-            userPiKey = applicationContext.Users.SingleOrDefault(u => u.Id == userId).PiKey;
-            
-           
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);      
+            var userPiKey = applicationContext.Users.Single(u => u.Id == userId).PiKey;
+
             var piKey = afssContext.PiUser.Single(u => u.CpuSerial == userPiKey);
+
             var newTask = new PiTask()
             {
                 Complete = false,
@@ -37,6 +35,7 @@ namespace AFSS.Controllers
                 Type = (int)type,
             };
 
+            afssContext.PiTask.Add(newTask);
             afssContext.SaveChanges();
         }
     }

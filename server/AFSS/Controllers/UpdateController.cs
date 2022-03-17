@@ -13,7 +13,7 @@ namespace AFSS.Controllers
             this.afssContext = afssDbContext;
         }
         [HttpGet]
-        public List<PiTask> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int ServoStove, int ServoPipe, string key)
+        public List<PiTaskDTO> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int ServoStove, int ServoPipe, string key)
         {
             var user = afssContext.PiUser.SingleOrDefault(u => u.CpuSerial == key);
             if (user == null)
@@ -37,10 +37,16 @@ namespace AFSS.Controllers
 
             });
             
-            var result = afssContext.PiTask.Where(u => u.Complete == false).ToList();
-            result.ForEach(u => u.Complete = true);
+            var activeTasks = afssContext.PiTask.Where(u => u.Complete == false).ToList();
+            activeTasks.ForEach(u => u.Complete = true);
 
             afssContext.SaveChanges();
+            var result = activeTasks.Select(u => new PiTaskDTO() 
+            { 
+                type = u.Type,
+                value = u.Value,
+            }
+            ).ToList();
 
             return result;
         }

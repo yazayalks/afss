@@ -7,12 +7,12 @@ namespace AFSS.Models
 {
     public partial class PiTask
     {
-        public int Id { get; set; }
         public int PiKeyId { get; set; }
         public DateTime CreateDate { get; set; }
         public int Type { get; set; }
         public int Value { get; set; }
         public bool Complete { get; set; }
+        public int Id { get; set; }
 
         public virtual PiUser PiKey { get; set; }
     }

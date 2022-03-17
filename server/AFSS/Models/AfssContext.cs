@@ -22,6 +22,15 @@ namespace AFSS.Models
         public virtual DbSet<PiTask> PiTask { get; set; }
         public virtual DbSet<PiUser> PiUser { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=31.31.196.234;Initial Catalog=u1410979_afss;Persist Security Info=True;User ID=u1410979_afss;Password=MrNimbus123");
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("u1410979_afss");
@@ -63,29 +72,25 @@ namespace AFSS.Models
 
             modelBuilder.Entity<PiTask>(entity =>
             {
-                entity.HasKey(e => e.PiKeyId)
+                entity.HasKey(e => e.Id)
                     .HasName("PiTask_pk")
                     .IsClustered(false);
 
-                entity.Property(e => e.PiKeyId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("piKeyId");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Complete).HasColumnName("complete");
 
                 entity.Property(e => e.CreateDate).HasColumnName("createDate");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
+                entity.Property(e => e.PiKeyId).HasColumnName("piKeyId");
 
                 entity.Property(e => e.Type).HasColumnName("type");
 
                 entity.Property(e => e.Value).HasColumnName("value");
 
                 entity.HasOne(d => d.PiKey)
-                    .WithOne(p => p.PiTask)
-                    .HasForeignKey<PiTask>(d => d.PiKeyId)
+                    .WithMany(p => p.PiTask)
+                    .HasForeignKey(d => d.PiKeyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("PiTask_PiUser_id_fk");
             });

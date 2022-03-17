@@ -1,0 +1,27 @@
+Scaffold-DbContext "Data Source=31.31.196.234;Initial Catalog=u1410979_afss;Persist Security Info=True;User ID=u1410979_afss;Password=MrNimbus123" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DbContexts -Context AfssDbContext -Force
+
+//собрать образ
+sudo docker build -t afss .
+
+//запуск контейнера с консолью без рестарта
+sudo docker run -t -i --restart no --device=/dev/ttyUSB0 afss
+
+//запуск контейнера с консолью с рестартом
+sudo docker run -t -i --restart always --device=/dev/ttyUSB0 afss
+
+
+//always
+
+//список запущенныз контенеров
+sudo docker ps
+
+//остановить контейнер по id
+sudo docker stop {id}
+
+sudo docker update --restart=no 0576df221c0b
+
+
+Docker поддерживает комбинацию клавиш для изящного отсоединения от контейнера. Нажмите Ctrl-P, а затем Ctrl-Q, чтобы отключить соединение.
+
+
+https://localhost:7131/api/TaskCreate?type=0&value=10

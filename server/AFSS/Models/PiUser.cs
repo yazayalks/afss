@@ -10,6 +10,7 @@ namespace AFSS.Models
         public PiUser()
         {
             PiData = new HashSet<PiData>();
+            PiTask = new HashSet<PiTask>();
         }
 
         public string CpuSerial { get; set; }
@@ -17,7 +18,7 @@ namespace AFSS.Models
         public string Password { get; set; }
         public int Id { get; set; }
 
-        public virtual PiTask PiTask { get; set; }
         public virtual ICollection<PiData> PiData { get; set; }
+        public virtual ICollection<PiTask> PiTask { get; set; }
     }
 }
