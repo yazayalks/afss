@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AFSS.Models
 {
-    public partial class U1410979_AfssContext : DbContext
+    public partial class AfssContext : DbContext
     {
-        public U1410979_AfssContext()
+        public AfssContext()
         {
         }
 
-        public U1410979_AfssContext(DbContextOptions<U1410979_AfssContext> options)
+        public AfssContext(DbContextOptions<AfssContext> options)
             : base(options)
         {
         }

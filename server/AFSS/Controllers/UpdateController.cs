@@ -7,22 +7,22 @@ namespace AFSS.Controllers
     [Route("api/[controller]")]
     public class UpdateController : ControllerBase
     {
-        private readonly AfssContext afssDbContext;
+        private readonly AfssContext afssContext;
         public UpdateController(AfssContext afssDbContext)
         {
-            this.afssDbContext = afssDbContext;
+            this.afssContext = afssDbContext;
         }
         [HttpGet]
         public List<PiTask> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int ServoStove, int ServoPipe, string key)
         {
-            var user = afssDbContext.PiUser.SingleOrDefault(u => u.CpuSerial == key);
+            var user = afssContext.PiUser.SingleOrDefault(u => u.CpuSerial == key);
             if (user == null)
             {
                 user = new PiUser() { CpuSerial = key };
-                afssDbContext.PiUser.Add(user);
-                afssDbContext.SaveChanges();
+                afssContext.PiUser.Add(user);
+                afssContext.SaveChanges();
             }
-            afssDbContext.PiData.Add(new PiData()
+            afssContext.PiData.Add(new PiData()
             {
                 Gas = gasRoom,
                 Pressure = pressureTank,
@@ -36,18 +36,12 @@ namespace AFSS.Controllers
                 Servo1 = ServoPipe
 
             });
-            afssDbContext.SaveChanges();
-            var result = new List<PiTask>();
-            result.Add(new PiTask() {
-                Type = (int)PiTaskType.SERVO1,
-                CreateDate =  date,
-                PiKeyId = 1,
-                Value = 1,
-                Complete = true,
-                PiKey = ,
-                Id = 1,
+            
+            var result = afssContext.PiTask.Where(u => u.Complete == false).ToList();
+            result.ForEach(u => u.Complete = true);
 
-            });
+            afssContext.SaveChanges();
+
             return result;
         }
 
