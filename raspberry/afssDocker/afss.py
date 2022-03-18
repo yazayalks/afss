@@ -1,6 +1,9 @@
+from xml.dom.expatbuilder import parseString
 import serial
 import datetime
 import requests
+import json
+from time import sleep
 
 def getserial():
   # Extract serial from cpuinfo file
@@ -32,6 +35,21 @@ while True:
             r = requests.get(baseUrl, params={'temperatureStove': str(data[0]), 'temperatureTank': str(data[1]), 'temperatureRoom': str(data[2]), 'pressureTank': str(data[3]), 'waterLevelTank': str(data[4]), 'gasRoom': str(data[5]), 'ServoStove': str(data[6]), 'ServoPipe': str(data[7]), 'date': str(datetime.datetime.now()), 'key': key})
             if r.status_code == 200:
                 print(r.json())
+                tasks = json.loads(r.text)
+                if (str(r.json()) != "[]"):
+                  coutnTask = len(tasks)
+                  # print(coutnTask)
+                  i = 0
+                  while i < coutnTask:
+                    type = tasks[i]["type"] + 1
+                    value = tasks[i]["value"]
+                    valueSend = (type * 100 + value)
+                    newStr = "\n"
+                    # print(type * 100 + value)
+                    # print("{valueSend}\n")
+                    ser.write((str(valueSend) + newStr).encode ('utf-8'))
+                    # sleep(0.5)
+                    i += 1
             else:
                 print('send error')
 
