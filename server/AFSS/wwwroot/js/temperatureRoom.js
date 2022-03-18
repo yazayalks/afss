@@ -3,7 +3,7 @@ function addChartTemperatureRoom() {
     var timeOnX = ["0", "0", "0", "0", "0", "0"];
     var time = "00:00:00";
     var temperatureRoomValue = 0;
-/*    var key = '000000002690f5d0';*/
+    /*    var key = '000000002690f5d0';*/
 
     (async () => await initializeTemperature())();
 
@@ -32,7 +32,7 @@ function addChartTemperatureRoom() {
     const temperatureRoomLastValue = {
         id: 'temperatureRoomLastValue',
         beforeDatasetsDraw(chart, args, options) {
-            const {ctx, chartArea: {top, bottom, left, right, width, height}} = chart;
+            const { ctx, chartArea: { top, bottom, left, right, width, height } } = chart;
             const text = temperatureRoomValue;
             ctx.save();
             ctx.font = 'bolder 12px Arial';
@@ -103,12 +103,12 @@ function addChartTemperatureRoom() {
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
         (async () => await fetchAsync())();
-     /*   temperatureRoomValue = (Math.random() * 100).toFixed(3);*/
+        /*   temperatureRoomValue = (Math.random() * 100).toFixed(3);*/
         timeOnX.push(time);
         timeOnX.shift();
         temperatureRoomOnY.push(temperatureRoomValue);
         temperatureRoomOnY.shift();
-       
+
     }
 
     async function fetchAsync() {
@@ -116,9 +116,9 @@ function addChartTemperatureRoom() {
         let response = await fetch('/api/GetData?count=1');
         let data = await response.json();
         temperatureRoomValue = data[0].tmp1;
-       /* time = data[0].date;*/
+        /* time = data[0].date;*/
         /*console.log(data);*/
-/*        return data;*/
+        /*        return data;*/
     }
 
     setInterval(function () {

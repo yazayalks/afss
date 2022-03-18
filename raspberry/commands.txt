@@ -21,7 +21,11 @@ sudo docker stop {id}
 sudo docker update --restart=no 0576df221c0b
 
 
-Docker поддерживает комбинацию клавиш для изящного отсоединения от контейнера. Нажмите Ctrl-P, а затем Ctrl-Q, чтобы отключить соединение.
+//Docker поддерживает комбинацию клавиш для изящного отсоединения от контейнера. Нажмите Ctrl-P, а затем Ctrl-Q, чтобы отключить соединение.
 
 
 https://localhost:7131/api/TaskCreate?type=0&value=10
+
+
+// Остановить и удалить контейнер по id
+sudo docker stop CONTAINER_ID && sudo docker rm -f CONTAINER_ID
