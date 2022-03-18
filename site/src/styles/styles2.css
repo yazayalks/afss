@@ -1,0 +1,75 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Stem-Bold';
+    src: url(../fonts/Stem-Bold/Stem-Bold.ttf);
+    src: url(../fonts/Stem-Bold/Stem-Bold.otf);
+}
+
+@font-face {
+    font-family: 'Stem-Light';
+    src: url(../fonts/Stem-Light/Stem-Light.ttf);
+}
+
+body {
+    background-color: white;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.menu {
+    margin-top: 25px;
+    background-color: #7A0B14;
+}
+
+.menu__menu-inner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 75px;
+    background-color: #7A0B14;
+    border-left: 15px solid #FE611E; /* Линия слева от текста */
+    border-right: 15px solid #FE611E; /* Линия справа от текста */
+}
+
+.text-light {
+    font-family: "Stem-Light";
+    font-size: 24px;
+    color: white;
+}
+
+.text-bold {
+    font-family: "Stem-Bold";
+    font-size: 24px;
+    color: white;
+}
+
+.button--red {
+    background: #E00E0F;
+}
+
+.button--yellow{
+    background: #FEC715;
+}
+
+.input-text{
+    font-family: "Stem-Light";
+    padding-left: 15px;
+    font-size: 24px;
+    width: 300px;
+    height: 45px;
+    border: none;
+    background: #F7FBF5;
+    color: black;
+}

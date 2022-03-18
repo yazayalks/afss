@@ -1,0 +1,116 @@
+
+.menu {
+    margin-top: 25px;
+}
+
+.menu__items {
+    background-color: #7A0B14;
+    min-width: 400px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    display: flex;
+    height: 75px;
+}
+
+.item__key {
+    width: 260px;
+    height: 35px;
+    margin-top: 20px;
+    margin-left: 25px;
+    text-align: left;
+}
+
+.item__login {
+    width: 400px;
+    height: 35px;
+    margin-top: 20px;
+    margin-left: 25px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status-and-out {
+    margin-left: auto;
+    display: flex;
+    height: 75px;
+    width: 330px;
+}
+
+.item__status {
+    display: flex;
+    /*width: 200px;*/
+    height: 45px;
+    margin-left: 25px;
+}
+
+.status-text {
+    width: 80px;
+    height: 35px;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.status-image {
+    display: block;
+    background: #FE611E;
+    width: 45px;
+    height: 45px;
+    margin-top: 15px;
+    margin-left: 25px;
+    border-radius: 50%;
+}
+
+.button-out {
+    margin-top: 15px;
+    margin-right: 25px;
+    margin-left: 25px;
+    
+}
+
+.button--red {
+    border: 0px;
+}
+
+@media screen and (min-width: 875px) and (max-width: 1300px) {
+    .item__login {
+        width: 130px;
+    }
+
+        .item__login > .text-bold {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+}
+
+@media screen and (min-width:0px) and (max-width:875px) {
+
+
+    .image__logo{
+        position: absolute;
+    }
+
+    .menu__items {
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        height: 190px;
+    }
+
+    .item__login {
+        width: 350px;
+        order: 3;
+        margin-top: 20px;
+    } /* Отобразится третьим */
+
+    .item__key {
+        width: 350px;
+        order: 2;
+        margin-top: 5px;
+    } /* Отобразится вторым  */
+
+    .status-and-out {
+        order: 1;
+    } /* Отобразится первым  */
+
+}

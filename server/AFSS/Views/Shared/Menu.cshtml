@@ -1,0 +1,41 @@
+﻿<title>Menu</title>
+
+<p></p>
+ 
+  
+
+<link rel="stylesheet" href="~/css/styles-menu.css">
+
+    <div class = "container">
+        <div class = "menu">
+            <div class="menu__items">
+                <div class="image__logo image__logo--mini">
+                    <img src="../images/logo.svg" width="45" height="45" alt="logo">
+                </div>
+                <div class = "item__key">
+                    <div id = "key" class = "text-bold">0000000000000000</div>
+                </div>
+                <div class = "item__login">
+                    <div id = "login" class = "text-bold">@User.Identity.Name</div>
+                </div>
+                <div class = "status-and-out">
+
+                    <div class = "item__status">
+                        <div class = "status-text">
+                            <div id = "statusText" class = "text-bold">Offline</div>
+                        </div>
+                        <div id = "statusImage" class = "status-image"></div>
+                    </div>
+                    <div class = "button-out">
+                          <form method="post" asp-controller="Account" asp-action="Logout">
+     
+   
+                        <input type="submit" id = "out" value="Выйти"  class = "button button--red"></input>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="~/js/actions-menu.js"></script>

@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Observation";
+}
+@model AFSS.ViewModels.ObserveViewModel
+
+<link rel="stylesheet" href="~/css/styles-observation.css">
+
+@await Html.PartialAsync("MenuInput")
+
+<form method="post" asp-controller="Account" asp-action="Observe">
+<div class="container">
+    <div class="input-data">
+        <div class="input-data__items">
+            <div class = "text-bold text-bold--black">Наблюдение</div>
+            <div class = "key__inner">
+                <input asp-for="PiKey" class="input-text" placeholder="Введите ключ"/>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="PiKey" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "name__inner">
+                <input asp-for="Name" class="input-text" placeholder="Введите имя"/>
+                <spawn class = "validation__item">
+                    <span asp-validation-for="Name" class = "validation-text"></span>
+                </spawn>
+            </div>
+            <div class = "validation-summary__inner">
+                <div asp-validation-summary="ModelOnly"></div>
+            </div>
+
+            <input type="submit" id="observation" value = "Наблюдать" class = "button button--orange"/>
+        </div>
+    </div>
+</div>
+</form>
+
+@await Html.PartialAsync("Footer")

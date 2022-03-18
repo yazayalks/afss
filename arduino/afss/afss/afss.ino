@@ -14,6 +14,7 @@
 #define TEMPERATURE_ROOM_SCK 5 // Указываем к какому порту подключен вывод SCK
 #define TEMPERATURE_ROOM_CS 4 // Указываем к какому порту подключен вывод CS
 #define TEMPERATURE_ROOM_SO 3 // Указываем к какому порту подключен вывод SO
+int value = 0;
 int valueServoStove = 0;
 int valueServoPipe = 0;
 unsigned long delayTime;
@@ -24,73 +25,77 @@ Adafruit_BME280 bmeTank; // I2C
 
 
 void setup() {
-    Serial.begin(9600);
-    //while(!Serial);    // time to get serial running;
-    pinMode(SERVO_STOVE_PIN, OUTPUT);
-    pinMode(SERVO_PIPE_PIN, OUTPUT); 
-    bmeTank.begin(0x76);  
+  Serial.begin(9600);
+  //while(!Serial);    // time to get serial running;
+  pinMode(SERVO_STOVE_PIN, OUTPUT);
+  pinMode(SERVO_PIPE_PIN, OUTPUT);
+  bmeTank.begin(0x76);
 }
 
 
-void loop() { 
-    printValues();
-    // convert number 0 to 9 to corresponding 0-90 degree angle
-   if (Serial.available() > 0) {
-     valueServoStove = Serial.parseInt();
-     if (valueServoStove >= 10 && valueServoStove <= 19) 
-     {
-          valueServoStove = valueServoStove - 10; // convert to numerical variable
-          valueServoStove = valueServoStove * (90 / 9); // convert number to angle
-          //Serial.print("moving servo stove to ");
-          //Serial.print(valueServoStove);
-          //Serial.println();
-          // giving the servo time 
-          //to rotate to commanded position
-          for (int i = 0; i <= 50; i++) 
-          {
-            servoPulse(SERVO_STOVE_PIN, valueServoStove);
-          }
-     }
-     if (valueServoPipe >= 20 && valueServoPipe <= 29) 
-     {
-          valueServoPipe = valueServoPipe - 20; // convert to numerical variable
-          valueServoPipe = valueServoPipe * (90 / 9); // convert number to angle
-          //Serial.print("moving servo pipe to ");
-          //Serial.print(valueServoPipe);
-          //Serial.println();
-          // giving the servo time 
-          //to rotate to commanded position
-          for (int i = 0; i <= 50; i++) 
-          {
-            servoPulse(SERVO_PIPE_PIN, valueServoPipe);
-          }
-     }
+void loop() {
+  printValues();
+  //    convert number 0 to 90 degree angle
+  if (Serial.available() > 0)
+  {
+    value = Serial.parseInt();
+    //    Serial.println(value);
 
+    if (value >= 100 && value <= 190)
+    {
+      valueServoStove = value;
+      valueServoStove = valueServoStove - 100;
+      //          Serial.print("moving servo stove to ");
+      //          Serial.print(valueServoStove);
+      //          Serial.println();
+      //    giving the servo time
+      //    to rotate to commanded position
+      for (int i = 0; i <= 50; i++)
+      {
+        servoPulse(SERVO_STOVE_PIN, valueServoStove);
+      }
     }
-    delay(UPDATE_TIME);
+
+    if (value >= 200 && value <= 290)
+    {
+      valueServoPipe = value;
+      valueServoPipe = valueServoPipe - 200;
+      //          Serial.print("moving servo pipe to ");
+      //          Serial.print(valueServoPipe);
+      //          Serial.println();
+      //    giving the servo time
+      //    to rotate to commanded position
+      for (int i = 0; i <= 50; i++)
+      {
+        servoPulse(SERVO_PIPE_PIN, valueServoPipe);
+      }
+    }
+
+  }
+  delay(UPDATE_TIME);
 }
 
 
 void printValues() {
-    String temperatureTankStr = String(bmeTank.readTemperature());
-    String pressureTankStr = String(bmeTank.readPressure() / 100.0F);
-    String waterLevelTankStr = String(analogRead(WATER_LEVEL_PIN));
-    String gasRoomStr = String(analogRead(GAS_PIN));
-    String temperatureStoveStr = String(thermocoupleStove.readCelsius());
-    String temperatureRoomStr = String(thermocoupleRoom.readCelsius());
-    String ServoStoveStr = String(valueServoStove);
-    String ServoPipeStr = String(valueServoPipe);
-  
-    //String resultStr = thermocoupleStr + ";" + thermocouple2Str + ";" + temperatureStr + ";" + pressureStr + ";" + waterLevelStr + ";" + gasStr;
-    String resultStr = temperatureStoveStr + ";" + temperatureTankStr + ";" + temperatureRoomStr + ";" + pressureTankStr + ";" + waterLevelTankStr + ";" + gasRoomStr + ";" + ServoStoveStr + ";" + ServoPipeStr;
-    Serial.println(resultStr);
+  String temperatureTankStr = String(bmeTank.readTemperature());
+  String pressureTankStr = String(bmeTank.readPressure() / 100.0F);
+  String waterLevelTankStr = String(analogRead(WATER_LEVEL_PIN));
+  String gasRoomStr = String(analogRead(GAS_PIN));
+  String temperatureStoveStr = String(thermocoupleStove.readCelsius());
+  String temperatureRoomStr = String(thermocoupleRoom.readCelsius());
+  String ServoStoveStr = String(valueServoStove);
+  String ServoPipeStr = String(valueServoPipe);
+
+  String resultStr = temperatureStoveStr + ";" + temperatureTankStr + ";" + temperatureRoomStr + ";" + pressureTankStr + ";" + waterLevelTankStr + ";" + gasRoomStr + ";" + ServoStoveStr + ";" + ServoPipeStr;
+
+  Serial.println(resultStr);
 }
 
-// define a servo pulse function
+//define a servo pulse function
 void servoPulse(int pin, int angle)
 {
   // convert angle to 500-2480 pulse width
-  int pulseWidth = (angle * 11) + 500; 
+  int pulseWidth = (angle * 11) + 500;
   digitalWrite(pin, HIGH); // set the level of servo pin as high
   delayMicroseconds(pulseWidth); // delay microsecond of pulse width
   digitalWrite(pin, LOW); // set the level of servo pin as low

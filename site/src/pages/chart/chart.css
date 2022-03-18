@@ -1,0 +1,34 @@
+body {
+    font-family: 'Rubik', sans-serif;
+    color: #333;
+    background: #fff;
+}
+.container {
+    padding: 0 32px;
+}
+.app-h1 {
+    text-align: center;
+}
+.app-chart__canvas {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.app__input {
+    position: relative;
+}
+.app__input span {
+    position: absolute;
+    top: calc(100% + 4px);
+    font-size: 10px;
+    right: 0;
+    left: 0;
+    text-align: center;
+}
+.app__config {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
