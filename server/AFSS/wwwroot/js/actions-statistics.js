@@ -39,8 +39,22 @@ function changeTypeUser(type) {
 var valueStove = parseInt(servoStoveValue.textContent);
 var valuePipe = parseInt(servoPipeValue.textContent);
 
+function httpGet(type, value) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);
+    xhr.send();
+    if (xhr.status != 200) {
+        // обработать ошибку
+        console.log(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
+    } else {
+        // вывести результат
+        console.log(xhr.responseText); // responseText -- текст ответа.
+    }
+}
+
 subtractForStove.onclick = function() {
     if (valueStove > 0) {
+        httpGet(0, valueStove - 10);
         servoStoveValue.innerText = (valueStove -= 10).toString() + "°";
         changeImageStove(valueStove);
     }
@@ -48,6 +62,7 @@ subtractForStove.onclick = function() {
 
 addForStove.onclick = function() {
     if (valueStove < 90) {
+        httpGet(0, valueStove + 10);
         servoStoveValue.innerText = (valueStove += 10).toString() + "°";
         changeImageStove(valueStove);
     }
@@ -55,6 +70,7 @@ addForStove.onclick = function() {
 
 subtractForPipe.onclick = function() {
     if (valuePipe > 0) {
+        httpGet(1, valuePipe - 10);
         servoPipeValue.innerText = (valuePipe -= 10).toString() + "°";
         changeImagePipe(valuePipe);
     }
@@ -62,6 +78,7 @@ subtractForPipe.onclick = function() {
 
 addForPipe.onclick = function() {
     if (valuePipe < 90) {
+        httpGet(1, valuePipe + 10);
         servoPipeValue.innerText = (valuePipe += 10).toString() + "°";
         changeImagePipe(valuePipe);
     }
