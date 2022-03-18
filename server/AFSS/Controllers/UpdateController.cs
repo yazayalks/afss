@@ -36,13 +36,13 @@ namespace AFSS.Controllers
                 Servo1 = ServoPipe
 
             });
-            
+
             var activeTasks = afssContext.PiTask.Where(u => u.Complete == false).ToList();
             activeTasks.ForEach(u => u.Complete = true);
 
             afssContext.SaveChanges();
-            var result = activeTasks.Select(u => new PiTaskDTO() 
-            { 
+            var result = activeTasks.Select(u => new PiTaskDTO()
+            {
                 type = u.Type,
                 value = u.Value,
             }
