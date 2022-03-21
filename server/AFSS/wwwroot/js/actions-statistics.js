@@ -42,6 +42,7 @@ var valuePipe = parseInt(servoPipeValue.textContent);
 function httpGet(type, value) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/TaskCreate?type=' + type + '&value=' + value, false);
+    /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
     xhr.send();
     if (xhr.status != 200) {
         // обработать ошибку

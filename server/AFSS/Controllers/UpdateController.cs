@@ -13,7 +13,7 @@ namespace AFSS.Controllers
             this.afssContext = afssDbContext;
         }
         [HttpGet]
-        public List<PiTaskDTO> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int ServoStove, int ServoPipe, string key)
+        public List<PiTaskDTO> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int servoStove, int servoPipe, string key)
         {
             var user = afssContext.PiUser.SingleOrDefault(u => u.CpuSerial == key);
             if (user == null)
@@ -32,8 +32,8 @@ namespace AFSS.Controllers
                 Tmp0 = temperatureTank,
                 Tmp1 = temperatureStove,
                 Tmp2 = temperatureRoom,
-                Servo0 = ServoStove,
-                Servo1 = ServoPipe
+                Servo0 = servoStove,
+                Servo1 = servoPipe
 
             });
 
@@ -41,7 +41,17 @@ namespace AFSS.Controllers
             activeTasks.ForEach(u => u.Complete = true);
 
             afssContext.SaveChanges();
-            var result = activeTasks.Select(u => new PiTaskDTO()
+
+
+            var tasksServoStove = activeTasks.Where(u => u.Type == 0).OrderByDescending(u => u.CreateDate).Take(1).ToList();
+            var tasksServoPipe = activeTasks.Where(u => u.Type == 1).OrderByDescending(u => u.CreateDate).Take(1).ToList();
+
+            var sendTasks = new List<PiTask>();
+
+            sendTasks.AddRange(tasksServoStove);
+            sendTasks.AddRange(tasksServoPipe);
+
+            var result = sendTasks.Select(u => new PiTaskDTO()
             {
                 type = u.Type,
                 value = u.Value,
