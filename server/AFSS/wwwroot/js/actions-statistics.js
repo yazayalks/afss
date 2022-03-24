@@ -3,6 +3,8 @@ var servoPipeValue = document.getElementById('servoPipeValue');
 var typeUserArray = ["user", "admin", "guest"];
 var typeUser = typeUserArray[0];
 var gasStatus = false;
+var valueStove = parseInt(servoStoveValue.textContent);
+var valuePipe = parseInt(servoPipeValue.textContent);
 
 changeImageGas(gasStatus);
 changeTypeUser(typeUser);
@@ -35,9 +37,6 @@ function changeTypeUser(type) {
         settings.style.display = "none";
     }
 }
-
-var valueStove = parseInt(servoStoveValue.textContent);
-var valuePipe = parseInt(servoPipeValue.textContent);
 
 function httpGet(type, value) {
     var xhr = new XMLHttpRequest();
@@ -96,6 +95,34 @@ function changeImagePipe(value) {
 }
 
 
+function updateImage() {
 
+    (async () => await initializeImage())();
 
+    async function initializeImage() {
+        let response = await fetch('/api/GetData?count=1');
+        let data = await response.json();
+        changeImagePipe(data[0].servo0);
+        changeImageStove(data[0].servo1);
+        valuePipe = data[0].servo0;
+        valueStove = data[0].servo1;
+        servoPipeValue.innerText = (data[0].servo0).toString() + "°";
+        servoStoveValue.innerText = (data[0].servo1).toString() + "°";
+    }
+    setInterval(function () {
+        (async () => await fetchAsync())();
+    }, 3000)
+}
+
+async function fetchAsync() {
+    let response = await fetch('/api/GetData?count=1');
+    let data = await response.json();
+    changeImagePipe(data[0].servo0);
+    changeImageStove(data[0].servo1);
+    valuePipe = data[0].servo0;
+    valueStove = data[0].servo1;
+    servoPipeValue.innerText = (data[0].servo0).toString() + "°";
+    servoStoveValue.innerText = (data[0].servo1).toString() + "°";
+
+}
 

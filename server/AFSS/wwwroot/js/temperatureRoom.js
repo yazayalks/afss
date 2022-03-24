@@ -5,7 +5,7 @@ function addChartTemperatureRoom() {
     var temperatureRoomValue = 0;
     /*    var key = '000000002690f5d0';*/
 
-    (async () => await initializeTemperature())();
+   /* (async () => await initializeTemperature())();
 
     async function initializeTemperature() {
         let response = await fetch('/api/GetData?count=6');
@@ -16,7 +16,7 @@ function addChartTemperatureRoom() {
         temperatureRoomOnY[3] = data[3].tmp1;
         temperatureRoomOnY[4] = data[4].tmp1;
         temperatureRoomOnY[5] = data[5].tmp1;
-    }
+    }*/
 
     const data = {
         labels: timeOnX,
