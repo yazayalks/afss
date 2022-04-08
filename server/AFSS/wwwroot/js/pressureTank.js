@@ -89,7 +89,7 @@ function addChartPressureTank() {
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        pressureTankValue = (Math.random() * 100).toFixed(3);
+        pressureTankValue = window.responseData[0].pressure / 100;
         timeOnX.push(time);
         timeOnX.shift();
         pressureTankOnY.push(pressureTankValue);

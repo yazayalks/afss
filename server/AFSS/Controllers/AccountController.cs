@@ -5,20 +5,23 @@ using AFSS.Models;
 using AFSS.ViewModels;
 
 using System.Text.RegularExpressions;
+using System.Security.Claims;
 
 namespace AFSS.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ApplicationContext applicationContext;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly AfssContext afssDbContext;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AfssContext afssDbContext)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AfssContext afssDbContext, ApplicationContext applicationContext)
         {
             this.afssDbContext = afssDbContext;
             _userManager = userManager;
             _signInManager = signInManager;
+            this.applicationContext = applicationContext;
         }
         [HttpGet]
         public IActionResult Register()
@@ -36,6 +39,7 @@ namespace AFSS.Controllers
                 if (result.Succeeded)
                 {
                     // установка куки
+                    Response.Cookies.Append("PiKey", model.PiKey);
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Statistics", "Statistics");
                 }
@@ -65,6 +69,11 @@ namespace AFSS.Controllers
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
+                   
+                   
+                   
+
+                    Response.Cookies.Append("PiKey", applicationContext.Users.SingleOrDefault(u => u.Email == model.Email).PiKey);
                     // проверяем, принадлежит ли URL приложению
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
@@ -112,7 +121,7 @@ namespace AFSS.Controllers
         {
             return View(new ObserveViewModel { ReturnUrl = returnUrl });
         }*/
-       /* [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Observe(ObserveViewModel model)
         {
@@ -152,7 +161,7 @@ namespace AFSS.Controllers
                 }
 
                 if (errors.Count == 0)
-                { 
+                {
                     Response.Cookies.Append("PiKey", model.PiKey);
                     Response.Cookies.Append("UserName", model.Name);
 
@@ -163,6 +172,6 @@ namespace AFSS.Controllers
             }
 
             return View(model);
-        }*/
+        }
     }
 }

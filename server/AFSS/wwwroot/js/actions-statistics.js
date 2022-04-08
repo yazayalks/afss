@@ -102,27 +102,27 @@ function updateImage() {
     async function initializeImage() {
         let response = await fetch('/api/GetData?count=1');
         let data = await response.json();
-        changeImagePipe(data[0].servo0);
-        changeImageStove(data[0].servo1);
-        valuePipe = data[0].servo0;
-        valueStove = data[0].servo1;
-        servoPipeValue.innerText = (data[0].servo0).toString() + "°";
-        servoStoveValue.innerText = (data[0].servo1).toString() + "°";
+        changeImagePipe(data[0].servo1);
+        changeImageStove(data[0].servo0);
+        valuePipe = data[0].servo1;
+        valueStove = data[0].servo0;
+        servoPipeValue.innerText = (data[0].servo1).toString() + "°";
+        servoStoveValue.innerText = (data[0].servo0).toString() + "°";
     }
     setInterval(function () {
-        (async () => await fetchAsync())();
-    }, 3000)
+        /*(async () => await fetchAsync())();*/
+    }, 20000)
 }
 
 async function fetchAsync() {
     let response = await fetch('/api/GetData?count=1');
     let data = await response.json();
-    changeImagePipe(data[0].servo0);
-    changeImageStove(data[0].servo1);
-    valuePipe = data[0].servo0;
-    valueStove = data[0].servo1;
-    servoPipeValue.innerText = (data[0].servo0).toString() + "°";
-    servoStoveValue.innerText = (data[0].servo1).toString() + "°";
+    changeImagePipe(data[0].servo1);
+    changeImageStove(data[0].servo0);
+    valuePipe = data[0].servo1;
+    valueStove = data[0].servo0;
+    servoPipeValue.innerText = (data[0].servo1).toString() + "°";
+    servoStoveValue.innerText = (data[0].servo0).toString() + "°";
 
 }
 

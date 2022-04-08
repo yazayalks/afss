@@ -7,7 +7,6 @@ namespace AFSS.ViewModels
     public class ObserveValidator : ValidationAttribute
     {
 
-  
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var afssDbContext = (AfssContext)validationContext
@@ -21,7 +20,7 @@ namespace AFSS.ViewModels
             {
                 return new ValidationResult("Данный ключ не существует");
             }
-            return new ValidationResult(null);
+            return ValidationResult.Success;
         }
     }
 

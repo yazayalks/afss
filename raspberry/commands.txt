@@ -33,4 +33,6 @@ https://localhost:7131/api/TaskCreate?type=0&value=10
 // Запрос тасков для сервера
 https://afss.site/api/TaskCreate?type=0&value=90
 
+https://localhost:7131/api/GetData?count=1
+
 

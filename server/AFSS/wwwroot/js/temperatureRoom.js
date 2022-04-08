@@ -5,18 +5,18 @@ function addChartTemperatureRoom() {
     var temperatureRoomValue = 0;
     /*    var key = '000000002690f5d0';*/
 
-   /* (async () => await initializeTemperature())();
-
-    async function initializeTemperature() {
-        let response = await fetch('/api/GetData?count=6');
-        let data = await response.json();
-        temperatureRoomOnY[0] = data[0].tmp1;
-        temperatureRoomOnY[1] = data[1].tmp1;
-        temperatureRoomOnY[2] = data[2].tmp1;
-        temperatureRoomOnY[3] = data[3].tmp1;
-        temperatureRoomOnY[4] = data[4].tmp1;
-        temperatureRoomOnY[5] = data[5].tmp1;
-    }*/
+    /* (async () => await initializeTemperature())();
+ 
+     async function initializeTemperature() {
+         let response = await fetch('/api/GetData?count=6');
+         let data = await response.json();
+         temperatureRoomOnY[0] = data[0].tmp1;
+         temperatureRoomOnY[1] = data[1].tmp1;
+         temperatureRoomOnY[2] = data[2].tmp1;
+         temperatureRoomOnY[3] = data[3].tmp1;
+         temperatureRoomOnY[4] = data[4].tmp1;
+         temperatureRoomOnY[5] = data[5].tmp1;
+     }*/
 
     const data = {
         labels: timeOnX,
@@ -102,23 +102,13 @@ function addChartTemperatureRoom() {
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        (async () => await fetchAsync())();
-        /*   temperatureRoomValue = (Math.random() * 100).toFixed(3);*/
+        //(async () => await fetchAsync())();
+        temperatureRoomValue = window.responseData[0].tmp1;
         timeOnX.push(time);
         timeOnX.shift();
         temperatureRoomOnY.push(temperatureRoomValue);
         temperatureRoomOnY.shift();
 
-    }
-
-    async function fetchAsync() {
-        /*let key = $("#UserKey").val();*/
-        let response = await fetch('/api/GetData?count=1');
-        let data = await response.json();
-        temperatureRoomValue = data[0].tmp1;
-        /* time = data[0].date;*/
-        /*console.log(data);*/
-        /*        return data;*/
     }
 
     setInterval(function () {

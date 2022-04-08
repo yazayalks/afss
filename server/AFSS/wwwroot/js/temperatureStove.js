@@ -2,7 +2,7 @@ function addChartTemperatureStove() {
     var temperatureStoveOnY = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     var timeOnX = ["0", "0", "0", "0", "0", "0"];
     var time = "00:00:00";
-    var number = 0;
+    var temperatureStoveValue = 0;
 
     const data = {
         labels: timeOnX,
@@ -18,8 +18,8 @@ function addChartTemperatureStove() {
     const temperatureStoveLastValue = {
         id: 'temperatureStoveLastValue',
         beforeDatasetsDraw(chart, args, options) {
-            const {ctx, chartArea: {top, bottom, left, right, width, height}} = chart;
-            const text = number;
+            const { ctx, chartArea: { top, bottom, left, right, width, height } } = chart;
+            const text = temperatureStoveValue;
             ctx.save();
             ctx.font = 'bolder 12px Arial';
             ctx.fillText(text, 300, 15);
@@ -86,11 +86,12 @@ function addChartTemperatureStove() {
     };
 
     function updateDataStove(/*dataY, dataX*/) {
+        //console.log(window.responseData);
         time = (moment().format('h:mm:ss'));
-        number = (Math.random() * 1000).toFixed(3);
+        temperatureStoveValue = window.responseData[0].tmp0;
         timeOnX.push(time);
         timeOnX.shift();
-        temperatureStoveOnY.push(number);
+        temperatureStoveOnY.push(temperatureStoveValue);
         temperatureStoveOnY.shift();
     }
 
@@ -98,15 +99,15 @@ function addChartTemperatureStove() {
         updateDataStove( /*chartTemperatureStove.config.data.labels, myChart.config.data.datasets[0].data */);
         /*chartTemperatureStove.config.data.datasets[0].backgroundColor = 'yellow';*/
         /*chartTemperatureStove.config.data.datasets[0].borderWidth = 5;*/
-        if (number > 500) {
+        if (temperatureStoveValue > 500) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#E00E0F';
         }
-        if (500 > number && number > 250) {
+        if (500 > temperatureStoveValue && temperatureStoveValue > 250) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#FE611E';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if (250 > number) {
+        if (250 > temperatureStoveValue) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#FEC715';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#FEC715';
         }
@@ -116,7 +117,7 @@ function addChartTemperatureStove() {
         chartTemperatureStove.update();
 
     }, 2000)
-// render init block
+    // render init block
     const chartTemperatureStove = new Chart(
         document.getElementById('chartTemperatureStove'),
         config
