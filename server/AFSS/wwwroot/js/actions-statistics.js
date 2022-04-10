@@ -5,6 +5,46 @@ var typeUser = typeUserArray[0];
 var gasStatus = false;
 var valueStove = parseInt(servoStoveValue.textContent);
 var valuePipe = parseInt(servoPipeValue.textContent);
+var auto = document.getElementById('auto');
+var power = document.getElementById('power');
+var autoStatus = true;
+var powerStatus = false;
+typeStatusArray = ["online", "offline"];
+
+function parseDate(date) {
+    return new Date(parseInt(/-?\d+/.exec(date)[0]))
+}
+
+function setStatus() {
+    var timeNow = new Date();
+    var timeNowUTC = new Date(timeNow.getTime() + timeNow.getTimezoneOffset() * 60000);
+    var timeDb = moment(window.responseData[0].date).toDate();
+    var now_utc = Date.UTC(timeNowUTC.getUTCFullYear(), timeNowUTC.getUTCMonth(), timeNowUTC.getUTCDate(), timeNowUTC.getUTCHours(), timeNowUTC.getUTCMinutes(), timeNowUTC.getUTCSeconds());
+    var db_utc = Date.UTC(timeDb.getUTCFullYear(), timeDb.getUTCMonth(), timeDb.getUTCDate(), timeDb.getUTCHours(), timeDb.getUTCMinutes(), timeDb.getUTCSeconds());
+
+    if ((now_utc - db_utc) <= 15000) {
+        console.log("online");
+        window.typeStatus = typeStatusArray[0];
+    } else {
+        console.log("offline");
+        window.typeStatus = typeStatusArray[1];
+    }
+    //var yearNow = timeNowUTC.getFullYear();
+    //var monthNow = timeNowUTC.getMonth();
+    //var dayNow = timeNowUTC.getDate();
+    //var hoursNow = timeNowUTC.getHours();
+    //var minutesNow = timeNowUTC.getMinutes();
+
+    //var yearDb = timeDb.getFullYear();
+    //var monthDb = timeDb.getMonth();
+    //var dayDb = timeDb.getDate();
+    //var hoursDb = timeDb.getHours();
+    //var minutesDb = timeDb.getMinutes();
+
+    //if ((yearNow == yearDb) && (monthNow == monthDb) && (dayNow == dayDb) && (hoursNow == hoursDb) && ((minutesNow - minutesDb) <= 1)) {
+    //    console.log("URA");
+    //}
+}
 
 changeImageGas(gasStatus);
 changeTypeUser(typeUser);
@@ -110,8 +150,11 @@ function updateImage() {
         servoStoveValue.innerText = (data[0].servo0).toString() + "°";
     }
     setInterval(function () {
-        /*(async () => await fetchAsync())();*/
-    }, 20000)
+        if (autoStatus == true) {
+            (async () => await fetchAsync())();
+        }
+        setStatus();
+    }, 2000)
 }
 
 async function fetchAsync() {
@@ -126,3 +169,30 @@ async function fetchAsync() {
 
 }
 
+auto.onclick = function changeImageAuto() {
+    var autoImage = document.getElementById("auto-image");
+    if (autoStatus == true) {
+        autoImage.src = "../images/button-auto.svg";
+        autoStatus = false;
+        return;
+    }
+    if (autoStatus == false) {
+        autoImage.src = "../images/button-auto--active.svg";
+        autoStatus = true;
+        return;
+    }
+}
+
+power.onclick = function changeImagePower() {
+    var powerImage = document.getElementById("power-image");
+    if (powerStatus == true) {
+        powerImage.src = "../images/button-power.svg";
+        powerStatus = false;
+        return;
+    }
+    if (powerStatus == false) {
+        powerImage.src = "../images/button-power--active.svg";
+        powerStatus = true;
+        return;
+    }
+}

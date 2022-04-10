@@ -2,13 +2,15 @@
 @{
     ViewData["Title"] = "Statistics";
 }
-@*@Html.Hidden("UserKey",ViewData["UserKeyValue"],new { @class = "someclass" })*@
 
 <link rel="stylesheet" href="~/css/styles-statistics.css">
 
 <script src="https://momentjs.com/downloads/moment.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="~/js/updateResponse.js"></script>
+<script>
+    updateResponse();
+</script>
 @await Html.PartialAsync("Menu")
 <div class="container">
     <div class="sub-menu">
@@ -86,6 +88,13 @@
             </div>
 
             <div class="item__gas-room">
+                @if (User.Identity.IsAuthenticated)
+                    {
+                 <div class ="options-buttons">
+                    <div id = "auto" class = "auto-option"><img id = "auto-image" src = "../images/button-auto--active.svg" class = "button-auto"></div>
+                    <div id = "power" class = "power-option"><img id = "power-image" src = "../images/button-power.svg" class = "button-power"></div>
+                </div>
+                    }
                 <div class="image__gas-room">
                     <img id = "imageGasRoom"  src="../images/gas-room-0.png" width="375" height="100" alt="gas-room">
                 </div>
@@ -113,7 +122,6 @@
 @await Html.PartialAsync("Footer")
 
 <script src="~/js/actions.js"></script>
-<script src="~/js/updateResponse.js"></script>
 <script src="~/js/pressureTank.js"></script>
 <script src="~/js/temperatureStove.js"></script>
 <script src="~/js/temperatureRoom.js"></script>
@@ -122,12 +130,11 @@
 <script src="~/js/actions-statistics.js"></script>
 
 <script>
-    updateResponse();
     addChartTemperatureStove();
     addChartTemperatureRoom();
     addChartPressureTank();
     addChartWaterLevelTank();
     addChartTemperatureTank();
-    updateImage()
+    updateImage();
 </script>
 

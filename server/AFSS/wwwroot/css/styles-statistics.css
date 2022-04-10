@@ -323,3 +323,42 @@
         width: 375px;
     }
 }
+
+.options-buttons {
+    position: absolute;
+    display: flex;
+    width: 375px;
+    height: 100px;
+}
+
+.auto-option {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.power-option {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.button-power {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: none;
+    width: 45px;
+    height: 45px;
+    background: url(../images/button-power.svg);
+}
+
+.button-auto {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: none;
+    width: 45px;
+    height: 45px;
+    background: url(../images/button-auto.svg);
+}

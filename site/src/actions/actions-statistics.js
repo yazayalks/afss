@@ -77,6 +77,39 @@ function changeImagePipe(value) {
     imageServoPipe.src = "../images/servo-pipe-" + value / 10 +".png";
 }
 
+var auto = document.getElementById('auto');
+var power = document.getElementById('power');
+var autoStatus = true;
+var powerStatus = false;
+
+auto.onclick = function changeImageAuto() {
+    var autoImage = document.getElementById("auto-image");
+    if (autoStatus == true) {
+        autoImage.src = "../images/button-auto.svg";
+        autoStatus = false;
+        return;
+    }
+    if (autoStatus == false) {
+        autoImage.src = "../images/button-auto--active.svg";
+        autoStatus = true;
+        return;
+    }
+}
+
+power.onclick = function changeImagePower() {
+    var powerImage = document.getElementById("power-image");
+    if (powerStatus == true) {
+        powerImage.src = "../images/button-power.svg";
+        powerStatus = false;
+        return;
+    }
+    if (powerStatus == false) {
+        powerImage.src = "../images/button-power--active.svg";
+        powerStatus = true;
+        return;
+    }
+}
+
 
 
 

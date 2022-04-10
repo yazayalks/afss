@@ -2,18 +2,19 @@ out.onclick = function() {
     document.location.href = "/Selection";
 };
 
-var typeStatusArray = ["online", "offline"];
-var typeStatus = typeStatusArray[0];
+typeStatusArray = ["online", "offline"];
+window.typeStatus = typeStatusArray[1];
 
 changeStatus();
 
+
 function changeStatus() {
-    if (typeStatus === typeStatusArray[0]) {
+    if (window.typeStatus === typeStatusArray[0]) {
         statusText.innerText = "online";
         statusImage.style.background = "#FEC715";
     }
 
-    if (typeStatus === typeStatusArray[1]) {
+    if (window.typeStatus === typeStatusArray[1]) {
         statusText.innerText = "offline";
         statusImage.style.background = "#FE611E";
     }
@@ -27,4 +28,11 @@ function changeKey(text) {
 function changeLogin(text) {
     var login = document.getElementById("login");
     login.innerText = text;
+}
+
+function updateStatus() {
+    setInterval(function () {
+        changeStatus();
+    }, 2000)
+
 }

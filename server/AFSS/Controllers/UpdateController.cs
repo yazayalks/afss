@@ -27,7 +27,7 @@ namespace AFSS.Controllers
                 Gas = gasRoom,
                 Pressure = pressureTank,
                 Water = waterLevelTank,
-                Date = date,
+                Date = DateTime.UtcNow,
                 PiUser = user,
                 Tmp0 = temperatureTank,
                 Tmp1 = temperatureStove,
