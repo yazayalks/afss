@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="~/js/updateResponse.js"></script>
 <script>
-    updateResponse();
+    startIntervalResponse();
 </script>
 @await Html.PartialAsync("Menu")
 <div class="container">
@@ -135,6 +135,6 @@
     addChartPressureTank();
     addChartWaterLevelTank();
     addChartTemperatureTank();
-    updateImage();
+    startIntervalStatistics();
 </script>
 

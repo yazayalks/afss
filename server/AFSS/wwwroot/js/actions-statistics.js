@@ -2,7 +2,8 @@ var servoStoveValue = document.getElementById('servoStoveValue');
 var servoPipeValue = document.getElementById('servoPipeValue');
 var typeUserArray = ["user", "admin", "guest"];
 var typeUser = typeUserArray[0];
-var gasStatus = false;
+var gasStatusArray = ["noGas", "someGas", "lotGas"];
+var gasStatus = gasStatusArray[0];
 var valueStove = parseInt(servoStoveValue.textContent);
 var valuePipe = parseInt(servoPipeValue.textContent);
 var auto = document.getElementById('auto');
@@ -46,22 +47,42 @@ function setStatus() {
     //}
 }
 
-changeImageGas(gasStatus);
+changeImageGas();
 changeTypeUser(typeUser);
 
+function resetAuto() {
+    var autoImage = document.getElementById("auto-image");
+    autoStatus = false;
+    autoImage.src = "../images/button-auto.svg";
+}
 function changeEventsText(text) {
     var eventsText = document.getElementById("eventsText");
     eventsText.innerHTML +=  ' <div class="events__item"><div class = "text-light text-light--black">'+ text + '</div></div>';
 }
 
-function changeImageGas(value) {
+function changeImageGas() {
+    var responsegasRoom = window.responseData[0].gas;
+    if ((0 <= responsegasRoom) && (responsegasRoom <= 100)) {
+        gasStatus = gasStatusArray[0];
+    }
+    if ((100 < responsegasRoom) && (responsegasRoom <= 150)) {
+        gasStatus = gasStatusArray[1];
+    }
+    if (150 < responsegasRoom) {
+        gasStatus = gasStatusArray[2];
+    }
     var imageGasRoom = document.getElementById("imageGasRoom");
     var gasRoomValue = document.getElementById("gasRoomValue");
-    if (gasStatus) {
-        imageGasRoom.src = "../images/gas-room-1.png";
+
+    if (gasStatus == gasStatusArray[2]) {
+        imageGasRoom.src = "../images/gas-room-2.png";
         gasRoomValue.innerText = "Задымление помещения"
     }
-    else {
+    if (gasStatus == gasStatusArray[1]) {
+        imageGasRoom.src = "../images/gas-room-1.png";
+        gasRoomValue.innerHTML = "Утечка CO и CO<sub>2</sub>";
+    }
+    if (gasStatus == gasStatusArray[0]) {
         imageGasRoom.src = "../images/gas-room-0.png";
         gasRoomValue.innerHTML = "CO и CO<sub>2</sub> не обнаружены";
     }
@@ -92,7 +113,8 @@ function httpGet(type, value) {
     }
 }
 
-subtractForStove.onclick = function() {
+subtractForStove.onclick = function () {
+    resetAuto();
     if (valueStove > 0) {
         httpGet(0, valueStove - 10);
         servoStoveValue.innerText = (valueStove -= 10).toString() + "°";
@@ -100,7 +122,8 @@ subtractForStove.onclick = function() {
     }
 };
 
-addForStove.onclick = function() {
+addForStove.onclick = function () {
+    resetAuto();
     if (valueStove < 90) {
         httpGet(0, valueStove + 10);
         servoStoveValue.innerText = (valueStove += 10).toString() + "°";
@@ -108,7 +131,8 @@ addForStove.onclick = function() {
     }
 };
 
-subtractForPipe.onclick = function() {
+subtractForPipe.onclick = function () {
+    resetAuto();
     if (valuePipe > 0) {
         httpGet(1, valuePipe - 10);
         servoPipeValue.innerText = (valuePipe -= 10).toString() + "°";
@@ -116,7 +140,8 @@ subtractForPipe.onclick = function() {
     }
 };
 
-addForPipe.onclick = function() {
+addForPipe.onclick = function () {
+    resetAuto();
     if (valuePipe < 90) {
         httpGet(1, valuePipe + 10);
         servoPipeValue.innerText = (valuePipe += 10).toString() + "°";
@@ -135,39 +160,32 @@ function changeImagePipe(value) {
 }
 
 
-function updateImage() {
-
-    (async () => await initializeImage())();
-
-    async function initializeImage() {
-        let response = await fetch('/api/GetData?count=1');
-        let data = await response.json();
-        changeImagePipe(data[0].servo1);
-        changeImageStove(data[0].servo0);
-        valuePipe = data[0].servo1;
-        valueStove = data[0].servo0;
-        servoPipeValue.innerText = (data[0].servo1).toString() + "°";
-        servoStoveValue.innerText = (data[0].servo0).toString() + "°";
-    }
+function startIntervalStatistics() {
     setInterval(function () {
-        if (autoStatus == true) {
-            (async () => await fetchAsync())();
-        }
         setStatus();
+        if ((autoStatus == true) && (window.typeStatus == "online")) {
+            (async () => await updateImage())();
+        }
+        if (window.typeStatus == "online") {
+            changeImageGas();
+        }
     }, 2000)
 }
 
-async function fetchAsync() {
-    let response = await fetch('/api/GetData?count=1');
-    let data = await response.json();
-    changeImagePipe(data[0].servo1);
-    changeImageStove(data[0].servo0);
-    valuePipe = data[0].servo1;
-    valueStove = data[0].servo0;
-    servoPipeValue.innerText = (data[0].servo1).toString() + "°";
-    servoStoveValue.innerText = (data[0].servo0).toString() + "°";
+async function updateImage() {
+    var responseServoStove = window.responseData[0].servo0;
+    var responseServoPipe = window.responseData[0].servo1;
 
+    changeImageStove(responseServoStove);
+    changeImagePipe(responseServoPipe);
+
+    valueStove = responseServoStove;
+    valuePipe = responseServoPipe;
+
+    servoStoveValue.innerText = (responseServoStove).toString() + "°";
+    servoPipeValue.innerText = (responseServoPipe).toString() + "°";
 }
+
 
 auto.onclick = function changeImageAuto() {
     var autoImage = document.getElementById("auto-image");
@@ -184,6 +202,7 @@ auto.onclick = function changeImageAuto() {
 }
 
 power.onclick = function changeImagePower() {
+    resetAuto();
     var powerImage = document.getElementById("power-image");
     if (powerStatus == true) {
         powerImage.src = "../images/button-power.svg";

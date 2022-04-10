@@ -91,7 +91,7 @@ function addChartTemperatureTank() {
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        temperatureTankValue = (Math.random() * 100).toFixed(3);
+        temperatureTankValue = window.responseData[0].tmp0;
         timeOnX.push(time);
         timeOnX.shift();
         temperatureTankOnY.push(temperatureTankValue);
@@ -99,9 +99,10 @@ function addChartTemperatureTank() {
     }
 
     setInterval(function () {
-        updateData( /*myChart.configRoom.dataRoom.labels, myChart.configRoom.data.datasets[0].data */);
-        /*myChart.configRoom.dataRoom.datasets[0].backgroundColor = 'yellow';*/
-        /*myChart.configRoom.dataRoom.datasets[0].borderWidth = 5;*/
+        if (window.typeStatus == "online") {
+            updateData();
+        }
+        
         if (temperatureTankValue > 80) {
             chartTemperatureTank.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureTank.config.data.datasets[0].backgroundColor = '#E00E0F';
@@ -114,7 +115,7 @@ function addChartTemperatureTank() {
             chartTemperatureTank.config.data.datasets[0].borderColor = '#FEC715';
             chartTemperatureTank.config.data.datasets[0].backgroundColor = '#FEC715';
         }
-        /*console.log(timeOnX[timeOnX.length - 1]);*/
+
         chartTemperatureTank.config.data.labels = timeOnX.slice();
         chartTemperatureTank.config.data.datasets[0].data = temperatureTankOnY.slice();
         chartTemperatureTank.update();

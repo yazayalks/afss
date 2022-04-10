@@ -57,12 +57,12 @@ function addChartPressureTank() {
             responsiveAnimationDuration: 0, // animation duration after a resize
             scales: {
                 yAxes: {
-                    max: 100,
+                    max: 140,
                     stepSize: 10,
                     title: {
                         color: 'black',
                         display: true,
-                        text: 'Давление'
+                        text: 'Давление Кпа'
                     }
                 },
                 xAxes: {
@@ -89,7 +89,7 @@ function addChartPressureTank() {
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        pressureTankValue = window.responseData[0].pressure / 100;
+        pressureTankValue = (window.responseData[0].pressure / 10).toFixed(3);
         timeOnX.push(time);
         timeOnX.shift();
         pressureTankOnY.push(pressureTankValue);
@@ -97,22 +97,23 @@ function addChartPressureTank() {
     }
 
     setInterval(function () {
-        updateData( /*myChart.configRoom.dataRoom.labels, myChart.configRoom.data.datasets[0].data */);
-        /*myChart.configRoom.dataRoom.datasets[0].backgroundColor = 'yellow';*/
-        /*myChart.configRoom.dataRoom.datasets[0].borderWidth = 5;*/
-        if (pressureTankValue > 80) {
+        if (window.typeStatus == "online") { 
+            updateData();
+        }
+        
+        if (120 < pressureTankValue) {
             chartPressureTank.config.data.datasets[0].borderColor = '#E00E0F';
             chartPressureTank.config.data.datasets[0].backgroundColor = '#E00E0F';
         }
-        if (80 > pressureTankValue && pressureTankValue > 40) {
+        if ((100 < pressureTankValue) && (pressureTankValue <= 120)) {
             chartPressureTank.config.data.datasets[0].borderColor = '#FE611E';
             chartPressureTank.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if (40 > pressureTankValue) {
+        if ((0 <= pressureTankValue) && (pressureTankValue <= 100)) {
             chartPressureTank.config.data.datasets[0].borderColor = '#FEC715';
             chartPressureTank.config.data.datasets[0].backgroundColor = '#FEC715';
         }
-        /*console.log(timeOnX[timeOnX.length - 1]);*/
+        
         chartPressureTank.config.data.labels = timeOnX.slice();
         chartPressureTank.config.data.datasets[0].data = pressureTankOnY.slice();
         chartPressureTank.update();

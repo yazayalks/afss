@@ -30,7 +30,7 @@ function changeLogin(text) {
     login.innerText = text;
 }
 
-function updateStatus() {
+function startIntervalMenu() {
     setInterval(function () {
         changeStatus();
     }, 2000)

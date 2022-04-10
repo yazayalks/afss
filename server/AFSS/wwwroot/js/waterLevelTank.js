@@ -91,7 +91,7 @@ function addChartWaterLevelTank() {
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        waterLevelTankValue = (Math.random() * 100).toFixed(3);
+        waterLevelTankValue = window.responseData[0].water / 100;
         timeOnX.push(time);
         timeOnX.shift();
         waterLevelTankOnY.push(waterLevelTankValue);
@@ -99,9 +99,9 @@ function addChartWaterLevelTank() {
     }
 
     setInterval(function () {
-        updateData( /*myChart.configRoom.dataRoom.labels, myChart.configRoom.data.datasets[0].data */);
-        /*myChart.configRoom.dataRoom.datasets[0].backgroundColor = 'yellow';*/
-        /*myChart.configRoom.dataRoom.datasets[0].borderWidth = 5;*/
+        if (window.typeStatus == "online") {
+            updateData();
+        }
         if (waterLevelTankValue > 80) {
             chartWaterLevelTank.config.data.datasets[0].borderColor = '#000022';
             chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#000022';

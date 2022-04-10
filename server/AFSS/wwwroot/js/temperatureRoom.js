@@ -112,7 +112,9 @@ function addChartTemperatureRoom() {
     }
 
     setInterval(function () {
-        updateData();
+        if (window.typeStatus == "online") {
+            updateData();
+        }
         if (temperatureRoomValue > 80) {
             chartTemperatureRoom.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureRoom.config.data.datasets[0].backgroundColor = '#E00E0F';

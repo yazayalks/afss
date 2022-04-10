@@ -88,7 +88,7 @@ function addChartTemperatureStove() {
     function updateDataStove(/*dataY, dataX*/) {
         //console.log(window.responseData);
         time = (moment().format('h:mm:ss'));
-        temperatureStoveValue = window.responseData[0].tmp0;
+        temperatureStoveValue = window.responseData[0].tmp2;
         timeOnX.push(time);
         timeOnX.shift();
         temperatureStoveOnY.push(temperatureStoveValue);
@@ -96,9 +96,9 @@ function addChartTemperatureStove() {
     }
 
     setInterval(function () {
-        updateDataStove( /*chartTemperatureStove.config.data.labels, myChart.config.data.datasets[0].data */);
-        /*chartTemperatureStove.config.data.datasets[0].backgroundColor = 'yellow';*/
-        /*chartTemperatureStove.config.data.datasets[0].borderWidth = 5;*/
+        if (window.typeStatus == "online") {
+            updateDataStove();
+        }
         if (temperatureStoveValue > 500) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#E00E0F';
