@@ -50,12 +50,12 @@
                 <div class="servo-stove__items">
                      @if (User.Identity.IsAuthenticated)
                     {
-                        <div id ="subtractForStove" class="servo-stove__subtract"><div class = "button-subtract"></div></div>
+                        <div id ="subtractForStove" class="servo-stove__subtract"><img id = "button-subtract-stove" src = "../images/../images/subtract.svg" class = "button-subtract"></div>
                     }
                     <div class="servo-stove__value"><div id = "servoStoveValue" class = "text-bold text-bold--black">0°</div></div>
                      @if (User.Identity.IsAuthenticated) 
                      {
-                        <div id ="addForStove" class="servo-stove__add"><div class = "button-add"></div></div>
+                        <div id ="addForStove" class="servo-stove__add"><img id = "button-add-stove" src = "../images/../images/add.svg" class = "button-add"></div>
                      }
                 </div>
             </div>
@@ -70,29 +70,33 @@
                 <div class="servo-pipe__items">
                       @if (User.Identity.IsAuthenticated) 
                       {
-                          <div id ="subtractForPipe" class="servo-pipe__subtract"><div class = "button-subtract"></div></div>
+                          <div id ="subtractForPipe" class="servo-pipe__subtract"><img id = "button-subtract-pipe" src = "../images/../images/subtract.svg" class = "button-subtract"></div>
                       }
                     <div class="servo-pipe__value"><div id = "servoPipeValue" class = "text-bold text-bold--black">0°</div></div>
                       @if (User.Identity.IsAuthenticated) 
                       {
-                          <div id ="addForPipe" class="servo-pipe__add"><div class = "button-add"></div></div>
+                          <div id ="addForPipe" class="servo-pipe__add"><img id = "button-add-pipe" src = "../images/../images/add.svg" class = "button-add"></div>
                       }
                 </div>
             </div>
 
             <div class="item__chart">
                 <div class="item__chart__inner">
-                    <canvas  id="chartWaterLevelTank"></canvas>
-                    <canvas id="chartTemperatureTank"></canvas>
+                    <canvas id="chartWaterLevelTank" width="187" height="175">></canvas>
+                
                 </div>
+                <div class="item__chart__inner">
+                   <canvas id="chartTemperatureTank" width="187" height="175">></canvas>
+                </div>
+               
             </div>
 
             <div class="item__gas-room">
                 @if (User.Identity.IsAuthenticated)
                     {
                  <div class ="options-buttons">
-                    <div id = "auto" class = "auto-option"><img id = "auto-image" src = "../images/button-auto--active.svg" class = "button-auto"></div>
-                    <div id = "power" class = "power-option"><img id = "power-image" src = "../images/button-power.svg" class = "button-power"></div>
+                    <div id = "auto" class = "auto-option"><img id = "button-auto" src = "../images/button-auto--active.svg"></div>
+                    <div id = "power" class = "power-option"><img id = "button-power" src = "../images/button-power.svg"></div>
                 </div>
                     }
                 <div class="image__gas-room">
@@ -106,12 +110,7 @@
             <div class="item__events">
                 <div class="text__events"><div class = "text-bold text-bold--black">События</div></div>
                 <div id = "eventsText" class="events__items">
-                    <div class="events__item"><div class = "text-light text-light--black">Система запущена;</div></div>
-                    <div class="events__item"><div class = "text-light text-light--black">Идёт автоматическая растопка бани;</div></div>
-                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
-                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
-                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
-                    <div class="events__item"><div class = "text-light text-light--black">Тяга печи увеличена;</div></div>
+                   
                 </div>
             </div>
 
@@ -121,6 +120,7 @@
 
 @await Html.PartialAsync("Footer")
 
+<script src="~/js/events.js"></script>
 <script src="~/js/actions.js"></script>
 <script src="~/js/pressureTank.js"></script>
 <script src="~/js/temperatureStove.js"></script>
@@ -129,12 +129,15 @@
 <script src="~/js/waterLevelTank.js"></script>
 <script src="~/js/actions-statistics.js"></script>
 
+
 <script>
     addChartTemperatureStove();
     addChartTemperatureRoom();
     addChartPressureTank();
-    addChartWaterLevelTank();
+    
     addChartTemperatureTank();
+    addChartWaterLevelTank();
     startIntervalStatistics();
+    startIntervalEvents();
 </script>
 

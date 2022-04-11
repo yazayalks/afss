@@ -127,5 +127,5 @@ function addChartTemperatureTank() {
         config
     );
     chartTemperatureTank.canvas.parentNode.style.height = '175px';
-    chartTemperatureTank.canvas.parentNode.style.width = '187.5px';
+    chartTemperatureTank.canvas.parentNode.style.width = '187px';
 }

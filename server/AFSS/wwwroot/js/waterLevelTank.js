@@ -1,3 +1,5 @@
+var volumeWaterLevel = 100;
+
 function addChartWaterLevelTank() {
     var waterLevelTankOnY = [0.0];
     var timeOnX = ["0"];
@@ -66,7 +68,7 @@ function addChartWaterLevelTank() {
             responsiveAnimationDuration: 0, // animation duration after a resize
             scales: {
                 yAxes: {
-                    max: 100,
+                    max: volumeWaterLevel,
                     stepSize: 10,
                     title: {
                         color: 'black',
@@ -88,10 +90,19 @@ function addChartWaterLevelTank() {
         plugins: [waterLevelTankLastValue]
     };
 
+    function covertToLiters(value) {
+        if (value > 1000) {
+            value = 1000;
+        }
+        value = 1000 - value;
+        var percentage = (value * 100) / 1000;
+        var literts = (percentage * volumeWaterLevel) / 100;
+        return literts;
+    }
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        waterLevelTankValue = window.responseData[0].water / 100;
+        waterLevelTankValue = covertToLiters(window.responseData[0].water);
         timeOnX.push(time);
         timeOnX.shift();
         waterLevelTankOnY.push(waterLevelTankValue);
@@ -102,15 +113,15 @@ function addChartWaterLevelTank() {
         if (window.typeStatus == "online") {
             updateData();
         }
-        if (waterLevelTankValue > 80) {
+        if (80 < waterLevelTankValue) {
             chartWaterLevelTank.config.data.datasets[0].borderColor = '#000022';
             chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#000022';
         }
-        if (80 > waterLevelTankValue && waterLevelTankValue > 50) {
+        if ((50 < waterLevelTankValue) && (waterLevelTankValue <= 80)) {
             chartWaterLevelTank.config.data.datasets[0].borderColor = '#32324e';
             chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#32324e';
         }
-        if (50 > waterLevelTankValue) {
+        if ((0 <= waterLevelTankValue) && (waterLevelTankValue <= 50)) {
             chartWaterLevelTank.config.data.datasets[0].borderColor = '#E00E0F';
             chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#E00E0F';
         }
@@ -126,6 +137,6 @@ function addChartWaterLevelTank() {
         config
     );
     chartWaterLevelTank.canvas.parentNode.style.height = '175px';
-    chartWaterLevelTank.canvas.parentNode.style.width = '187.5px';
+    chartWaterLevelTank.canvas.parentNode.style.width = '187px';
 }
 
