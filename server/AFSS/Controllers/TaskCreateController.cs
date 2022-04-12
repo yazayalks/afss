@@ -19,7 +19,7 @@ namespace AFSS.Controllers
         }
         [HttpGet]
         [Authorize]
-        public void Get(PiTaskType type, int value)
+        public void Get(PiTaskType servoType, int servoValue, string criticalStr, string mod)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);      
             var userPiKey = applicationContext.Users.Single(u => u.Id == userId).PiKey;
@@ -31,8 +31,10 @@ namespace AFSS.Controllers
                 Complete = false,
                 CreateDate = DateTime.Now,
                 PiKey = piKey,
-                Value = value,
-                Type = (int)type,
+                ServoValue = servoValue,
+                ServoType = (int)servoType,
+                CriticalType = criticalStr,
+                Mod = mod,
             };
 
             afssContext.PiTask.Add(newTask);

@@ -43,8 +43,8 @@ namespace AFSS.Controllers
             afssContext.SaveChanges();
 
 
-            var tasksServoStove = activeTasks.Where(u => u.Type == 0).OrderByDescending(u => u.CreateDate).Take(1).ToList();
-            var tasksServoPipe = activeTasks.Where(u => u.Type == 1).OrderByDescending(u => u.CreateDate).Take(1).ToList();
+            var tasksServoStove = activeTasks.Where(u => u.ServoType == 0).OrderByDescending(u => u.CreateDate).Take(1).ToList();
+            var tasksServoPipe = activeTasks.Where(u => u.ServoType == 1).OrderByDescending(u => u.CreateDate).Take(1).ToList();
 
             var sendTasks = new List<PiTask>();
 
@@ -53,8 +53,10 @@ namespace AFSS.Controllers
 
             var result = sendTasks.Select(u => new PiTaskDTO()
             {
-                type = u.Type,
-                value = u.Value,
+                servoType = u.ServoType,
+                servoValue = u.ServoValue,
+                criticalType = u.CriticalType,
+                mod = u.Mod,
             }
             ).ToList();
 

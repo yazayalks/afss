@@ -208,9 +208,11 @@ function changeTypeUser(type) {
     }
 }
 
-function httpGet(type, value) {
+function httpGet(servoType, servoValue) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/TaskCreate?type=' + type + '&value=' + value, false);
+    var criticalType = "opa";
+    var mod = "off";
+    xhr.open('GET', '/api/TaskCreate?type=' + servoType + '&value=' + servoValue + '&criticalStr=' + criticalType + '&mod=' + mod, false);
     /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
     xhr.send();
     if (xhr.status != 200) {

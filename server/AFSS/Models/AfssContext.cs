@@ -82,11 +82,19 @@ namespace AFSS.Models
 
                 entity.Property(e => e.CreateDate).HasColumnName("createDate");
 
+                entity.Property(e => e.CriticalType)
+                    .HasMaxLength(300)
+                    .HasColumnName("criticalType");
+
+                entity.Property(e => e.Mod)
+                    .HasMaxLength(300)
+                    .HasColumnName("mod");
+
                 entity.Property(e => e.PiKeyId).HasColumnName("piKeyId");
 
-                entity.Property(e => e.Type).HasColumnName("type");
+                entity.Property(e => e.ServoType).HasColumnName("servoType");
 
-                entity.Property(e => e.Value).HasColumnName("value");
+                entity.Property(e => e.ServoValue).HasColumnName("servoValue");
 
                 entity.HasOne(d => d.PiKey)
                     .WithMany(p => p.PiTask)
