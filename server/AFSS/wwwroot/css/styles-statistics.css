@@ -146,13 +146,14 @@
 }
 
 .button-subtract {
-    cursor: pointer;
+    cursor: default;
     text-decoration: none;
     outline: none;
     border: none;
     background: none;
     width: 45px;
     height: 45px;
+    opacity: 0.5;
     background: url(../images/subtract.svg);
 }
 
@@ -165,15 +166,41 @@
 }
 
 .button-add {
-    cursor: pointer;
+    cursor: default;
     text-decoration: none;
     outline: none;
     border: none;
     background: none;
     width: 45px;
     height: 45px;
+    opacity: 0.5;
     background: url(../images/add.svg);
 }
+
+.button-power {
+    cursor: default;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: none;
+    width: 45px;
+    height: 45px;
+    opacity: 0.5;
+    background: url(../images/button-power.svg);
+}
+
+.button-auto {
+    cursor: default;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: none;
+    width: 45px;
+    height: 45px;
+    opacity: 0.5;
+    background: url(../images/button-auto.svg);
+}
+
 
 .servo-stove__value {
     margin-right: 25px;
@@ -328,24 +355,3 @@
     margin-top: 15px;
 }
 
-.button-power {
-    cursor: pointer;
-    text-decoration: none;
-    outline: none;
-    border: none;
-    background: none;
-    width: 45px;
-    height: 45px;
-    background: url(../images/button-power.svg);
-}
-
-.button-auto {
-    cursor: pointer;
-    text-decoration: none;
-    outline: none;
-    border: none;
-    background: none;
-    width: 45px;
-    height: 45px;
-    background: url(../images/button-auto.svg);
-}

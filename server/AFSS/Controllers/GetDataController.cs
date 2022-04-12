@@ -8,7 +8,7 @@ namespace AFSS.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    /*[Authorize]*/
     public class GetDataController : Controller
     {
         private readonly ApplicationContext applicationContext;

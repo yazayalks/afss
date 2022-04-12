@@ -18,7 +18,7 @@ namespace AFSS.Controllers
             this.applicationContext = applicationContext;
         }
         [HttpGet]
-        
+        [Authorize]
         public void Get(PiTaskType type, int value)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);      

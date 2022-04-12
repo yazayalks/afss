@@ -73,7 +73,7 @@ function addChartWaterLevelTank() {
                     title: {
                         color: 'black',
                         display: true,
-                        text: 'Литры'
+                        text: 'Объём (л)'
                     }
                 },
                 xAxes: {

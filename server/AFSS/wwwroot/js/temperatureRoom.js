@@ -75,7 +75,7 @@ function addChartTemperatureRoom() {
                     title: {
                         color: 'black',
                         display: true,
-                        text: 'Температура'
+                        text: 'Температура (C°)'
                     }
                 },
                 xAxes: {

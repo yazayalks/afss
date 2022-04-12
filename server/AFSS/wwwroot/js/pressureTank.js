@@ -62,7 +62,7 @@ function addChartPressureTank() {
                     title: {
                         color: 'black',
                         display: true,
-                        text: 'Давление Кпа'
+                        text: 'Давление (Кпа)'
                     }
                 },
                 xAxes: {
