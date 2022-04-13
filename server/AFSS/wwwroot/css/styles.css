@@ -114,6 +114,14 @@ a {
     color: white;
     font-family: "Stem-Bold";
     font-size: 24px;
+
+    -ms-user-select: none;
+  
+    -moz-user-select: none;
+   
+    -khtml-user-select: none;
+
+    -webkit-user-select: none;
 }
 
 .button--red {
@@ -138,6 +146,22 @@ a {
 .button--orange:hover {
     background: #FEC715;
 }
+
+.button--white {
+    background: #FFFFFF;
+    border: 5px solid #7A0B14;
+    color: #7A0B14;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+    .button--white:hover {
+        background: #FEC715;
+        border: 0px;
+        color: white;
+        height: 45px;
+        box-sizing: border-box;
+    }
 
 /*image*/
 

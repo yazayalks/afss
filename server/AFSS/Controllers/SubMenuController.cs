@@ -2,11 +2,11 @@
 
 namespace AFSS.Controllers
 {
-    public class MenuController : Controller
+    public class SubMenuController : Controller
     {
         public IActionResult Menu()
         {
-            return PartialView("Menu");
+            return PartialView("SubMenu");
         }
     }
 }

@@ -5,21 +5,6 @@
     width: 100%;
 }
 
-.statisticsImage {
-    display: none;
-}
-
-.informationImage {
-    display: none;
-}
-
-.dataImage {
-    display: none;
-}
-
-.settingsImage {
-    display: none;
-}
 
 .item__chart {
     border: 12.5px solid #7A0B14;
@@ -201,7 +186,6 @@
     background: url(../images/button-auto.svg);
 }
 
-
 .servo-stove__value {
     margin-right: 25px;
     margin-left: 25px;
@@ -232,35 +216,6 @@
     background-color: #FEC715;
 }
 
-.sub-menu__items {
-    text-align: center;
-    display: flex;
-    margin-left: 12.5px;
-    margin-right: 12.5px;
-}
-
-.sub-menu__item {
-    width: 293.75px;
-    height: 45px;
-    margin-top: 25px;
-    margin-left: 12.5px;
-    margin-right: 12.5px;
-}
-
-.sub-menu__item > .button--orange {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: 100%;
-}
-
-.sub-menu__item:nth-child(1) {
-    margin-left: 0px;
-}
-
-.sub-menu__item:nth-child(4) {
-    margin-right: 0px;
-}
-
 .item__chart__value {
     position: absolute;
     margin-top: 5px;
@@ -268,12 +223,6 @@
 }
 
 @media screen and (min-width: 875px) and (max-width: 1300px) {
-
-    .sub-menu__item {
-        width: 187.5px;
-        height: 45px;
-    }
-
     .item__events {
         width: 375px;
         height: 175px;
@@ -285,49 +234,6 @@
 }
 
 @media screen and (min-width:0px) and (max-width:875px) {
-
-    .sub-menu__item {
-        width: 81.25px;
-        height: 81.25px;
-    }
-
-    .sub-menu__item > .button {
-        border-radius: 50%;
-        font-size: 0;
-        width: 100%;
-        height: 100%;
-        padding-top: 0px;
-        display: block;
-    }
-
-    .statisticsImage {
-        display: block;
-        width: 81.25px;
-        height: 81.25px;
-        background: url(../images/statistics.svg) no-repeat;
-    }
-
-    .informationImage {
-        display: block;
-        width: 81.25px;
-        height: 81.25px;
-        background: url(../images/info.svg) no-repeat;
-    }
-
-    .dataImage {
-        display: block;
-        width: 81.25px;
-        height: 81.25px;
-        background: url(../images/data.svg) no-repeat;
-    }
-
-    .settingsImage {
-        display: block;
-        width: 81.25px;
-        height: 81.25px;
-        background: url(../images/settings.svg) no-repeat;
-    }
-
     .item__events {
         width: 375px;
         height: 175px;

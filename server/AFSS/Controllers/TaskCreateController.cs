@@ -33,7 +33,7 @@ namespace AFSS.Controllers
                 PiKey = piKey,
                 ServoValue = servoValue,
                 ServoType = (int)servoType,
-                CriticalType = criticalStr,
+                ThresholdType = criticalStr,
                 Mod = mod,
             };
 

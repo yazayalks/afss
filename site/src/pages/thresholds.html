@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>thresholds</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../styles/styles-thresholds.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <script src="../actions/jquery.js"></script>
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--menu--> <!--footer-->
+    <link rel="import" href="menu.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu ").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="add__menu" data-source="menu.html"></div>
+
+<div class="container">
+    <div class="threshold">
+        <div class="threshold__items">
+            <div class="threshold__item threshold-tmp-stove">
+                <div class="item__link"><div class = "text-bold text-bold--black">Температура в печи</div></div>
+
+                <div class="item__min">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Минимальная</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--yellow"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не указано значение</span>
+                </spawn>
+
+                <div class="item__max">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Высокая</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--orange"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не входит в интервал</span>
+                </spawn>
+
+                <div class="item__critical">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Критическая</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--red"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Недопустимое значение</span>
+                </spawn>
+
+            </div>
+            <div class="threshold__item threshold-tmp-room">
+                <div class="item__link"><div class = "text-bold text-bold--black">Температура в парной</div></div>
+
+                <div class="item__min">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Минимальная</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--yellow"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не указано значение--></span>
+                </spawn>
+
+                <div class="item__max">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Высокая</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--orange"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                </spawn>
+
+                <div class="item__critical">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Критическая</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--red"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                </spawn>
+            </div>
+            <div class="threshold__item threshold-tmp-tank">
+                <div class="item__link"><div class = "text-bold text-bold--black">Температура воды в баке</div></div>
+
+                <div class="item__min">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Минимальная</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--yellow"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не указано значение--></span>
+                </spawn>
+
+                <div class="item__max">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Высокая</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--orange"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                </spawn>
+
+                <div class="item__critical">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Критическая</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--red"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                </spawn>
+            </div>
+            <div class="threshold__item threshold-gas-level">
+                <div class="item__link"><div class = "text-bold text-bold--black">Уровень дыма</div></div>
+
+                <div class="item__min">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Минимальный</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--yellow"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не указано значение--></span>
+                </spawn>
+
+                <div class="item__max">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Высокий</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--orange"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                </spawn>
+
+                <div class="item__critical">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Критический</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--red"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                </spawn>
+            </div>
+            <div class="threshold__item threshold-water-level">
+                <div class="item__link"><div class = "text-bold text-bold--black">Уровень воды в баке</div></div>
+
+                <div class="item__min">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Минимальный</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--red"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не указано значение--></span>
+                </spawn>
+
+                <div class="item__max">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Максимальный</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--yellow"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                </spawn>
+
+                <div class="item__critical">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Объём бака</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                </spawn>
+            </div>
+            <div class="threshold__item threshold-pressure-tank">
+                <div class="item__link"><div class = "text-bold text-bold--black">Давление в баке</div></div>
+
+                <div class="item__min">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Минимальное</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--yellow"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не указано значение--></span>
+                </spawn>
+
+                <div class="item__max">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Высокое</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--orange"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                </spawn>
+
+                <div class="item__critical">
+                    <div class="item__text">
+                        <div class = "text-bold text-bold--black">Критическое</div>
+                    </div>
+                    <div class = "item__circle">
+                        <div class = "circle circle--red"></div>
+                    </div>
+                    <div class = "item__input">
+                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                    </div>
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                </spawn>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="add__footer" data-source="footer.html"></div>
+</body>
+</html>

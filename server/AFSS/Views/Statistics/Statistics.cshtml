@@ -12,19 +12,8 @@
     startIntervalResponse();
 </script>
 @await Html.PartialAsync("Menu")
+@await Html.PartialAsync("SubMenu")
 <div class="container">
-    <div class="sub-menu">
-        <div class="sub-menu__items">
-            <div id = "statistics" class="sub-menu__item"><div class = "button button--orange"><div class = "statisticsImage"></div>Статистика</div></div>
-            <div id = "information" class="sub-menu__item"><div class = "button button--orange"><div class = "informationImage"></div>Информация</div></div>
-            @*@if (User.Identity.IsAuthenticated) 
-            {*@
-            <div id = "data" class="sub-menu__item"><div class = "button button--orange"><div class = "dataImage"></div>Данные</div></div>
-            <div id = "settings" class="sub-menu__item"><div class = "button button--orange"><div class = "settingsImage"></div>Настройки</div></div>
-            @*}*@
-        </div>
-    </div>
-
     <div class="info">
         <div class="info__items">
 

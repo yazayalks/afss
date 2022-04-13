@@ -1,0 +1,3 @@
+﻿function startIntervalThreshold() {
+    console.log();
+}

@@ -2,7 +2,6 @@
 
 namespace AFSS.Controllers
 {
-   /* [Route("[controller]")]*/
     public class FooterController : Controller
     {
         public IActionResult Footer()

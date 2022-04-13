@@ -55,7 +55,7 @@ namespace AFSS.Controllers
             {
                 servoType = u.ServoType,
                 servoValue = u.ServoValue,
-                criticalType = u.CriticalType,
+                thresholdType = u.ThresholdType,
                 mod = u.Mod,
             }
             ).ToList();

@@ -13,7 +13,7 @@ namespace AFSS.Models
         public int ServoValue { get; set; }
         public bool Complete { get; set; }
         public int Id { get; set; }
-        public string CriticalType { get; set; }
+        public string ThresholdType { get; set; }
         public string Mod { get; set; }
 
         public virtual PiUser PiKey { get; set; }
