@@ -20,6 +20,7 @@ namespace AFSS.Models
 
         public virtual DbSet<PiData> PiData { get; set; }
         public virtual DbSet<PiTask> PiTask { get; set; }
+        public virtual DbSet<PiThresholds> PiThresholds { get; set; }
         public virtual DbSet<PiUser> PiUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -101,6 +102,64 @@ namespace AFSS.Models
                     .HasForeignKey(d => d.PiKeyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("PiTask_PiUser_id_fk");
+            });
+
+            modelBuilder.Entity<PiThresholds>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("PiThresholds_pk")
+                    .IsClustered(false);
+
+                entity.HasIndex(e => e.Id, "PiThresholds_id_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CriticalGasLevel).HasColumnName("criticalGasLevel");
+
+                entity.Property(e => e.CriticalPressureTank).HasColumnName("criticalPressureTank");
+
+                entity.Property(e => e.CriticalTmpRoom).HasColumnName("criticalTmpRoom");
+
+                entity.Property(e => e.CriticalTmpStove).HasColumnName("criticalTmpStove");
+
+                entity.Property(e => e.CriticalTmpTank).HasColumnName("criticalTmpTank");
+
+                entity.Property(e => e.Date).HasColumnName("date");
+
+                entity.Property(e => e.MaxGasLevel).HasColumnName("maxGasLevel");
+
+                entity.Property(e => e.MaxPressureTank).HasColumnName("maxPressureTank");
+
+                entity.Property(e => e.MaxTmpRoom).HasColumnName("maxTmpRoom");
+
+                entity.Property(e => e.MaxTmpStove).HasColumnName("maxTmpStove");
+
+                entity.Property(e => e.MaxTmpTank).HasColumnName("maxTmpTank");
+
+                entity.Property(e => e.MaxWaterLevel).HasColumnName("maxWaterLevel");
+
+                entity.Property(e => e.MinGasLevel).HasColumnName("minGasLevel");
+
+                entity.Property(e => e.MinPressureTank).HasColumnName("minPressureTank");
+
+                entity.Property(e => e.MinTmpRoom).HasColumnName("minTmpRoom");
+
+                entity.Property(e => e.MinTmpStove).HasColumnName("minTmpStove");
+
+                entity.Property(e => e.MinTmpTank).HasColumnName("minTmpTank");
+
+                entity.Property(e => e.MinWaterLevel).HasColumnName("minWaterLevel");
+
+                entity.Property(e => e.PiKeyId).HasColumnName("piKeyId");
+
+                entity.Property(e => e.VolumeWaterLevel).HasColumnName("volumeWaterLevel");
+
+                entity.HasOne(d => d.PiKey)
+                    .WithMany(p => p.PiThresholds)
+                    .HasForeignKey(d => d.PiKeyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PiThresholds_PiUser_id_fk");
             });
 
             modelBuilder.Entity<PiUser>(entity =>

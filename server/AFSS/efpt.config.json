@@ -22,6 +22,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[u1410979_afss].[PiThresholds]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[u1410979_afss].[PiUser]",
          "ObjectType": 0
       }

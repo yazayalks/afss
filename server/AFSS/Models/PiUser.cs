@@ -11,6 +11,7 @@ namespace AFSS.Models
         {
             PiData = new HashSet<PiData>();
             PiTask = new HashSet<PiTask>();
+            PiThresholds = new HashSet<PiThresholds>();
         }
 
         public string CpuSerial { get; set; }
@@ -20,5 +21,6 @@ namespace AFSS.Models
 
         public virtual ICollection<PiData> PiData { get; set; }
         public virtual ICollection<PiTask> PiTask { get; set; }
+        public virtual ICollection<PiThresholds> PiThresholds { get; set; }
     }
 }
