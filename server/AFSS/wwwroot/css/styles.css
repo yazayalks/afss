@@ -142,10 +142,12 @@ a {
 
 .button--orange {
     background: #FE611E;
+    border: 0px;
 }
-.button--orange:hover {
-    background: #FEC715;
-}
+    .button--orange:hover {
+        background: #FEC715;
+        
+    }
 
 .button--white {
     background: #FFFFFF;

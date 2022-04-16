@@ -18,6 +18,10 @@
     justify-content: center;
 }
 
+    .threshold__item:hover {
+        border: 12.5px solid #FE611E;
+    }
+
 .item__min {
     display: flex;
     width: 345px;

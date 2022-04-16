@@ -1,4 +1,5 @@
 ﻿using AFSS.Models;
+using AFSS.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,15 @@ namespace AFSS.Controllers
         public IActionResult Thresholds()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(ThresholdsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+               
+            }
+            return View("Thresholds");
         }
     }
 }

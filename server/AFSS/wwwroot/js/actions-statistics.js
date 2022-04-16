@@ -208,9 +208,9 @@ function changeTypeUser(type) {
     }
 }
 
-function httpGet(servoType, servoValue) {
+function httpGet(servoType, servoValue, thresholdType, mod) {
     var xhr = new XMLHttpRequest();
-    var thresholdType = "opa";
+    var thresholdType = "on";
     var mod = "off";
     xhr.open('GET', '/api/TaskCreate?type=' + servoType + '&value=' + servoValue + '&criticalStr=' + thresholdType + '&mod=' + mod, false);
     /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/

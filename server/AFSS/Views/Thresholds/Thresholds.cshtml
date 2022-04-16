@@ -2,11 +2,15 @@
     ViewData["Title"] = "Thresholds";
 }
 
+@model AFSS.ViewModels.ThresholdsViewModel
+
  <link rel="stylesheet" href="~/css/styles-thresholds.css">
  
  @await Html.PartialAsync("Menu")
  @await Html.PartialAsync("SubMenu")
 
+
+ <form method="post" asp-controller="Thresholds" asp-action="Index">
  <div class="container">
     <div class="threshold">
         <div class="threshold__items">
@@ -21,7 +25,7 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MinTmpStove" value = "12" class="input-text" type="number" placeholder="">
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -36,7 +40,7 @@
                         <div class = "circle circle--orange"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MaxTmpStove" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -51,7 +55,7 @@
                         <div class = "circle circle--red"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="CriticalTmpStove" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -70,7 +74,7 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MinTmpRoom" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -85,7 +89,7 @@
                         <div class = "circle circle--orange"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MaxTmpRoom" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -100,7 +104,7 @@
                         <div class = "circle circle--red"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="CriticalTmpRoom" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -118,7 +122,7 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MinTmpTank" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -133,7 +137,7 @@
                         <div class = "circle circle--orange"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MaxTmpTank" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -148,7 +152,7 @@
                         <div class = "circle circle--red"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="CriticalTmpTank" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -166,7 +170,7 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MinGasLevel" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -181,7 +185,7 @@
                         <div class = "circle circle--orange"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MaxGasLevel" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -196,7 +200,7 @@
                         <div class = "circle circle--red"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="CriticalGasLevel" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -214,7 +218,7 @@
                         <div class = "circle circle--red"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MinWaterLevel" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -229,7 +233,7 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MaxWaterLevel" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -244,7 +248,7 @@
                         <div class = "circle"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="VolumeWaterLevel" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -262,7 +266,7 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MinPressureTank" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -277,7 +281,7 @@
                         <div class = "circle circle--orange"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="MaxPressureTank" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -292,7 +296,7 @@
                         <div class = "circle circle--red"></div>
                     </div>
                     <div class = "item__input">
-                        <input class="input-text" name="number" type="number" placeholder=""> </input>
+                        <input asp-for="CriticalPressureTank" class="input-text" type="number" placeholder=""/>
                     </div>
                 </div>
                 <spawn class = "validation__item">
@@ -303,17 +307,18 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="control-menu">
         <div class="control-menu__items">
-            <div class="control-menu__item"><div id = "save" class = "button button--orange"><div id = "save-image" class = "save-image"></div>Сохранить</div></div>
+            <div class="control-menu__item"><input type="submit"  id = "save" class = "button button--orange">@*<div id = "save-image" class = "save-image"></div>Сохранить</button>*@</div>
             <div class="control-menu__item"><div id = "clear" class = "button button--orange"><div id = "clear-image" class = "clear-image"></div>Очистить</div></div>
             <div class="control-menu__item"><div id = "reset" class = "button button--orange"><div id = "reset-image" class = "reset-image"></div>Сбросить</div></div>
             <div class="control-menu__item"><div id = "update" class = "button button--orange"><div id = "update-image" class = "update-image"></div>Обновить</div></div>
         </div>
     </div>
 </div>
-
+</form>
 @await Html.PartialAsync("Footer")
 
 <script src="~/js/actions-thresholds.js"></script>
