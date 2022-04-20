@@ -6,7 +6,7 @@ using System.Security.Claims;
 namespace AFSS.Controllers
 {
     [ApiController]
-    [Authorize]
+    /*[Authorize]*/
     [Route("api/[controller]")]
     public class TaskCreateController : ControllerBase
     {
@@ -18,8 +18,8 @@ namespace AFSS.Controllers
             this.applicationContext = applicationContext;
         }
         [HttpGet]
-        [Authorize]
-        public void Get(PiTaskType servoType, int servoValue, string criticalStr, string mod)
+       /* [Authorize]*/
+        public void Get(PiTaskType servoType, int servoValue, string thresholdType, string mod)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);      
             var userPiKey = applicationContext.Users.Single(u => u.Id == userId).PiKey;
@@ -33,7 +33,7 @@ namespace AFSS.Controllers
                 PiKey = piKey,
                 ServoValue = servoValue,
                 ServoType = (int)servoType,
-                ThresholdType = criticalStr,
+                ThresholdType = thresholdType,
                 Mod = mod,
             };
 

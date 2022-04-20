@@ -14,7 +14,7 @@ namespace AFSS.Controllers
             this.applicationContext = applicationContext;
 
         }
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult Thresholds()
         {
             return View();

@@ -11,17 +11,22 @@ namespace AFSS.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ApplicationContext applicationContext;
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
         private readonly AfssContext afssDbContext;
+        private readonly ApplicationContext applicationContext;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AfssContext afssDbContext, ApplicationContext applicationContext)
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<User> _signInManager;
+        
+
+        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, AfssContext afssDbContext, ApplicationContext applicationContext)
         {
             this.afssDbContext = afssDbContext;
-            _userManager = userManager;
-            _signInManager = signInManager;
             this.applicationContext = applicationContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
+            
         }
         [HttpGet]
         public IActionResult Register()
@@ -31,16 +36,26 @@ namespace AFSS.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+           
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email, PiKey = model.PiKey };
+                
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
+                   // var userRole = _roleManager.Roles.Single(r=>r.Name == "user");
+                    //await _userManager.AddToRolesAsync(user, addedRoles);
+                    // var name = "user";
+                    //IdentityResult result2 = await _roleManager.CreateAsync(new IdentityRole(name));
+                    // получаем пользователя
+
                     // установка куки
                     Response.Cookies.Append("PiKey", model.PiKey);
                     await _signInManager.SignInAsync(user, false);
+                    
                     return RedirectToAction("Statistics", "Statistics");
                 }
                 else

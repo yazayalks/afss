@@ -37,6 +37,9 @@
                     <img id = "imageServoStove" src='../images/servo-stove-0.png' width="375" height="100" alt="servo-stove">
                 </div>
                 <div class="servo-stove__items">
+                    @*@if (User.IsInRole("user"))
+                    {*@
+                   @* }*@
                     @* @if (User.Identity.IsAuthenticated)
                     {*@
                         <div id ="subtractForStove" class="servo-stove__subtract"><img id = "button-subtract-stove" src = "../images/../images/subtract.svg" class = "button-subtract"></div>

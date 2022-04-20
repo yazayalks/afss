@@ -212,7 +212,7 @@ function httpGet(servoType, servoValue, thresholdType, mod) {
     var xhr = new XMLHttpRequest();
     var thresholdType = "on";
     var mod = "off";
-    xhr.open('GET', '/api/TaskCreate?type=' + servoType + '&value=' + servoValue + '&criticalStr=' + thresholdType + '&mod=' + mod, false);
+    xhr.open('GET', '/api/TaskCreate?servoType=' + servoType + '&servoValue=' + servoValue + '&thresholdType=' + thresholdType + '&mod=' + mod, false);
     /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
     xhr.send();
     if (xhr.status != 200) {
