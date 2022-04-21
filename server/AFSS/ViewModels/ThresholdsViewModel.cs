@@ -1,24 +1,54 @@
-﻿namespace AFSS.ViewModels
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+
+namespace AFSS.ViewModels
 {
     public class ThresholdsViewModel
     {
-        public int MinTmpStove { get; set; }
-        public int MaxTmpStove { get; set; }
-        public int CriticalTmpStove { get; set; }
-        public int MinTmpTank { get; set; }
-        public int MaxTmpTank { get; set; }
-        public int CriticalTmpTank { get; set; }
-        public int MinTmpRoom { get; set; }
-        public int MaxTmpRoom { get; set; }
-        public int CriticalTmpRoom { get; set; }
-        public int MinWaterLevel { get; set; }
-        public int MaxWaterLevel { get; set; }
-        public int VolumeWaterLevel { get; set; }
-        public int MinGasLevel { get; set; }
-        public int MaxGasLevel { get; set; }
-        public int CriticalGasLevel { get; set; }
-        public int MinPressureTank { get; set; }
-        public int MaxPressureTank { get; set; }
-        public int CriticalPressureTank { get; set; }
+
+        /* [Remote(action: "VerifyTmpStove", controller: "Thresholds", ErrorMessage = "Неправильный интервал")]*/
+        /*[Remote("VerifyTmpStove", "Thresholds")]*/
+        [Required(ErrorMessage = "Не указано значение")]
+        [Remote(action: "VerifyMinTmpStove", controller: "VerifyThresholds", ErrorMessage = "Неправильный интервал",
+            AdditionalFields = nameof(MinTmpStove) + "," + nameof(MaxTmpStove) + "," + nameof(CriticalTmpStove))]
+        public string MinTmpStove { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        [Remote(action: "VerifyMinTmpStove", controller: "VerifyThresholds", ErrorMessage = "Неправильный интервал",
+            AdditionalFields = nameof(MinTmpStove) + "," + nameof(MaxTmpStove) + "," + nameof(CriticalTmpStove))]
+        public string MaxTmpStove { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        [Remote(action: "VerifyMinTmpStove", controller: "VerifyThresholds", ErrorMessage = "Неправильный интервал",
+            AdditionalFields = nameof(MinTmpStove) + "," + nameof(MaxTmpStove) + "," + nameof(CriticalTmpStove))]
+        public string CriticalTmpStove { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MinTmpTank { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MaxTmpTank { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string CriticalTmpTank { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MinTmpRoom { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MaxTmpRoom { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string CriticalTmpRoom { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MinWaterLevel { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MaxWaterLevel { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string VolumeWaterLevel { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MinGasLevel { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MaxGasLevel { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string CriticalGasLevel { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MinPressureTank { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string MaxPressureTank { get; set; }
+        [Required(ErrorMessage = "Не указано значение")]
+        public string CriticalPressureTank { get; set; }
     }
 }

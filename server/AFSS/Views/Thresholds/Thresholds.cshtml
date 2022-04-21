@@ -9,8 +9,12 @@
  @await Html.PartialAsync("Menu")
  @await Html.PartialAsync("SubMenu")
 
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>  
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>  
 
- <form method="post" asp-controller="Thresholds" asp-action="Index">
+
+ <form method="post" asp-controller="Thresholds" asp-action="Thresholds">
  <div class="container">
     <div class="threshold">
         <div class="threshold__items">
@@ -25,11 +29,11 @@
                         <div class = "circle circle--yellow"></div>
                     </div>
                     <div class = "item__input">
-                        <input asp-for="MinTmpStove" value = "12" class="input-text" type="number" placeholder="">
+                        <input asp-for="MinTmpStove" class="input-text" type="number" placeholder="">
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text">Не указано значение</span>
+                    <span asp-validation-for="MinTmpStove" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__max">
@@ -44,7 +48,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text">Не входит в интервал</span>
+                    <span asp-validation-for="MaxTmpStove" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__critical">
@@ -59,7 +63,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text">Недопустимое значение</span>
+                    <span asp-validation-for="CriticalTmpStove" class = "validation-text"></span>
                 </spawn>
 
             </div>
@@ -78,7 +82,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не указано значение--></span>
+                    <span asp-validation-for="MinTmpRoom" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__max">
@@ -93,7 +97,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                    <span asp-validation-for="MaxTmpRoom" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__critical">
@@ -108,7 +112,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                    <span asp-validation-for="CriticalTmpRoom" class = "validation-text"></span>
                 </spawn>
             </div>
             <div class="threshold__item threshold-tmp-tank">
@@ -126,7 +130,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не указано значение--></span>
+                    <span asp-validation-for="MinTmpTank" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__max">
@@ -141,7 +145,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                    <span asp-validation-for="MaxTmpTank" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__critical">
@@ -156,7 +160,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                    <span asp-validation-for="CriticalTmpTank" class = "validation-text"></span>
                 </spawn>
             </div>
             <div class="threshold__item threshold-gas-level">
@@ -174,7 +178,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не указано значение--></span>
+                    <span asp-validation-for="MinGasLevel" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__max">
@@ -189,7 +193,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                    <span asp-validation-for="MaxGasLevel" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__critical">
@@ -204,7 +208,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                    <span asp-validation-for="CriticalGasLevel" class = "validation-text"></span>
                 </spawn>
             </div>
             <div class="threshold__item threshold-water-level">
@@ -222,7 +226,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не указано значение--></span>
+                    <span asp-validation-for="MinWaterLevel" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__max">
@@ -237,7 +241,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                    <span asp-validation-for="MaxWaterLevel" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__critical">
@@ -252,7 +256,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                    <span asp-validation-for="VolumeWaterLevel" class = "validation-text"></span>
                 </spawn>
             </div>
             <div class="threshold__item threshold-pressure-tank">
@@ -270,7 +274,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не указано значение--></span>
+                    <span asp-validation-for="MinPressureTank" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__max">
@@ -285,7 +289,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Не входит в интервал--></span>
+                    <span asp-validation-for="MaxPressureTank" class = "validation-text"></span>
                 </spawn>
 
                 <div class="item__critical">
@@ -300,7 +304,7 @@
                     </div>
                 </div>
                 <spawn class = "validation__item">
-                    <span class = "validation-text"><!--Недопустимое значение--></span>
+                    <span asp-validation-for="CriticalPressureTank" class = "validation-text"></span>
                 </spawn>
             </div>
         </div>

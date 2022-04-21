@@ -34,6 +34,9 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 
+/*builder.Services.AddMvc();*/
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,6 +47,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+/*app.UseStaticFiles();
+app.UseEndpoints(builder => builder.MapControllers());*/
 
 
 app.UseHttpsRedirection();
@@ -63,3 +68,6 @@ app.MapControllerRoute(
     pattern: "{controller=Selection}/{action=Index}/{id?}");
 
 app.Run();
+
+
+    
