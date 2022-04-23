@@ -13,6 +13,17 @@
 </script>
 @await Html.PartialAsync("Menu")
 @await Html.PartialAsync("SubMenu")
+@if (User.Identity.IsAuthenticated)
+{
+    <script>
+        window.typeUser = 'user';
+    </script>
+} else
+{
+    <script>
+        window.typeUser = 'guest';
+    </script>
+}
 <div class="container">
     <div class="info">
         <div class="info__items">

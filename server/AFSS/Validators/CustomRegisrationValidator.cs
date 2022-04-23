@@ -55,6 +55,13 @@ namespace AFSS.ViewModels
                             Description = "Данный ключ не существует"
                         });
                     }
+                    if (applicationContext.Users.Any(u => u.PiKey == piKey && u.EmailConfirmed == true))
+                    {
+                        errors.Add(new IdentityError
+                        {
+                            Description = "Данный ключ используется"
+                        });
+                    }
                 }
             }
 

@@ -19,7 +19,7 @@ namespace AFSS.Controllers
             this.applicationContext = applicationContext;
         }
         [HttpGet]
-        public IEnumerable<PiThresholds> Index(string count)
+        public IEnumerable<PiThresholds> Index(string count, string key)
         {
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -30,14 +30,13 @@ namespace AFSS.Controllers
             }
             else
             {
-                if (Request.Cookies.ContainsKey("PiKey"))
-                {
-                    userPiKey = Request.Cookies["PiKey"];
-                }
-                else
-                {
-                    return Enumerable.Empty<PiThresholds>();
-                }
+                    if (key != null)
+                    {
+                        userPiKey = key;
+                    } else
+                    {
+                        return Enumerable.Empty<PiThresholds>();
+                    }
             }
 
 
@@ -45,6 +44,35 @@ namespace AFSS.Controllers
             var user = afssDbContext.PiUser.SingleOrDefault(u => u.CpuSerial == userPiKey.ToString());
             if (user != null)
             {
+                var result = afssDbContext.PiThresholds.Where(a => a.PiKeyId == user.Id).OrderBy(a => a.Date).Take(1).Select(ToPiThresholds).ToList();
+                if (result.Count() == 0) {
+
+                    afssDbContext.PiThresholds.Add(new PiThresholds()
+                    {
+                        MinTmpStove = 0,
+                        MaxTmpStove = 100,
+                        CriticalTmpStove = 150,
+                        MinTmpTank = 0,
+                        MaxTmpTank = 80,
+                        CriticalTmpTank = 100,
+                        MinTmpRoom = 0,
+                        MaxTmpRoom = 100,
+                        CriticalTmpRoom = 120,
+                        MinWaterLevel = 0,
+                        MaxWaterLevel = 70,
+                        VolumeWaterLevel = 100,
+                        MinGasLevel = 0,
+                        MaxGasLevel = 100,
+                        CriticalGasLevel = 150,
+                        MinPressureTank = 0,
+                        MaxPressureTank = 100,
+                        CriticalPressureTank = 120,
+                        Date = DateTime.UtcNow,
+                        PiKey = user,
+
+                    });
+                    afssDbContext.SaveChanges();
+                }
                 if (count == "last")
                 {
                     return afssDbContext.PiThresholds.Where(a => a.PiKeyId == user.Id).OrderByDescending(a => a.Date).Take(1).Select(ToPiThresholds).ToList();
@@ -59,9 +87,6 @@ namespace AFSS.Controllers
             {
                 return Enumerable.Empty<PiThresholds>();
             }
-            /*var thresholds = afssDbContext.PiThresholds.OrderByDescending(u => u.Date).Take(1).ToList();
-
-            var sendThresholds = new List<PiThresholds>();*/
         }
 
         private PiThresholds ToPiThresholds(PiThresholds PiThresholdsDB)

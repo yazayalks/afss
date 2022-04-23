@@ -3,7 +3,7 @@ function addChartTemperatureStove() {
     var timeOnX = ["0", "0", "0", "0", "0", "0"];
     var time = "00:00:00";
     var temperatureStoveValue = 0;
-
+    var maxtestvalue = 10;
     const data = {
         labels: timeOnX,
         datasets: [{

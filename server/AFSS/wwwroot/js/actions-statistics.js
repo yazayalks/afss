@@ -5,7 +5,6 @@ var buttonAddPipe = document.getElementById('button-add-pipe');
 var buttonSubtractStove = document.getElementById('button-subtract-stove');
 var buttonAddStove = document.getElementById('button-add-stove');
 var typeUserArray = ["user", "admin", "guest"];
-var typeUser = typeUserArray[0];
 var gasStatusArray = ["noGas", "someGas", "lotGas"];
 var gasStatus = gasStatusArray[0];
 var valueStove = parseInt(servoStoveValue.textContent);
@@ -18,6 +17,10 @@ var firstEvent = false;
 var lastEvent = false;
 var statusButtons = true;
 typeStatusArray = ["online", "offline"];
+
+function PrintTypeUser(type) {
+    console.log(window.typeUser);
+}
 
 function parseDate(date) {
     return new Date(parseInt(/-?\d+/.exec(date)[0]))
@@ -42,7 +45,6 @@ function setStatus() {
 }
 
 changeImageGas();
-changeTypeUser(typeUser);
 
 function isEmpty(str) {
     if (str.trim() == '')
@@ -187,7 +189,7 @@ function blockAllButtons() {
 }
 
 function unblockAllButtons() {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         unblockSubtractPipe();
         unblockAddPipe();
         unblockSubtractStove();
@@ -197,16 +199,6 @@ function unblockAllButtons() {
     }
 }
 
-function changeTypeUser(type) {
-    if (type === typeUserArray[2]) {
-        subtractForStove.style.display = "none";
-        addForStove.style.display = "none";
-        subtractForPipe.style.display = "none";
-        addForPipe.style.display = "none";
-        data.style.display = "none";
-        settings.style.display = "none";
-    }
-}
 
 function httpGet(servoType, servoValue, thresholdType, mod) {
     var xhr = new XMLHttpRequest();
@@ -226,7 +218,7 @@ function httpGet(servoType, servoValue, thresholdType, mod) {
 
 subtractForStove.onclick = function () {
     
-    if ((valueStove > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((valueStove > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGet(0, valueStove - 10);
         servoStoveValue.innerText = (valueStove -= 10).toString() + "°";
@@ -237,7 +229,7 @@ subtractForStove.onclick = function () {
 
 addForStove.onclick = function () {
     
-    if ((valueStove < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((valueStove < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGet(0, valueStove + 10);
         servoStoveValue.innerText = (valueStove += 10).toString() + "°";
@@ -248,7 +240,7 @@ addForStove.onclick = function () {
 
 subtractForPipe.onclick = function () {
     
-    if ((valuePipe > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((valuePipe > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGet(1, valuePipe - 10);
         servoPipeValue.innerText = (valuePipe -= 10).toString() + "°";
@@ -259,7 +251,7 @@ subtractForPipe.onclick = function () {
 
 addForPipe.onclick = function () {
     
-    if ((valuePipe < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((valuePipe < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGet(1, valuePipe + 10);
         servoPipeValue.innerText = (valuePipe += 10).toString() + "°";
@@ -343,7 +335,7 @@ async function updateImage() {
 
 
 buttonAuto.onclick = function changeImageAuto() {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         if ((autoStatus == true) && (powerStatus == false)) {
             buttonAuto.src = "../images/button-auto.svg";
             autoStatus = false;
@@ -358,7 +350,7 @@ buttonAuto.onclick = function changeImageAuto() {
 }
 
 buttonPower.onclick = function changeImagePower() {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         if (powerStatus == true) {
             buttonPower.src = "../images/button-power.svg";
@@ -376,7 +368,7 @@ buttonPower.onclick = function changeImagePower() {
 }
 
 buttonAuto.addEventListener("mouseover", function (event) {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         if ((autoStatus == true) && (powerStatus == false)) {
             buttonAuto.src = "../images/button-auto.svg";
             return;
@@ -389,7 +381,7 @@ buttonAuto.addEventListener("mouseover", function (event) {
 });
 
 buttonAuto.addEventListener("mouseout", function (event) {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         if ((autoStatus == true) && (powerStatus == false)) {
             buttonAuto.src = "../images/button-auto--active.svg";
             return;
@@ -402,7 +394,7 @@ buttonAuto.addEventListener("mouseout", function (event) {
 });
 
 buttonPower.addEventListener("mouseover", function (event) {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         if (powerStatus == true) {
             buttonPower.src = "../images/button-power.svg";
             return;
@@ -415,7 +407,7 @@ buttonPower.addEventListener("mouseover", function (event) {
 });
 
 buttonPower.addEventListener("mouseout", function (event) {
-    if (window.typeStatus == typeStatusArray[0]) {
+    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         if (powerStatus == true) {
             buttonPower.src = "../images/button-power--active.svg";
             return;
@@ -428,56 +420,56 @@ buttonPower.addEventListener("mouseout", function (event) {
 });
 
 buttonSubtractPipe.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractPipe.src = "../images/subtract--active.svg";
         return;
     } 
 });
 
 buttonAddPipe.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddPipe.src = "../images/add--active.svg";
         return;
     }
 });
 
 buttonSubtractStove.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractStove.src = "../images/subtract--active.svg";
         return;
     }
 });
 
 buttonAddStove.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddStove.src = "../images/add--active.svg";
         return;
     }
 });
 
 buttonSubtractPipe.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractPipe.src = "../images/subtract.svg";
         return;
     }
 });
 
 buttonAddPipe.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddPipe.src = "../images/add.svg";
         return;
     }
 });
 
 buttonSubtractStove.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractStove.src = "../images/subtract.svg";
         return;
     }
 });
 
 buttonAddStove.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0])) {
+    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddStove.src = "../images/add.svg";
         return;
     }

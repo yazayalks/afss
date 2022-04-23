@@ -6,7 +6,7 @@ function startIntervalResponse() {
         updateResponse();
     }, 2000)
 
-    function updateResponse(/*dataY, dataX*/) {
+    function updateResponse() {
         (async () => await fetchAsync())();
     }
 

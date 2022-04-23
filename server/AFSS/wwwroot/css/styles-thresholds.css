@@ -18,9 +18,13 @@
     justify-content: center;
 }
 
-    .threshold__item:hover {
-        border: 12.5px solid #FE611E;
-    }
+.threshold-info {
+    width: 800px;
+}
+
+.threshold__item:hover {
+    border: 12.5px solid #FE611E;
+}
 
 .item__min {
     display: flex;
@@ -29,6 +33,90 @@
     padding-right: 15px;
     padding-left: 15px;
 }
+
+.input-key {
+    font-family: "Stem-Light";
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 24px;
+    height: 45px;
+    border: none;
+    background: #F7FBF5;
+    color: black;
+    width: 315px;
+}
+
+.item__search {
+    margin-top: 15px;
+}
+
+.list-keys {
+    margin-left: 15px;
+    width: 345px;
+}
+
+.list-keys {
+    margin-top: 15px;
+    height: 150px;
+    padding-inline-start: 15px;
+    margin-inline-end: 15px;
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.list-keys > li:first-child {
+    margin-top: 0px;
+}
+
+.list-keys > .item__key {
+    margin-left: 0px;
+}
+    .item__key > a {
+        font-family: "Stem-Light";
+        font-size: 24px;
+        color: black;
+    }
+.list-keys::-webkit-scrollbar {
+    width: 12.5px;
+}
+
+.list-keys::-webkit-scrollbar-thumb {
+    background-color: #FE611E;
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+}
+
+    .list-keys::-webkit-scrollbar-thumb:hover {
+        background-color: #FEC715;
+    }
+
+.list-keys > li {
+    margin-top: 15px;
+    text-align: left;
+    font-family: "Stem-Light";
+    font-size: 24px;
+    align-items: center;
+    border: none;
+    color: #E00E0F;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.info-user {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+    .info-user > .item__text {
+        margin-top: 15px;
+        display: block;
+        text-align: left;
+        width: 345px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
 
 .item__max {
     display: flex;
@@ -93,6 +181,7 @@
     width: 345px;
     padding-right: 15px;
     padding-left: 15px;
+    
 }
 
 .validation-text:empty {
@@ -107,6 +196,8 @@
     color: #E00E0F;
     white-space: nowrap;
     overflow: hidden;
+/*    width: 315px;
+    animation: validationAnimate 10s linear infinite alternate;*/
 }
 
     .validation-text > span {
@@ -118,6 +209,16 @@
         white-space: nowrap;
         overflow: hidden;
     }
+
+/*@keyframes validationAnimate {
+    from {
+        text-indent: 0%;
+    }
+
+    to {
+        text-indent: -100%;
+    }
+}*/
     .save-image {
         display: none;
     }
@@ -168,6 +269,10 @@
         width: 100%;
         height: 45px;
     }
+
+    .threshold-info {
+        width: 375px;
+    }
 }
 
 
@@ -177,6 +282,7 @@
         width: 81.25px;
         height: 81.25px;
     }
+
 
         .control-menu__item > .button {
             font-size: 0;
@@ -236,3 +342,4 @@
             border: 0px;
         }
 }
+

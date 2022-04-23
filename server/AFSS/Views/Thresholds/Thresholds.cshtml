@@ -14,10 +14,41 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>  
 
 
+
  <form method="post" asp-controller="Thresholds" asp-action="Thresholds">
  <div class="container">
     <div class="threshold">
         <div class="threshold__items">
+
+            <div class="threshold__item threshold-keys">
+                <div class="item__link"><div class = "text-bold text-bold--black">Ключи Raspberry</div></div>
+                <div class="item__search">
+                    <div class = "item__input">
+                        <input id="inputSearch" class="input-key" name="number" type="text" placeholder="Поиск">
+                    </div>
+                </div>
+                <ul id="list" class = "list-keys">
+                </ul>
+            </div>
+
+            <div class="threshold__item threshold-info">
+            <div class="item__link"><div class = "text-bold text-bold--black">Информация о пользователе</div></div>
+            <div class="info-user">
+                <div class="item__text">
+                    <div class = "text-bold text-bold--black">Имя</div>
+                    <div id = "nameUser" class = "text-light text-light--black">Кирилл</div>
+                </div>
+                <div class="item__text">
+                    <div class = "text-bold text-bold--black">Логин</div>
+                    <div id = "emailUser" class = "text-light text-light--black">lysak_kirill@mail.ru</div>
+                </div>
+                <div class="item__text">
+                    <div class = "text-bold text-bold--black">Телефон</div>
+                    <div id = "phoneUser" class = "text-light text-light--black">89513949741</div>
+                </div>
+            </div>
+        </div>
+
             <div class="threshold__item threshold-tmp-stove">
                 <div class="item__link"><div class = "text-bold text-bold--black">Температура в печи</div></div>
 
