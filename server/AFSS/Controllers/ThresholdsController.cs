@@ -8,6 +8,7 @@ using System.Security.Claims;
 namespace AFSS.Controllers
 {
     [Route("[controller]")]
+    
     public class ThresholdsController : Controller
     {
         private readonly ApplicationContext applicationContext;
@@ -23,13 +24,14 @@ namespace AFSS.Controllers
             _roleManager = roleManager;
         }
         //[Authorize(Roles = "admin")]
+        [HttpGet]
         public async Task<IActionResult> ThresholdsAsync()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = applicationContext.Users.SingleOrDefault(u => u.Id == userId.ToString());
             var userRoles = await _userManager.GetRolesAsync(user);
             var userPiKey = applicationContext.Users.Single(u => u.Id == userId).PiKey;
-
+            ViewData["userPiKey"] = userPiKey;
             foreach (var userRole in userRoles)
             {
                 if (userRole == "admin")

@@ -1,0 +1,52 @@
+.data-user__items {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.data-user__item {
+    border: 12.5px solid #7A0B14;
+    width: 375px;
+    height: 375px;
+    margin-top: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    background-color: white;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.item__input {
+    margin-top: 15px;
+}
+
+.item__input--password {
+    margin-top: 0;
+}
+
+.item__input  > .input-text {
+    width: 315px;
+}
+
+.validation__item {
+    display: flex;
+    width: 375px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.validation-text:empty {
+    height: 25px;
+}
+
+.validation-text {
+    font-family: "Stem-Light";
+    font-size: 24px;
+    align-items: center;
+    border: none;
+    color: #E00E0F;
+    white-space: nowrap;
+    overflow: hidden;
+}

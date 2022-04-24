@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>data-user</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles-data-user.css">
+
+    <script src="../actions/jquery.js"></script>
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--menu--> <!--footer-->
+    <link rel="import" href="menu.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu ").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="add__menu" data-source="menu.html"></div>
+
+<div class="container">
+    <div class="data-user">
+        <div class="data-user__items">
+            <div class="data-user__item data-user-name">
+                <div class="item__link"><div class = "text-bold text-bold--black">Имя пользователя</div></div>
+                    <div class = "item__input">
+                        <input class="input-text input-name" name="number" type="text" placeholder="Имя">
+                    </div>
+            </div>
+
+
+            <div class="data-user__item data-user-email">
+                <div class="item__link"><div class = "text-bold text-bold--black">Почта пользователя</div></div>
+                <div class = "item__input">
+                    <input class="input-text input-email" name="number" type="text" placeholder="Почта">
+                </div>
+            </div>
+
+
+            <div class="data-user__item data-user-phone">
+                <div class="item__link"><div class = "text-bold text-bold--black">Телефон пользователя</div></div>
+                <div class = "item__input">
+                    <input class="input-text input-phone" name="number" type="text" placeholder="Телефон">
+                </div>
+            </div>
+
+
+            <div class="data-user__item data-user-password">
+                <div class="item__link"><div class = "text-bold text-bold--black">Пароль пользователя</div></div>
+                <div class = "item__input">
+                    <input class="input-text input-old-password" name="number" type="text" placeholder="Введите старый пароль">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не указано значение</span>
+                </spawn>
+                <div class = "item__input item__input--password">
+                    <input class="input-text input-new-password" name="number" type="text" placeholder="Введите новый пароль">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не указано значение</span>
+                </spawn>
+                <div class = "item__input item__input--password">
+                    <input class="input-text input-confirm-password" name="number" type="text" placeholder="Подтвердите пароль">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text">Не указано значение</span>
+                </spawn>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="add__footer" data-source="footer.html"></div>
+</body>
+</html>

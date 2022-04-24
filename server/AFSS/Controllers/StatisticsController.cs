@@ -18,6 +18,7 @@ namespace AFSS.Controllers
         /*[Authorize]*/
         /*[AllowAnonymous]*/
         /*[Authorize(Roles = "user")]*/
+        [HttpGet]
         public IActionResult Statistics()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
