@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@{
     ViewData["Title"] = "Thresholds";
 }
 
@@ -11,9 +12,7 @@
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>  
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>  
-
-<h3>@ViewData["userPiKey"]</h3>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script> 
 
  <form method="post" asp-controller="Thresholds" asp-action="Thresholds">
  <div class="container">
@@ -36,15 +35,15 @@
             <div class="info-user">
                 <div class="item__text">
                     <div class = "text-bold text-bold--black">Имя</div>
-                    <div id = "nameUser" class = "text-light text-light--black">Кирилл</div>
+                    <div id = "nameUser" class = "text-light text-light--black">null</div>
                 </div>
                 <div class="item__text">
                     <div class = "text-bold text-bold--black">Логин</div>
-                    <div id = "emailUser" class = "text-light text-light--black">lysak_kirill@mail.ru</div>
+                    <div id = "emailUser" class = "text-light text-light--black">null</div>
                 </div>
                 <div class="item__text">
                     <div class = "text-bold text-bold--black">Телефон</div>
-                    <div id = "phoneUser" class = "text-light text-light--black">89513949741</div>
+                    <div id = "phoneUser" class = "text-light text-light--black">null</div>
                 </div>
             </div>
         </div>
@@ -356,8 +355,10 @@
 </form>
 @await Html.PartialAsync("Footer")
 
+<script type="text/javascript">
+window.piKey = '@ViewBag.PiKey';
+</script>
+
 <script src="~/js/actions-thresholds.js"></script>
 
-<script>
-    startIntervalThreshold();
-</script>
+

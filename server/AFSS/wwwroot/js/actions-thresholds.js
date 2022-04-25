@@ -1,11 +1,11 @@
 ﻿var buttonClear = document.getElementById('clear');
 var buttonReset = document.getElementById('reset');
 var buttonUpdate = document.getElementById('update');
-var piKey = '0000000000000000';
+/*window.piKey = '0000000000000000';*/
 
 getPiKeys();
 GetThresholds('last');
-
+getInfoUser(window.piKey);
 
 buttonClear.onclick = function () {
     document.getElementById("MinTmpStove").value = "";
@@ -132,6 +132,13 @@ async function getPiKeys() {
     var i = data.length;
     while (i != 0) {
         i--;
+        
         listKeys.innerHTML += ' <li class = "item__key"><a href="#">' + data[i].piKey + '</a></li>';
+        if (data[i].piKey == window.piKey) {
+            let ul = document.getElementById("list");
+            let li = ul.getElementsByTagName("li");
+            let a = li[li.length - 1].getElementsByTagName("a")[0];
+            a.style.fontFamily = "Stem-Bold";
+        }
     }
 }

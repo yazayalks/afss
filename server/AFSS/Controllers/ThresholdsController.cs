@@ -31,7 +31,10 @@ namespace AFSS.Controllers
             var user = applicationContext.Users.SingleOrDefault(u => u.Id == userId.ToString());
             var userRoles = await _userManager.GetRolesAsync(user);
             var userPiKey = applicationContext.Users.Single(u => u.Id == userId).PiKey;
-            ViewData["userPiKey"] = userPiKey;
+
+            ViewBag.PiKey = userPiKey;
+
+            /*ViewData["userPiKey"] = userPiKey;*/
             foreach (var userRole in userRoles)
             {
                 if (userRole == "admin")

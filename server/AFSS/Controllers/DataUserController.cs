@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AFSS.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AFSS.Controllers
 {
@@ -8,5 +9,16 @@ namespace AFSS.Controllers
         {
             return View("DataUser");
         }
-    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditName(EditNameViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("DataUser");
+            }
+            return View(model);
+        }
+
+        }
 }

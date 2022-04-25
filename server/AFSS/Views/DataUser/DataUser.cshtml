@@ -1,1 +1,87 @@
-﻿<div>aaa</div>
+﻿@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "DataUser";
+}
+
+@model AFSS.ViewModels.EditNameViewModel
+
+
+
+ <link rel="stylesheet" href="~/css/styles-data-user.css">
+ 
+ @await Html.PartialAsync("Menu")
+ @await Html.PartialAsync("SubMenu")
+
+ <div class="container">
+    <div class="data-user">
+        <div class="data-user__items">
+             <form method="post" asp-controller="DataUser" asp-action="EditName">
+            <div class="data-user__item data-user-name">
+                <div class="item__link"><div class = "text-bold text-bold--black">Имя пользователя</div></div>
+                    <div class = "item__input">
+                        <input @*asp-for="Name"*@ class="input-text input-name" name="number" type="text" placeholder="Имя">
+                    </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"></span>
+                </spawn>
+                <div class="item__text"><div class = "text-light text-light--black">Это имя будет отображаться в меню пользователя.</div></div>
+               <input type="submit"  id = "edit-name" class = "button button--orange" value="Изменить имя">
+            </div>
+            </form>
+
+            <div class="data-user__item data-user-email">
+                <div class="item__link"><div class = "text-bold text-bold--black">Почта пользователя</div></div>
+                <div class = "item__input">
+                    <input @*asp-for="Email"*@ class="input-text input-email" name="number" type="text" placeholder="Почта">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"></span>
+                </spawn>
+                <div class="item__text"><div class = "text-light text-light--black">На эту почту будет отправлена ссылка для подтверждения почты.</div></div>
+                <input type="submit"  id = "confirm-email" class = "button button--orange" value="Подтвердить почту">
+            </div>
+
+
+            <div class="data-user__item data-user-phone">
+                <div class="item__link"><div class = "text-bold text-bold--black">Телефон пользователя</div></div>
+                <div class = "item__input">
+                    <input @*asp-for="Phone"*@ class="input-text input-phone" name="number" type="text" placeholder="Телефон">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"></span>
+                </spawn>
+                <div class="item__text"><div class = "text-light text-light--black">На этот номер телефона будет отправлено смс при возможном начале критической ситуации.</div></div>
+                <input type="submit"  id = "edit-phone" class = "button button--orange" value="Изменить телефон">
+            </div>
+
+
+            <div class="data-user__item data-user-password">
+                <div class="item__link"><div class = "text-bold text-bold--black">Пароль пользователя</div></div>
+                <div class = "item__input">
+                    <input @*asp-for="PasswordOld"*@ class="input-text input-old-password" name="number" type="text" placeholder="Введите старый пароль">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"></span>
+                </spawn>
+                <div class = "item__input item__input--password">
+                    <input @*asp-for="Password"*@ class="input-text input-new-password" name="number" type="text" placeholder="Введите новый пароль">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"></span>
+                </spawn>
+                <div class = "item__input item__input--password">
+                    <input @*asp-for="PasswordConfirm"*@ class="input-text input-confirm-password" name="number" type="text" placeholder="Подтвердите пароль">
+                </div>
+                <spawn class = "validation__item">
+                    <span class = "validation-text"></span>
+                </spawn>
+                <div class="item__text"><div class = "text-light text-light--black"></div></div>
+                <input type="submit"  id = "edit-password" class = "button button--orange" value="Изменить пароль">
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("Footer")
+
+<script src="~/js/actions-data-user.js"></script>

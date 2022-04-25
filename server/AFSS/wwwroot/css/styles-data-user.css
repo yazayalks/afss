@@ -1,4 +1,4 @@
-.data-user__items {
+﻿.data-user__items {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
@@ -26,7 +26,7 @@
     margin-top: 0;
 }
 
-.item__input  > .input-text {
+.item__input > .input-text {
     width: 315px;
 }
 
