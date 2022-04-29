@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AFSS.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AFSS.Controllers
 {

@@ -6,7 +6,7 @@ using System.Security.Claims;
 namespace AFSS.Controllers
 {
     [ApiController]
-    /*[Authorize]*/
+    [Authorize]
     [Route("api/[controller]")]
     public class TaskCreateController : ControllerBase
     {

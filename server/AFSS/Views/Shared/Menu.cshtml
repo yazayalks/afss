@@ -1,9 +1,11 @@
 ﻿<title>Menu</title>
  
+@*@if (!User.Identity.IsAuthenticated)*@
 @{
-    string name = User.Identity.Name ?? Context.Request.Cookies["UserName"];
-    string key = Context.Request.Cookies["PiKey"];
+    ViewBag.Name2 = User.Identity.Name ?? Context.Request.Cookies["UserName"];
+    ViewBag.PiKey2 = Context.Request.Cookies["PiKey"];
 }
+
 
 <link rel="stylesheet" href="~/css/styles-menu.css">
 
@@ -14,10 +16,10 @@
                     <img src="../images/logo.svg" width="45" height="45" alt="logo">
                 </div>
                 <div class = "item__key">
-                    <div id = "key" class = "text-bold">@key</div>
+                    <div id = "key" class = "text-bold">@ViewBag.PiKey2</div>
                 </div>
                 <div class = "item__login">
-                    <div id = "login" class = "text-bold">@name</div>
+                    <div id = "login" class = "text-bold">@ViewBag.Name2</div>
                 </div>
                 <div class = "status-and-out">
 

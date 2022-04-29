@@ -45,6 +45,7 @@
     height: 25px;
 }
 
+
 .validation-text {
     margin-left: 15px;
     font-family: "Stem-Light";
@@ -76,4 +77,42 @@
 .data-user-password > .item__text {
     margin-bottom: 0;
     height: 15px;
+}
+
+.validation-summary__inner {
+    display: flex;
+    width: 345px;
+    /*padding-right: 15px;*/
+    padding-left: 15px;
+}
+
+li {
+    font-family: "Stem-Light";
+    font-size: 24px;
+    align-items: center;
+    border: none;
+    color: #E00E0F;
+    white-space: nowrap;
+    overflow: hidden;
+    list-style-type: none; /* Убираем маркеры */
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.field-validation-valid {
+    width: 0px;
+    height: 0px;
+    list-style-type: none; /* Убираем маркеры */
+    margin: 0;
+
+}
+
+.validation-summary__inner:empty {
+    height: 0px;
+    width: 0px;
+    margin: 0;
+    padding: 0;
 }

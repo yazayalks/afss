@@ -13,7 +13,7 @@ namespace AFSS.ViewModels
         [Display(Name = "Пароль")]
         [CustomNewPasswordValidator]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Подтверждение пароля не указано")]
+        [Required(ErrorMessage = "Пароль не указан")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]

@@ -68,7 +68,9 @@
                     <input asp-for="PasswordOld" class="input-text input-old-password" type="password" placeholder="Введите старый пароль">
                 </div>
                 <spawn class = "validation__item">
+                     <div class = "validation-summary__inner"><div asp-validation-summary="ModelOnly"></div></div>
                     <span asp-validation-for="PasswordOld" class = "validation-text"></span>
+                   
                 </spawn>
                 <div class = "item__input item__input--password">
                     <input asp-for="Password" class="input-text input-new-password" type="password" placeholder="Введите новый пароль">
@@ -82,9 +84,7 @@
                 <spawn class = "validation__item">
                     <span asp-validation-for="PasswordConfirm" class = "validation-text"></span>
                 </spawn>
-                <div class = "validation-summary__inner">
-                    <div asp-validation-summary="ModelOnly"></div>
-                </div>
+                
                 <div class="item__text"><div class = "text-light text-light--black"></div></div>
                 <input type="submit"  id = "edit-password" class = "button button--orange" value="Изменить пароль">
             </div>

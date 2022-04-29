@@ -339,11 +339,13 @@ buttonAuto.onclick = function changeImageAuto() {
         if ((autoStatus == true) && (powerStatus == false)) {
             buttonAuto.src = "../images/button-auto.svg";
             autoStatus = false;
+            changeEventsText(window.eventsArray.mod.automation.off);
             return;
         }
         if ((autoStatus == false) && (powerStatus == false)) {
             buttonAuto.src = "../images/button-auto--active.svg";
             autoStatus = true;
+            changeEventsText(window.eventsArray.mod.automation.on);
             return;
         }
     }
@@ -356,12 +358,14 @@ buttonPower.onclick = function changeImagePower() {
             buttonPower.src = "../images/button-power.svg";
             powerStatus = false;
             blockServoButtons();
+            changeEventsText(window.eventsArray.mod.damping.off);
             return;
         }
         if (powerStatus == false) {
             buttonPower.src = "../images/button-power--active.svg";
             powerStatus = true;
             blockServoButtons();
+            changeEventsText(window.eventsArray.mod.damping.on);
             return;
         }
     }
