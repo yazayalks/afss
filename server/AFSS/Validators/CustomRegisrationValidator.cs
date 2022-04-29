@@ -1,5 +1,6 @@
 ﻿using AFSS.Models;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace AFSS.ViewModels

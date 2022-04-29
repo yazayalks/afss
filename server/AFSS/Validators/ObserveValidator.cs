@@ -9,6 +9,7 @@ namespace AFSS.ViewModels
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            /*var a = validationContext.;*/
             var afssDbContext = (AfssContext)validationContext
                          .GetService(typeof(AfssContext));
 

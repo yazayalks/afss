@@ -18,6 +18,10 @@
     justify-content: center;
 }
 
+.data-user__item:hover {
+    border: 12.5px solid #FE611E;
+}
+
 .item__input {
     margin-top: 15px;
 }
