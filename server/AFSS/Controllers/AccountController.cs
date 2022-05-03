@@ -5,6 +5,8 @@ using AFSS.Models;
 using AFSS.ViewModels;
 using System.Text.RegularExpressions;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace AFSS.Controllers
 {
@@ -18,24 +20,25 @@ namespace AFSS.Controllers
         private readonly SignInManager<User> _signInManager;
 
 
-        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, AfssContext afssDbContext, ApplicationContext applicationContext)
+        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager,
+            SignInManager<User> signInManager, AfssContext afssDbContext, ApplicationContext applicationContext)
         {
             this.afssDbContext = afssDbContext;
             this.applicationContext = applicationContext;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email, PiKey = model.PiKey };
@@ -45,7 +48,6 @@ namespace AFSS.Controllers
 
                 if (result.Succeeded)
                 {
-
                     // установка куки
                     Response.Cookies.Append("PiKey", model.PiKey);
                     await _signInManager.SignInAsync(user, false);
@@ -60,8 +62,10 @@ namespace AFSS.Controllers
                     }
                 }
             }
+
             return View(model);
         }
+
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
@@ -81,7 +85,8 @@ namespace AFSS.Controllers
                     var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
                     if (signInResult.Succeeded)
                     {
-                        Response.Cookies.Append("PiKey", applicationContext.Users.SingleOrDefault(u => u.Email == model.Email).PiKey);
+                        Response.Cookies.Append("PiKey",
+                            applicationContext.Users.SingleOrDefault(u => u.Email == model.Email).PiKey);
                         if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                         {
                             return Redirect(model.ReturnUrl);
@@ -95,10 +100,35 @@ namespace AFSS.Controllers
                     {
                         ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                     }
-
                 }
             }
+
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+
+            var userToken = await applicationContext.UserTokens.SingleOrDefaultAsync(u => u.UserId == userId && u.Value == code);
+            if (userToken != null)
+            {
+                var user = await applicationContext.Users.SingleAsync(u => u.Id == userId);
+                user.EmailConfirmed = true;
+
+                applicationContext.UserTokens.Remove(userToken);
+                
+                await applicationContext.SaveChangesAsync();
+                
+                return RedirectToAction("Index", "Selection");
+            }
+
+            return View("Error");
         }
 
         [HttpPost]
@@ -109,12 +139,13 @@ namespace AFSS.Controllers
             if (Request.Cookies.ContainsKey("PiKey"))
             {
                 Response.Cookies.Delete("PiKey");
-
             }
+
             if (Request.Cookies.ContainsKey("UserName"))
             {
                 Response.Cookies.Delete("UserName");
             }
+
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Selection");
         }
@@ -125,6 +156,7 @@ namespace AFSS.Controllers
         {
             return View();
         }
+
         /*[HttpGet]
         public IActionResult Observe(string returnUrl = null)
         {
@@ -176,7 +208,6 @@ namespace AFSS.Controllers
 
                     return RedirectToAction("Statistics", "Statistics");
                 }
-
             }
 
             return View(model);

@@ -6,88 +6,111 @@
 @model AFSS.ViewModels.DataUserViewModel
 
 
+<link rel="stylesheet" href="~/css/styles-data-user.css">
 
- <link rel="stylesheet" href="~/css/styles-data-user.css">
- 
- @await Html.PartialAsync("Menu")
- @await Html.PartialAsync("SubMenu")
+@await Html.PartialAsync("Menu")
+@await Html.PartialAsync("SubMenu")
 
- <div class="container">
+<div class="container">
     <div class="data-user">
         <div class="data-user__items">
 
-             
-            <form method="post" asp-controller="DataUser" asp-action="EditName" name="nameModel">
-            <div class="data-user__item data-user-name">
-                <div class="item__link"><div class = "text-bold text-bold--black">Имя пользователя</div></div>
-                    <div class = "item__input">
-                        <input asp-for="Name" class="input-text input-name" type="text" value = "@ViewBag.Name" placeholder="Имя">
-                    </div>
-                <spawn class = "validation__item">
-                    <span asp-validation-for="Name" class = "validation-text"></span>
-                </spawn>
-                <div class="item__text"><div class = "text-light text-light--black">Это имя будет отображаться в меню пользователя.</div></div>
-               <input type="submit"  id = "edit-name" class = "button button--orange" value="Изменить имя">
 
-            </div>
+            <form method="post" asp-controller="DataUser" asp-action="EditName" name="nameModel">
+                <div class="data-user__item data-user-name">
+                    <div class="item__link">
+                        <div class="text-bold text-bold--black">Имя пользователя</div>
+                    </div>
+                    <div class="item__input">
+                        <input asp-for="Name" class="input-text input-name" type="text" value="@ViewBag.Name" placeholder="Имя">
+                    </div>
+                    <spawn class="validation__item">
+                        <span asp-validation-for="Name" class="validation-text"></span>
+                    </spawn>
+                    <div class="item__text">
+                        <div class="text-light text-light--black">Это имя будет отображаться в меню пользователя.</div>
+                    </div>
+                    <input type="submit" id="edit-name" class="button button--orange" value="Изменить имя">
+
+                </div>
             </form>
+
+
+            
+            <div class="data-user__item data-user-email">
+                <form method="post" asp-controller="DataUser" asp-action="EditEmail" name="emailModel">
+                    <div class="item__link">
+                        <div class="text-bold text-bold--black">Почта пользователя</div>
+                    </div>
+                    <div class="item__input">
+                        <input asp-for="Email" class="input-text input-email" type="text" value="@ViewBag.Email" placeholder="Почта">
+                    </div>
+                    <spawn class="validation__item">
+                        <span asp-validation-for="Email" class="validation-text"></span>
+                    </spawn>
+                    <div class="item__text">
+                        <div class="text-light text-light--black">На эту почту будет отправлена ссылка для подтверждения почты.</div>
+                    </div>
+                    
+                    <input type="submit" id="confirm-email" class="button button--orange" value="Изменить почту">
+                </form>
+                <div id = "confirm" class = "button button--orange">Подтвердить почту</div>
+                </div>
+            
+           
             
 
-            <form method="post" asp-controller="DataUser" asp-action="EditEmail"  name="emailModel">
-            <div class="data-user__item data-user-email">
-                <div class="item__link"><div class = "text-bold text-bold--black">Почта пользователя</div></div>
-                <div class = "item__input">
-                    <input asp-for="Email" class="input-text input-email" type="text" value = "@ViewBag.Email" placeholder="Почта">
+            <form method="post" asp-controller="DataUser" asp-action="EditPhone" name="phoneModel">
+                <div class="data-user__item data-user-phone">
+                    <div class="item__link">
+                        <div class="text-bold text-bold--black">Телефон пользователя</div>
+                    </div>
+                    <div class="item__input">
+                        <input asp-for="Phone" class="input-text input-phone" type="tel" value="@ViewBag.Phone" placeholder="Телефон">
+                    </div>
+                    <spawn class="validation__item">
+                        <span asp-validation-for="Phone" class="validation-text"></span>
+                    </spawn>
+                    <div class="item__text">
+                        <div class="text-light text-light--black">На этот номер телефона будет отправлено смс при возможном начале критической ситуации.</div>
+                    </div>
+                    <input type="submit" id="edit-phone" class="button button--orange" value="Изменить телефон">
                 </div>
-                <spawn class = "validation__item">
-                    <span asp-validation-for="Email" class = "validation-text"></span>
-                </spawn>
-                <div class="item__text"><div class = "text-light text-light--black">На эту почту будет отправлена ссылка для подтверждения почты.</div></div>
-                <input type="submit"  id = "confirm-email" class = "button button--orange" value="Изменить почту">
-            </div>        
             </form>
 
-              <form method="post" asp-controller="DataUser" asp-action="EditPhone"  name="phoneModel">
-            <div class="data-user__item data-user-phone">
-                <div class="item__link"><div class = "text-bold text-bold--black">Телефон пользователя</div></div>
-                <div class = "item__input">
-                    <input asp-for="Phone" class="input-text input-phone" type = "tel" value = "@ViewBag.Phone" placeholder="Телефон">
-                </div>
-                <spawn class = "validation__item">
-                    <span asp-validation-for="Phone" class = "validation-text"></span>
-                </spawn>
-                <div class="item__text"><div class = "text-light text-light--black">На этот номер телефона будет отправлено смс при возможном начале критической ситуации.</div></div>
-                <input type="submit"  id = "edit-phone" class = "button button--orange" value="Изменить телефон">
-            </div>
-            </form>
+            <form method="post" asp-controller="DataUser" asp-action="EditPassword" name="passwordModel">
+                <div class="data-user__item data-user-password">
+                    <div class="item__link">
+                        <div class="text-bold text-bold--black">Пароль пользователя</div>
+                    </div>
+                    <div class="item__input">
+                        <input asp-for="PasswordOld" class="input-text input-old-password" type="password" placeholder="Введите старый пароль">
+                    </div>
+                    <spawn class="validation__item">
+                        <div class="validation-summary__inner">
+                            <div asp-validation-summary="ModelOnly"></div>
+                        </div>
+                        <span asp-validation-for="PasswordOld" class="validation-text"></span>
 
-              <form method="post" asp-controller="DataUser" asp-action="EditPassword" name="passwordModel">
-            <div class="data-user__item data-user-password">
-                <div class="item__link"><div class = "text-bold text-bold--black">Пароль пользователя</div></div>
-                <div class = "item__input">
-                    <input asp-for="PasswordOld" class="input-text input-old-password" type="password" placeholder="Введите старый пароль">
+                    </spawn>
+                    <div class="item__input item__input--password">
+                        <input asp-for="Password" class="input-text input-new-password" type="password" placeholder="Введите новый пароль">
+                    </div>
+                    <spawn class="validation__item">
+                        <span asp-validation-for="Password" class="validation-text"></span>
+                    </spawn>
+                    <div class="item__input item__input--password">
+                        <input asp-for="PasswordConfirm" class="input-text input-confirm-password" type="password" placeholder="Подтвердите пароль">
+                    </div>
+                    <spawn class="validation__item">
+                        <span asp-validation-for="PasswordConfirm" class="validation-text"></span>
+                    </spawn>
+
+                    <div class="item__text">
+                        <div class="text-light text-light--black"></div>
+                    </div>
+                    <input type="submit" id="edit-password" class="button button--orange" value="Изменить пароль">
                 </div>
-                <spawn class = "validation__item">
-                     <div class = "validation-summary__inner"><div asp-validation-summary="ModelOnly"></div></div>
-                    <span asp-validation-for="PasswordOld" class = "validation-text"></span>
-                   
-                </spawn>
-                <div class = "item__input item__input--password">
-                    <input asp-for="Password" class="input-text input-new-password" type="password" placeholder="Введите новый пароль">
-                </div>
-                <spawn class = "validation__item">
-                    <span asp-validation-for="Password" class = "validation-text"></span>
-                </spawn>
-                <div class = "item__input item__input--password">
-                    <input asp-for="PasswordConfirm" class="input-text input-confirm-password" type="password" placeholder="Подтвердите пароль">
-                </div>
-                <spawn class = "validation__item">
-                    <span asp-validation-for="PasswordConfirm" class = "validation-text"></span>
-                </spawn>
-                
-                <div class="item__text"><div class = "text-light text-light--black"></div></div>
-                <input type="submit"  id = "edit-password" class = "button button--orange" value="Изменить пароль">
-            </div>
             </form>
 
         </div>

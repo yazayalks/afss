@@ -19,7 +19,8 @@ builder.Services.AddTransient<IUserValidator<User>,
         CustomRegisrationValidator>();
 
 builder.Services.AddIdentity<User, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationContext>();
+    .AddEntityFrameworkStores<ApplicationContext>()
+    .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -33,6 +34,7 @@ builder.Services.ConfigureApplicationCookie(options =>
         return Task.CompletedTask;
     };
 });
+
 
 /*builder.Services.AddMvc();*/
 

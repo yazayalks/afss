@@ -1,10 +1,15 @@
 ﻿using AFSS.Models;
 using AFSS.ViewModels;
+using EmailApp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Owin.Security.DataProtection;
 using Newtonsoft.Json;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Xml;
+using Microsoft.EntityFrameworkCore;
 
 namespace AFSS.Controllers
 {
@@ -13,11 +18,13 @@ namespace AFSS.Controllers
     {
         private readonly ApplicationContext applicationContext;
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public DataUserController(ApplicationContext applicationContext, UserManager<User> _userManager)
+        public DataUserController(ApplicationContext applicationContext, UserManager<User> _userManager, SignInManager<User> signInManager)
         {
             this.applicationContext = applicationContext;
             this._userManager = _userManager;
+            this._signInManager = signInManager;
         }
 
         [HttpGet]
@@ -53,10 +60,11 @@ namespace AFSS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEmail(EmailViewModel model)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = applicationContext.Users.SingleOrDefault(u => u.Id == userId);
             if (ModelState.IsValid)
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var user = applicationContext.Users.SingleOrDefault(u => u.Id == userId.ToString());
+                
                 user.Email = model.Email;
                 user.NormalizedEmail = model.Email.ToUpper();
                 user.EmailConfirmed = false;
@@ -64,10 +72,66 @@ namespace AFSS.Controllers
                 ViewBag.Email = user.Email;
                 ViewBag.Name = user.UserName;
                 ViewBag.Phone = user.PhoneNumber;
-
             }
-                //TODO send message for email
+            //TODO send message for email
+           
+            //var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+           
+           
+            /*var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);*/
+            /*var callbackUrl = Url.Action(
+                "ConfirmEmail",
+                "Account",
+                new { userId = user.Id, code = emailConfirmationCode },
+                protocol: HttpContext.Request.Scheme);*/
+            /*  var callbackUrl = "123";
+              EmailService emailService = new EmailService();
+              await emailService.SendEmailAsync(model.Email, "Confirm your account",
+                  $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");*/
+           // EmailService emailService = new();
+           // await emailService.SendEmailAsync("lksstudio@mail.ru", "Тема письма", "Тест письма: тест!");
+
             return View("DataUser");
+        }
+
+        [HttpGet]
+        [Route(nameof(ConfirmEmail))]
+        public async Task<IActionResult> ConfirmEmail()
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.GetUserAsync(User);
+            
+           // var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+           if (user.EmailConfirmed)
+           {
+               // TODO эмаил подтверждён
+               return View("DataUser"); 
+           }
+               
+           
+           var emailConfirmationCode = Guid.NewGuid().ToString();
+           await applicationContext.UserTokens.AddAsync(new IdentityUserToken<string>()
+           {
+                UserId = user.Id,
+                Name = "email",
+                Value = emailConfirmationCode,
+                LoginProvider = "MrNimbusProvider"
+           });
+
+           await applicationContext.SaveChangesAsync();
+           
+           
+            var callbackUrl = Url.Action(
+               "ConfirmEmail",
+               "Account",
+               new { userId = user.Id, code = emailConfirmationCode },
+               protocol: HttpContext.Request.Scheme);
+              
+              EmailService emailService = new EmailService();
+              await emailService.SendEmailAsync(user.Email, "Confirm your account",
+                  $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+              
+              return View("DataUser"); 
         }
 
         [HttpPost("phoneModel")]
