@@ -7,19 +7,33 @@
 
  <link rel="stylesheet" href="~/css/styles-thresholds.css">
  
- @await Html.PartialAsync("Menu")
- @await Html.PartialAsync("SubMenu")
+ @* @await Html.PartialAsync("Menu") *@
+
+<div id="menuResults">
+        @{Html.RenderPartial("Menu");}
+</div>
+
+@await Html.PartialAsync("SubMenu")
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>  
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script> 
 
- <form method="post" asp-controller="Thresholds" asp-action="Thresholds">
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#button1").click(function () {
+            console.log("123");
+           $("#menuResults").load('@(Url.Action("Menu","Menu"))');
+        });     
+ });   
+</script>
+
+<form method="post" asp-controller="Thresholds" asp-action="Thresholds">
  <div class="container">
     <div class="threshold">
         <div class="threshold__items">
 
-            <div class="threshold__item threshold-keys">
+            <div id = "threshold-keys-id" class="threshold__item threshold-keys">
                 <div class="item__link"><div class = "text-bold text-bold--black">Ключи Raspberry</div></div>
                 <div class="item__search">
                     <div class = "item__input">
@@ -30,7 +44,7 @@
                 </ul>
             </div>
 
-            <div class="threshold__item threshold-info">
+        <div class="threshold__item threshold-info">
             <div class="item__link"><div class = "text-bold text-bold--black">Информация о пользователе</div></div>
             <div class="info-user">
                 <div class="item__text">
@@ -47,7 +61,7 @@
                 </div>
             </div>
         </div>
-
+        
             <div class="threshold__item threshold-tmp-stove">
                 <div class="item__link"><div class = "text-bold text-bold--black">Температура в печи</div></div>
 
@@ -347,7 +361,7 @@
         <div class="control-menu__items">
             <div class="control-menu__item"><button type="submit"  id = "save" class = "button button--orange"><div id = "save-image" class = "save-image"></div>Сохранить</button></div>
             <div class="control-menu__item"><div id = "clear" class = "button button--orange"><div id = "clear-image" class = "clear-image"></div>Очистить</div></div>
-            <div class="control-menu__item"><div id = "reset" class = "button button--orange"><div id = "reset-image" class = "reset-image"></div>Сбросить</div></div>
+            <div id = "button1" class="control-menu__item"><div id = "reset" class = "button button--orange"><div id = "reset-image" class = "reset-image"></div>Сбросить</div></div>
             <div class="control-menu__item"><div id = "update" class = "button button--orange"><div id = "update-image" class = "update-image"></div>Обновить</div></div>
         </div>
     </div>

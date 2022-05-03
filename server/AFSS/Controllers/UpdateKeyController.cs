@@ -29,6 +29,8 @@ namespace AFSS.Controllers
                 //var piKey = afssDbContext.PiUser.Single(u => u.CpuSerial == piKey);
                 user.PiKey = PiKey;
                 applicationContext.SaveChanges();
+
+                Response.Cookies.Append("PiKey", PiKey);
             }
         }
     }
