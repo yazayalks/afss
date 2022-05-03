@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using AFSS.Models;
 using AFSS.ViewModels;
-
 using System.Text.RegularExpressions;
 using System.Security.Claims;
 
@@ -39,18 +38,13 @@ namespace AFSS.Controllers
 
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = "Пользователь", PiKey = model.PiKey };
+                User user = new User { Email = model.Email, UserName = model.Email, PiKey = model.PiKey };
 
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    // var userRole = _roleManager.Roles.Single(r=>r.Name == "user");
-                    //await _userManager.AddToRolesAsync(user, addedRoles);
-                    // var name = "user";
-                    //IdentityResult result2 = await _roleManager.CreateAsync(new IdentityRole(name));
-                    // получаем пользователя
 
                     // установка куки
                     Response.Cookies.Append("PiKey", model.PiKey);
@@ -80,28 +74,28 @@ namespace AFSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result =
-                    await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-                if (result.Succeeded)
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
                 {
-
-
-
-
-                    Response.Cookies.Append("PiKey", applicationContext.Users.SingleOrDefault(u => u.Email == model.Email).PiKey);
-                    // проверяем, принадлежит ли URL приложению
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    //sign in
+                    var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    if (signInResult.Succeeded)
                     {
-                        return Redirect(model.ReturnUrl);
+                        Response.Cookies.Append("PiKey", applicationContext.Users.SingleOrDefault(u => u.Email == model.Email).PiKey);
+                        if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                        {
+                            return Redirect(model.ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Statistics", "Statistics");
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Statistics", "Statistics");
+                        ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                     }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+
                 }
             }
             return View(model);
