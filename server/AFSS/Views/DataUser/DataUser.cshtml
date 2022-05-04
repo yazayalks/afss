@@ -7,8 +7,13 @@
 
 
 <link rel="stylesheet" href="~/css/styles-data-user.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>  
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script> 
 
-@await Html.PartialAsync("Menu")
+<div id="menuResults">
+        @{Html.RenderPartial("Menu");}
+</div>
 @await Html.PartialAsync("SubMenu")
 
 <div class="container">
@@ -16,7 +21,7 @@
         <div class="data-user__items">
 
 
-            <form method="post" asp-controller="DataUser" asp-action="EditName" name="nameModel">
+            <form id = "editNameInForm" method="post" asp-controller="DataUser" asp-action="EditName" name="nameModel">
                 <div class="data-user__item data-user-name">
                     <div class="item__link">
                         <div class="text-bold text-bold--black">Имя пользователя</div>
@@ -34,7 +39,14 @@
 
                 </div>
             </form>
-
+            <script type="text/javascript">
+               
+        editNameInForm.addEventListener('submit',() => {
+            setTimeout(() => { $("#menuResults").load('@(Url.Action("Menu","Menu"))');}, 500);
+           
+        });     
+               
+        </script>
 
             <form method="post" asp-controller="DataUser" asp-action="EditEmail" name="emailModel">
             <div class="data-user__item data-user-email">
@@ -70,8 +82,6 @@
                 </div>
             </form>
            
-            
-
             <form method="post" asp-controller="DataUser" asp-action="EditPhone" name="phoneModel">
                 <div class="data-user__item data-user-phone">
                     <div class="item__link">
@@ -102,7 +112,7 @@
                         <div class="validation-summary__inner">
                             <div asp-validation-summary="ModelOnly"></div>
                         </div>
-                        <span asp-validation-for="PasswordOld" class="validation-text"></span>
+                        <span asp-validation-for="PasswordOld" class="validation-text validation-text--password"></span>
 
                     </spawn>
                     <div class="item__input item__input--password">

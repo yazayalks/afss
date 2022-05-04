@@ -53,6 +53,7 @@ namespace AFSS.Controllers
                 ViewBag.Email = user.Email;
                 ViewBag.Name = user.UserName;
                 ViewBag.Phone = user.PhoneNumber;
+                ViewBag.EmailConfirmed = user.EmailConfirmed.ToString().ToLower();
 
             }
             return View("DataUser");
@@ -65,34 +66,24 @@ namespace AFSS.Controllers
             var user = applicationContext.Users.SingleOrDefault(u => u.Id == userId);
             if (ModelState.IsValid)
             {
-                
-                user.Email = model.Email;
-                user.NormalizedEmail = model.Email.ToUpper();
-                user.EmailConfirmed = false;
-                ViewBag.EmailConfirmed = "false";
-                applicationContext.SaveChanges();
-                ViewBag.Email = user.Email;
-                ViewBag.Name = user.UserName;
-                ViewBag.Phone = user.PhoneNumber;
+                if (user.Email != model.Email) { 
+                    user.Email = model.Email;
+                    user.NormalizedEmail = model.Email.ToUpper();
+                    user.EmailConfirmed = false;
+                    applicationContext.SaveChanges();
+                    ViewBag.EmailConfirmed = user.EmailConfirmed.ToString().ToLower();
+                    ViewBag.Email = user.Email;
+                    ViewBag.Name = user.UserName;
+                    ViewBag.Phone = user.PhoneNumber;
+                }
+                if (user.Email == model.Email)
+                {
+                    ViewBag.Email = user.Email;
+                    ViewBag.Name = user.UserName;
+                    ViewBag.Phone = user.PhoneNumber;
+                    ViewBag.EmailConfirmed = user.EmailConfirmed.ToString().ToLower();
+                }
             }
-            //TODO send message for email
-           
-            //var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-           
-           
-            /*var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);*/
-            /*var callbackUrl = Url.Action(
-                "ConfirmEmail",
-                "Account",
-                new { userId = user.Id, code = emailConfirmationCode },
-                protocol: HttpContext.Request.Scheme);*/
-            /*  var callbackUrl = "123";
-              EmailService emailService = new EmailService();
-              await emailService.SendEmailAsync(model.Email, "Confirm your account",
-                  $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");*/
-           // EmailService emailService = new();
-           // await emailService.SendEmailAsync("lksstudio@mail.ru", "Тема письма", "Тест письма: тест!");
-
             return View("DataUser");
         }
 
@@ -150,6 +141,7 @@ namespace AFSS.Controllers
                 ViewBag.Email = user.Email;
                 ViewBag.Name = user.UserName;
                 ViewBag.Phone = user.PhoneNumber;
+                ViewBag.EmailConfirmed = user.EmailConfirmed.ToString().ToLower();
 
             }
             return View("DataUser");

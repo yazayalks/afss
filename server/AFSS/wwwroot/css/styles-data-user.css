@@ -83,7 +83,7 @@
 
 .validation-summary__inner {
     display: flex;
-    width: 345px;
+    width: 0px;
     /*padding-right: 15px;*/
     padding-left: 15px;
 }
@@ -145,4 +145,7 @@ ul {
 
 .email-confirm__inner > .button {
     width: 315px;
+}
+.validation-text--password {
+    margin-left: 0px;
 }

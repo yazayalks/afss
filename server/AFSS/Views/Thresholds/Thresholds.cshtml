@@ -22,7 +22,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#list").click(function () {
-           $("#menuResults").load('@(Url.Action("Menu","Menu"))');
+            setTimeout(() => { $("#menuResults").load('@(Url.Action("Menu","Menu"))');}, 500);
+           
         });     
  });   
 </script>

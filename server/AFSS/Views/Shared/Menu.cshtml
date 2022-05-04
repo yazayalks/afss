@@ -2,24 +2,31 @@
  
 @*@if (!User.Identity.IsAuthenticated)*@
 @{
-    ViewBag.Name2 = User.Identity.Name ?? Context.Request.Cookies["UserName"];
-    ViewBag.PiKey2 = Context.Request.Cookies["PiKey"];
+    ViewBag.Name = User.Identity.Name ?? Context.Request.Cookies["UserName"];
+    ViewBag.PiKey = Context.Request.Cookies["PiKey"];
 }
-
+@*@model AFSS.ViewModels.MenuViewModel*@
+@* @if (User.Identity.IsAuthenticated)
+  {
+    ViewBag.Name = ViewBag.NameNew;
+}*@
 
 <link rel="stylesheet" href="~/css/styles-menu.css">
 
     <div class = "container">
+        
         <div class = "menu">
             <div class="menu__items">
                 <div class="image__logo image__logo--mini">
                     <img src="../images/logo.svg" width="45" height="45" alt="logo">
                 </div>
                 <div class = "item__key">
-                    <div id = "key" class = "text-bold">@ViewBag.PiKey2</div>
+                    <div id = "key" class = "text-bold">@ViewBag.PiKey</div>
+                    @*<div id = "key" class = "text-bold">@Model.PiKey</div>*@
                 </div>
                 <div class = "item__login">
-                    <div id = "login" class = "text-bold">@ViewBag.Name2</div>
+                    <div id = "login" class = "text-bold">@ViewBag.Name</div>
+                    @*<div id = "login" class = "text-bold">@Model.Name</div>*@
                 </div>
                 <div class = "status-and-out">
 
