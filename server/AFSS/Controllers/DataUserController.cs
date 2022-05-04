@@ -35,6 +35,7 @@ namespace AFSS.Controllers
             ViewBag.Name = user.UserName;
             ViewBag.Phone= user.PhoneNumber;
             ViewBag.Email = user.Email;
+            ViewBag.EmailConfirmed = user.EmailConfirmed.ToString().ToLower();
 
             return View(model);
         }
@@ -68,6 +69,7 @@ namespace AFSS.Controllers
                 user.Email = model.Email;
                 user.NormalizedEmail = model.Email.ToUpper();
                 user.EmailConfirmed = false;
+                ViewBag.EmailConfirmed = "false";
                 applicationContext.SaveChanges();
                 ViewBag.Email = user.Email;
                 ViewBag.Name = user.UserName;
@@ -104,8 +106,9 @@ namespace AFSS.Controllers
            // var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
            if (user.EmailConfirmed)
            {
-               // TODO эмаил подтверждён
-               return View("DataUser"); 
+                ViewBag.EmailConfirmed = "true";
+                // TODO эмаил подтверждён
+                return View("DataUser"); 
            }
                
            

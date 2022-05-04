@@ -36,9 +36,9 @@
             </form>
 
 
-            
+            <form method="post" asp-controller="DataUser" asp-action="EditEmail" name="emailModel">
             <div class="data-user__item data-user-email">
-                <form method="post" asp-controller="DataUser" asp-action="EditEmail" name="emailModel">
+                
                     <div class="item__link">
                         <div class="text-bold text-bold--black">Почта пользователя</div>
                     </div>
@@ -48,15 +48,27 @@
                     <spawn class="validation__item">
                         <span asp-validation-for="Email" class="validation-text"></span>
                     </spawn>
-                    <div class="item__text">
+                    <div class="item__text email-text">
                         <div class="text-light text-light--black">На эту почту будет отправлена ссылка для подтверждения почты.</div>
                     </div>
                     
-                    <input type="submit" id="confirm-email" class="button button--orange" value="Изменить почту">
-                </form>
-                <div id = "confirm" class = "button button--orange">Подтвердить почту</div>
+                    <div class="email-confirm__inner">
+                        @if(ViewBag.EmailConfirmed == "false")
+                        {
+                            <div id = "confirm" class = "button button--orange">Подтвердить почту</div>
+                        } 
+                        @if(ViewBag.EmailConfirmed == "true") {
+                            <div class="item__link">
+                                    <div class="text-bold text-bold--black">Почта подтверждена</div>
+                            </div>
+                        }
+                        
                 </div>
-            
+                    <input type="submit" id="confirm-email" class="button button--orange button-email-edit" value="Изменить почту">
+                
+                    
+                </div>
+            </form>
            
             
 

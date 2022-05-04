@@ -67,6 +67,8 @@
     vertical-align: middle;
 }
 
+
+
 .data-user__item > .button {
     display: inline-block;
     margin: 0;
@@ -115,4 +117,32 @@ ul {
     width: 0px;
     margin: 0;
     padding: 0;
+}
+
+.email-text {
+    padding: 15px;
+    width: 345px;
+    height: 105px;
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    vertical-align: middle;
+}
+
+/*.button-email-edit {
+    margin-left
+    width: 345px;
+}*/
+.email-confirm__inner {
+    padding-bottom: 15px;
+    width: 375px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.email-confirm__inner > .button {
+    width: 315px;
 }
