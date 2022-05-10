@@ -4,10 +4,10 @@
 buttonConfirmEmail.onclick = function () {
 
     console.log("Сукааа");
-    httpGet();
+    httpGetServo();
 };
 
-function httpGet() {
+function httpGetServo() {
     console.log("Сукааа");
     var xhr = new XMLHttpRequest();
 

@@ -5,6 +5,7 @@ var buttonAddPipe = document.getElementById('button-add-pipe');
 var buttonSubtractStove = document.getElementById('button-subtract-stove');
 var buttonAddStove = document.getElementById('button-add-stove');
 var typeUserArray = ["user", "admin", "guest"];
+var typeMod = ["damping", "automation", "custom"];
 var gasStatusArray = ["noGas", "someGas", "lotGas"];
 var gasStatus = gasStatusArray[0];
 var valueStove = parseInt(servoStoveValue.textContent);
@@ -200,11 +201,24 @@ function unblockAllButtons() {
 }
 
 
-function httpGet(servoType, servoValue, thresholdType, mod) {
+function httpGetServo(servoType, servoValue) {
     var xhr = new XMLHttpRequest();
-    var thresholdType = "on";
-    var mod = "off";
-    xhr.open('GET', '/api/TaskCreate?servoType=' + servoType + '&servoValue=' + servoValue + '&thresholdType=' + thresholdType + '&mod=' + mod, false);
+    var mod = typeMod[2];
+    xhr.open('GET', '/api/TaskCreate?servoType=' + servoType + '&servoValue=' + servoValue + '&mod=' + mod, false);
+    /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
+    xhr.send();
+    if (xhr.status != 200) {
+        // обработать ошибку
+        console.log(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
+    } else {
+        // вывести результат
+        console.log(xhr.responseText); // responseText -- текст ответа.
+    }
+}
+
+function httpGetMod(mod) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/TaskCreate?mod=' + mod, false);
     /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
     xhr.send();
     if (xhr.status != 200) {
@@ -220,7 +234,7 @@ subtractForStove.onclick = function () {
     
     if ((valueStove > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
-        httpGet(0, valueStove - 10);
+        httpGetServo(0, valueStove - 10);
         servoStoveValue.innerText = (valueStove -= 10).toString() + "°";
         changeImageStove(valueStove);
         changeEventsText(window.eventsArray.servoStove.subtract, "10°");
@@ -231,7 +245,7 @@ addForStove.onclick = function () {
     
     if ((valueStove < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
-        httpGet(0, valueStove + 10);
+        httpGetServo(0, valueStove + 10);
         servoStoveValue.innerText = (valueStove += 10).toString() + "°";
         changeImageStove(valueStove);
         changeEventsText(window.eventsArray.servoStove.add, "10°");
@@ -242,7 +256,7 @@ subtractForPipe.onclick = function () {
     
     if ((valuePipe > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
-        httpGet(1, valuePipe - 10);
+        httpGetServo(1, valuePipe - 10);
         servoPipeValue.innerText = (valuePipe -= 10).toString() + "°";
         changeImagePipe(valuePipe);
         changeEventsText(window.eventsArray.servoPipe.subtract, "10°");
@@ -253,7 +267,7 @@ addForPipe.onclick = function () {
     
     if ((valuePipe < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
-        httpGet(1, valuePipe + 10);
+        httpGetServo(1, valuePipe + 10);
         servoPipeValue.innerText = (valuePipe += 10).toString() + "°";
         changeImagePipe(valuePipe);
         changeEventsText(window.eventsArray.servoPipe.add, "10°");
@@ -340,12 +354,14 @@ buttonAuto.onclick = function changeImageAuto() {
             buttonAuto.src = "../images/button-auto.svg";
             autoStatus = false;
             changeEventsText(window.eventsArray.mod.automation.off);
+            httpGetMod(typeMod[2]);
             return;
         }
         if ((autoStatus == false) && (powerStatus == false)) {
             buttonAuto.src = "../images/button-auto--active.svg";
             autoStatus = true;
             changeEventsText(window.eventsArray.mod.automation.on);
+            httpGetMod(typeMod[1]);
             return;
         }
     }
@@ -359,6 +375,7 @@ buttonPower.onclick = function changeImagePower() {
             powerStatus = false;
             blockServoButtons();
             changeEventsText(window.eventsArray.mod.damping.off);
+            httpGetMod(typeMod[2]);
             return;
         }
         if (powerStatus == false) {
@@ -366,6 +383,7 @@ buttonPower.onclick = function changeImagePower() {
             powerStatus = true;
             blockServoButtons();
             changeEventsText(window.eventsArray.mod.damping.on);
+            httpGetMod(typeMod[0]);
             return;
         }
     }
