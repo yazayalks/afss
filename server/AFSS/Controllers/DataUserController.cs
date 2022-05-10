@@ -10,6 +10,7 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Xml;
 using Microsoft.EntityFrameworkCore;
+using AFSS.Services;
 
 namespace AFSS.Controllers
 {
@@ -19,12 +20,14 @@ namespace AFSS.Controllers
         private readonly ApplicationContext applicationContext;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ISmsService _smsService;
 
-        public DataUserController(ApplicationContext applicationContext, UserManager<User> _userManager, SignInManager<User> signInManager)
+        public DataUserController(ApplicationContext applicationContext, UserManager<User> _userManager, SignInManager<User> signInManager, ISmsService smsService)
         {
             this.applicationContext = applicationContext;
             this._userManager = _userManager;
             this._signInManager = signInManager;
+            this._smsService = smsService;
         }
 
         [HttpGet]
@@ -132,8 +135,10 @@ namespace AFSS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPhone(PhoneViewModel model)
         {
+           
             if (ModelState.IsValid)
             {
+                await _smsService.SendMessage("Hello, I am Mr Nimbus2!", model.Phone);
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = applicationContext.Users.SingleOrDefault(u => u.Id == userId.ToString());
                 user.PhoneNumber = model.Phone;

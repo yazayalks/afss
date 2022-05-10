@@ -1,4 +1,6 @@
 using AFSS.Models;
+using AFSS.Services;
+using AFSS.Utilities;
 using AFSS.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 // Добавляем сервис валидатора пароля
 builder.Services.AddTransient<IPasswordValidator<User>,
         CustomPasswordValidator>(serv => new CustomPasswordValidator(30));
+
+builder.Services.AddTransient<ISmsService, SmsAeroService>();
 
 // Добавляем сервис валидатора логина
 builder.Services.AddTransient<IUserValidator<User>,
