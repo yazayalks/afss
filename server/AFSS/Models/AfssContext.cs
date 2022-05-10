@@ -44,6 +44,10 @@ namespace AFSS.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.CriticalData)
+                    .HasMaxLength(200)
+                    .HasColumnName("criticalData");
+
                 entity.Property(e => e.Date).HasColumnName("date");
 
                 entity.Property(e => e.Gas).HasColumnName("gas");
