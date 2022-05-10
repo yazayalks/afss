@@ -104,21 +104,28 @@ while True:
                 print(r.json())
                 tasks = json.loads(r.text)
                 if (str(r.json()) != "[]"):
-                  coutnTask = len(tasks)
+                  coutnTask = len(tasks) - 1
                   # print(coutnTask)
                   i = 0
                   while i < coutnTask:
-                    type = tasks[i]["servoType"] + 1
-                    value = tasks[i]["servoValue"]
-                    thresholdType = tasks[i]["thresholdType"]
-                    mod = tasks[i]["mod"]
+                    i += 1
+                  
+                  type = tasks[coutnTask]["servoType"] + 1
+                  value = tasks[coutnTask]["servoValue"]
+                  thresholdType = tasks[coutnTask]["thresholdType"]
+                  mod = tasks[coutnTask]["mod"]
+                  if mod == "custom":
                     valueSend = (type * 100 + value)
                     newStr = "\n"
-                    print(type * 100 + value)
+                    #print(type * 100 + value)
                     # print("{valueSend}\n")
                     ser.write((str(valueSend) + newStr).encode ('utf-8'))
                     # sleep(0.5)
-                    i += 1
+                  if mod == "automation":
+                    print('automation')
+                  if mod == "damping":
+                    print('damping')
+                    
             else:
                 print('send error data')
 
