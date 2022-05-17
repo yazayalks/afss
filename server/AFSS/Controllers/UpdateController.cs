@@ -22,9 +22,12 @@ namespace AFSS.Controllers
                 afssContext.PiUser.Add(user);
                 afssContext.SaveChanges();
             }
+             string[] str = Array.Empty<string>();
+            if (criticalData != null) { 
+                 str = criticalData.Replace("[", "").Replace("]", "").Replace("\'", "").Split(',');
+                }
 
 
-            var str = criticalData.Replace("[", "").Replace("]", "").Replace("\'", "").Split(',');
 
             afssContext.PiData.Add(new PiData()
             {
@@ -58,7 +61,6 @@ namespace AFSS.Controllers
             {
                 servoType = u.ServoType,
                 servoValue = u.ServoValue,
-                thresholdType = u.ThresholdType,
                 mod = u.Mod,
             }
             ).ToList();

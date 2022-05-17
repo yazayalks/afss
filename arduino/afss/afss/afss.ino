@@ -1,15 +1,20 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
+#include "Adafruit_NeoPixel.h"
+
 #include "max6675.h" // Подключаем библиотеку 
 #include <Servo.h>
+
 Servo myservo1;
 Servo myservo2;
+#define LED_COUNT 14
 #define SEND_TIME 2000
 #define WATER_LEVEL_PIN A1
 #define GAS_PIN A0
 #define UPDATE_TIME 100
 #define SERVO_TIME 1500
+#define LED_PIN 11
 #define SERVO_STOVE_PIN 9 // Сигнальный провод от серво печи на порт 9
 #define SERVO_PIPE_PIN 10 // Сигнальный провод от серво трубы на порт 10 
 #define TEMPERATURE_STOVE_SCK 8 // Указываем к какому порту подключен вывод SCK
@@ -25,7 +30,9 @@ int valueServoStove = 0;
 int valueServoPipe = 0;
 unsigned long delayTime;
 int sendTimer = 0;
+int typeColor = 4;
 
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 MAX6675 thermocoupleStove(TEMPERATURE_STOVE_SCK, TEMPERATURE_STOVE_CS, TEMPERATURE_STOVE_SO);
 MAX6675 thermocoupleRoom(TEMPERATURE_ROOM_SCK, TEMPERATURE_ROOM_CS, TEMPERATURE_ROOM_SO);
 Adafruit_BME280 bmeTank; // I2C
@@ -34,10 +41,13 @@ Adafruit_BME280 bmeTank; // I2C
 void setup() {
   Serial.begin(9600);
   bmeTank.begin(0x76);
+  strip.begin();
+  setColor(0, 0, 0);
 }
 
 
 void loop() {
+
   if (sendTimer > SEND_TIME)
   {
     sendTimer = 0;
@@ -47,23 +57,63 @@ void loop() {
   if (Serial.available() > 0)
   {
     value = Serial.parseInt();
+    
+    if (value == 1)
+    {
+      if (typeColor != value)
+      {
+        setColor(255, 255, 0);
+      }
+      typeColor = 1;
+    }
+    
+    if (value == 2)
+    {
+      if (typeColor != value)
+      {
+        setColor(255, 69, 0);
+      }
+      typeColor = 2;
+    }
+    
+    if (value == 3)
+    {
+      if (typeColor != 3)
+      {
+        setColor(255, 0, 0);
+      }
+      typeColor = 3;
+    }
+    
+    if (value == 4)
+    {
+      if (typeColor != 4)
+      {
+        setColor(0, 0, 0);
+      }
+      typeColor = 4;
+    }
 
     if (value >= 100 && value <= 190)
     {
-      valueServoStove = value;
-      valueServoStove = valueServoStove - 100;
-      myservo1.attach(9);
-      myservo1.write(valueServoStove);
-      servoTimer = SERVO_TIME;
+      if ((valueServoStove != value - 100) && ((value - 100) % 10 == 0))
+      {
+        valueServoStove = value - 100;
+        myservo1.attach(9);
+        myservo1.write(valueServoStove);
+        servoTimer = SERVO_TIME;
+      }
     }
 
-    if (value >= 200 && value <= 290)
+    if ((value >= 200 && value <= 290) && ((value - 100) % 10 == 0))
     {
-      valueServoPipe = value;
-      valueServoPipe = valueServoPipe - 200;
-      myservo2.attach(10);
-      myservo2.write(valueServoPipe);
-      servoTimer = SERVO_TIME;
+      if (valueServoPipe != value - 200)
+      {
+        valueServoPipe = value - 200;
+        myservo2.attach(10);
+        myservo2.write(valueServoPipe);
+        servoTimer = SERVO_TIME;
+      }
     }
   }
 
@@ -79,6 +129,13 @@ void loop() {
   delay(UPDATE_TIME);
 }
 
+void setColor(int r, int g, int b) {
+  for (int i = 0; i < LED_COUNT; i++)
+  {
+    strip.setPixelColor(i, strip.Color(r, g, b));
+  }
+  strip.show();
+}
 
 void printValues() {
   String temperatureTankStr = String(bmeTank.readTemperature());

@@ -19,6 +19,7 @@ namespace AFSS.Models
         }
 
         public virtual DbSet<PiData> PiData { get; set; }
+        public virtual DbSet<PiSettings> PiSettings { get; set; }
         public virtual DbSet<PiTask> PiTask { get; set; }
         public virtual DbSet<PiThresholds> PiThresholds { get; set; }
         public virtual DbSet<PiUser> PiUser { get; set; }
@@ -75,6 +76,28 @@ namespace AFSS.Models
                     .HasConstraintName("PiData_PiUser_id_fk");
             });
 
+            modelBuilder.Entity<PiSettings>(entity =>
+            {
+                entity.HasIndex(e => e.Id, "PiSettings_id_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date).HasColumnName("date");
+
+                entity.Property(e => e.Light).HasColumnName("light");
+
+                entity.Property(e => e.PiKeyId).HasColumnName("piKeyId");
+
+                entity.Property(e => e.Sounds).HasColumnName("sounds");
+
+                entity.HasOne(d => d.PiKey)
+                    .WithMany(p => p.PiSettings)
+                    .HasForeignKey(d => d.PiKeyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PiSettings_PiUser_id_fk");
+            });
+
             modelBuilder.Entity<PiTask>(entity =>
             {
                 entity.HasKey(e => e.Id)
@@ -96,10 +119,6 @@ namespace AFSS.Models
                 entity.Property(e => e.ServoType).HasColumnName("servoType");
 
                 entity.Property(e => e.ServoValue).HasColumnName("servoValue");
-
-                entity.Property(e => e.ThresholdType)
-                    .HasMaxLength(300)
-                    .HasColumnName("thresholdType");
 
                 entity.HasOne(d => d.PiKey)
                     .WithMany(p => p.PiTask)

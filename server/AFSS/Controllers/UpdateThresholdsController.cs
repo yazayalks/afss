@@ -1,11 +1,13 @@
 ﻿using AFSS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AFSS.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "admin")]
     public class UpdateThresholds : ControllerBase
     {
         private readonly AfssContext afssContext;
