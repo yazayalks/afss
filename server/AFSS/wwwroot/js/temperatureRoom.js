@@ -115,15 +115,15 @@ function addChartTemperatureRoom() {
         if (window.typeStatus == "online") {
             updateData();
         }
-        if (temperatureRoomValue > 80) {
+        if (temperatureRoomValue > window.thresholdsData[0].criticalTmpRoom) {
             chartTemperatureRoom.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureRoom.config.data.datasets[0].backgroundColor = '#E00E0F';
         }
-        if (80 > temperatureRoomValue && temperatureRoomValue > 40) {
+        if (window.thresholdsData[0].criticalTmpRoom >= temperatureRoomValue && temperatureRoomValue > window.thresholdsData[0].maxTmpRoom) {
             chartTemperatureRoom.config.data.datasets[0].borderColor = '#FE611E';
             chartTemperatureRoom.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if (40 > temperatureRoomValue) {
+        if (window.thresholdsData[0].maxTmpRoom >= temperatureRoomValue && temperatureRoomValue >= window.thresholdsData[0].minTmpRoom) {
             chartTemperatureRoom.config.data.datasets[0].borderColor = '#FEC715';
             chartTemperatureRoom.config.data.datasets[0].backgroundColor = '#FEC715';
         }

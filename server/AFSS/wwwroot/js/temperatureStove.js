@@ -99,15 +99,15 @@ function addChartTemperatureStove() {
         if (window.typeStatus == "online") {
             updateDataStove();
         }
-        if (temperatureStoveValue > 500) {
+        if (temperatureStoveValue > window.thresholdsData[0].criticalTmpStove) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#E00E0F';
         }
-        if (500 > temperatureStoveValue && temperatureStoveValue > 250) {
+        if (window.thresholdsData[0].criticalTmpStove >= temperatureStoveValue && temperatureStoveValue > window.thresholdsData[0].maxTmpStove) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#FE611E';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if (250 > temperatureStoveValue) {
+        if (window.thresholdsData[0].maxTmpStove >= temperatureStoveValue && temperatureStoveValue >= window.thresholdsData[0].minTmpStove) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#FEC715';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#FEC715';
         }

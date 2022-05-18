@@ -53,6 +53,10 @@ namespace AFSS.Models
 
                 entity.Property(e => e.Gas).HasColumnName("gas");
 
+                entity.Property(e => e.Mod)
+                    .HasMaxLength(200)
+                    .HasColumnName("mod");
+
                 entity.Property(e => e.PiUserId).HasColumnName("piUserId");
 
                 entity.Property(e => e.Pressure).HasColumnName("pressure");

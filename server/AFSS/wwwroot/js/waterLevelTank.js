@@ -90,19 +90,11 @@ function addChartWaterLevelTank() {
         plugins: [waterLevelTankLastValue]
     };
 
-    function covertToLiters(value) {
-        if (value > 1000) {
-            value = 1000;
-        }
-        value = 1000 - value;
-        var percentage = (value * 100) / 1000;
-        var literts = (percentage * volumeWaterLevel) / 100;
-        return literts;
-    }
+    
 
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
-        waterLevelTankValue = covertToLiters(window.responseData[0].water);
+        waterLevelTankValue = window.responseData[0].water;
         timeOnX.push(time);
         timeOnX.shift();
         waterLevelTankOnY.push(waterLevelTankValue);
@@ -113,15 +105,15 @@ function addChartWaterLevelTank() {
         if (window.typeStatus == "online") {
             updateData();
         }
-        if (80 < waterLevelTankValue) {
-            chartWaterLevelTank.config.data.datasets[0].borderColor = '#000022';
-            chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#000022';
+        if ((window.thresholdsData[0].maxWaterLevel < waterLevelTankValue) && (waterLevelTankValue < window.thresholdsData[0].volumeWaterLevel)) {
+            chartWaterLevelTank.config.data.datasets[0].borderColor = '#FEC715';
+            chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#FEC715';
         }
-        if ((50 < waterLevelTankValue) && (waterLevelTankValue <= 80)) {
-            chartWaterLevelTank.config.data.datasets[0].borderColor = '#32324e';
-            chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#32324e';
+        if ((window.thresholdsData[0].minWaterLevel + 20 < waterLevelTankValue) && (waterLevelTankValue <= window.thresholdsData[0].maxWaterLevel)) {
+            chartWaterLevelTank.config.data.datasets[0].borderColor = '#FE611E';
+            chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if ((0 <= waterLevelTankValue) && (waterLevelTankValue <= 50)) {
+        if ((window.thresholdsData[0].minWaterLevel <= waterLevelTankValue) && (waterLevelTankValue <= window.thresholdsData[0].minWaterLevel + 20)) {
             chartWaterLevelTank.config.data.datasets[0].borderColor = '#E00E0F';
             chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#E00E0F';
         }

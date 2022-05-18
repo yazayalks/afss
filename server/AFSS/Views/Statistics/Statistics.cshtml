@@ -7,12 +7,10 @@
 
 <script src="https://momentjs.com/downloads/moment.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="~/js/updateResponse.js"></script>
-<script>
-    startIntervalResponse();
-</script>
+
 @await Html.PartialAsync("Menu")
 @await Html.PartialAsync("SubMenu")
+
 @if (User.Identity.IsAuthenticated)
 {
     <script>
@@ -48,18 +46,9 @@
                     <img id = "imageServoStove" src='../images/servo-stove-0.png' width="375" height="100" alt="servo-stove">
                 </div>
                 <div class="servo-stove__items">
-                    @*@if (User.IsInRole("user"))
-                    {*@
-                   @* }*@
-                    @* @if (User.Identity.IsAuthenticated)
-                    {*@
                         <div id ="subtractForStove" class="servo-stove__subtract"><img id = "button-subtract-stove" src = "../images/../images/subtract.svg" class = "button-subtract"></div>
-                    @*}*@
                     <div class="servo-stove__value"><div id = "servoStoveValue" class = "text-bold text-bold--black">0°</div></div>
-                    @* @if (User.Identity.IsAuthenticated) 
-                     {*@
                         <div id ="addForStove" class="servo-stove__add"><img id = "button-add-stove" src = "../images/../images/add.svg" class = "button-add"></div>
-                     @*}*@
                 </div>
             </div>
 
@@ -71,15 +60,9 @@
                     <img id = "imageServoPipe" src="../images/servo-pipe-0.png" width="375" height="100" alt="servo-pipe">
                 </div>
                 <div class="servo-pipe__items">
-                      @*@if (User.Identity.IsAuthenticated) 
-                      {*@
                           <div id ="subtractForPipe" class="servo-pipe__subtract"><img id = "button-subtract-pipe" src = "../images/../images/subtract.svg" class = "button-subtract"></div>
-                      @*}*@
                     <div class="servo-pipe__value"><div id = "servoPipeValue" class = "text-bold text-bold--black">0°</div></div>
-                      @*@if (User.Identity.IsAuthenticated) 
-                      {*@
                           <div id ="addForPipe" class="servo-pipe__add"><img id = "button-add-pipe" src = "../images/../images/add.svg" class = "button-add"></div>
-                     @* }*@
                 </div>
             </div>
 
@@ -95,13 +78,11 @@
             </div>
 
             <div class="item__gas-room">
-               @* @if (User.Identity.IsAuthenticated)
-                    {*@
                  <div class ="options-buttons">
                     <div id = "auto" class = "auto-option"><img id = "button-auto" src = "../images/button-auto--active.svg" class = "button-auto"></div>
                     <div id = "power" class = "power-option"><img id = "button-power" src = "../images/button-power.svg" class = "button-power"></div>
+                    <div id = "critical" class = "critical-option"><img id = "button-critical" src = "../images/button-critical.svg" class = "button-critical"></div>
                 </div>
-                   @* }*@
                 <div class="image__gas-room">
                     <img id = "imageGasRoom"  src="../images/gas-room-0.png" width="375" height="100" alt="gas-room">
                 </div>
@@ -137,9 +118,9 @@
     addChartTemperatureStove();
     addChartTemperatureRoom();
     addChartPressureTank();
-    
     addChartTemperatureTank();
     addChartWaterLevelTank();
+
     startIntervalStatistics();
     startIntervalEvents();
 </script>

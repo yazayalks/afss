@@ -69,6 +69,7 @@ namespace AFSS.Controllers
                 Tmp2 = piDatum.Tmp2,
                 Water = piDatum.Water,
                 CriticalData = piDatum.CriticalData,
+                Mod = piDatum.Mod,
             };
         }
     }

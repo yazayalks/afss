@@ -13,7 +13,7 @@ namespace AFSS.Controllers
             this.afssContext = afssDbContext;
         }
         [HttpGet]
-        public List<PiTaskDTO> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int servoStove, int servoPipe, string key, string criticalData)
+        public List<PiTaskDTO> Get(DateTime date, int gasRoom, double temperatureStove, double temperatureTank, double temperatureRoom, double pressureTank, int waterLevelTank, int servoStove, int servoPipe, string key, string criticalData, string mod)
         {
             var user = afssContext.PiUser.SingleOrDefault(u => u.CpuSerial == key);
             if (user == null)
@@ -41,7 +41,9 @@ namespace AFSS.Controllers
                 Tmp2 = temperatureRoom,
                 Servo0 = servoStove,
                 Servo1 = servoPipe,
-                CriticalData = string.Join(",", str)
+                CriticalData = string.Join(",", str),
+                Mod = mod
+                
             });
             var activeTasks = afssContext.PiTask.Where(u => u.Complete == false).ToList();
             activeTasks.ForEach(u => u.Complete = true);
