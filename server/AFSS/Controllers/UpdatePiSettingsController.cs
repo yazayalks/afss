@@ -6,38 +6,34 @@ using System.Security.Claims;
 namespace AFSS.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
-    public class TaskCreateController : ControllerBase
+    [Authorize]
+    public class UpdatePiSettings : ControllerBase
     {
         private readonly AfssContext afssContext;
         private readonly ApplicationContext applicationContext;
-        public TaskCreateController(AfssContext afssContext, ApplicationContext applicationContext)
+        public UpdatePiSettings(AfssContext afssDbContext, ApplicationContext applicationContext)
         {
-            this.afssContext = afssContext;
+            this.afssContext = afssDbContext;
             this.applicationContext = applicationContext;
         }
         [HttpGet]
-       /* [Authorize]*/
-        public void Get(PiTaskType servoType, int servoValue, string mod)
+        public void Get(bool sound, bool light)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);      
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userPiKey = applicationContext.Users.Single(u => u.Id == userId).PiKey;
 
             var piKey = afssContext.PiUser.Single(u => u.CpuSerial == userPiKey);
 
-            var newTask = new PiTask()
+            afssContext.PiSettings.Add(new PiSettings()
             {
-                Complete = false,
-                CreateDate = DateTime.Now,
+                Light = light,
+                Sounds =   sound,
+                Date = DateTime.UtcNow,
                 PiKey = piKey,
-                ServoValue = servoValue,
-                ServoType = (int)servoType,
-                Mod = mod,
-            };
-
-            afssContext.PiTask.Add(newTask);
+            });
             afssContext.SaveChanges();
         }
+
     }
 }

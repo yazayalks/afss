@@ -3,12 +3,11 @@
 
 buttonConfirmEmail.onclick = function () {
 
-    console.log("Сукааа");
-    httpGetServo();
+    httpGetConfirmEmail();
 };
 
-function httpGetServo() {
-    console.log("Сукааа");
+function httpGetConfirmEmail() {
+
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', '/DataUser/ConfirmEmail', false);

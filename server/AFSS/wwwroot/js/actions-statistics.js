@@ -5,19 +5,73 @@ var buttonAddPipe = document.getElementById('button-add-pipe');
 var buttonSubtractStove = document.getElementById('button-subtract-stove');
 var buttonAddStove = document.getElementById('button-add-stove');
 var typeUserArray = ["user", "admin", "guest"];
-var typeMod = ["damping", "automation", "custom"];
+var typeMod = ["damp", "automation", "custom", "critical"];
 var gasStatusArray = ["noGas", "someGas", "lotGas"];
 var gasStatus = gasStatusArray[0];
 var valueStove = parseInt(servoStoveValue.textContent);
 var valuePipe = parseInt(servoPipeValue.textContent);
 var buttonAuto = document.getElementById("button-auto");
 var buttonPower = document.getElementById("button-power");
-var autoStatus = true;
-var powerStatus = false;
+var buttonCritical = document.getElementById("button-critical");
+var typeStatusArray = ["online", "offline"];
+
+
+var automationStatus = false;
+var dampStatus = false;
+var criticalStatus = false;
+var customStatus = false;
+
+var startSistem = false;
 var firstEvent = false;
 var lastEvent = false;
 var statusButtons = true;
-typeStatusArray = ["online", "offline"];
+
+var statusCriticalTmpStove = false;
+var statusCriticalWater = false;
+var statusMaxGas = false;
+var statusCriticalGas = false;
+var statusCriticalPressure = false;
+var statusCriticalTmpRoom = false;
+
+
+function initValue() {
+    if ((startSistem == false) && (window.responseData[0].mod != "")) {
+        (async () => await GetThresholds())();
+        startSistem = true;
+        console.log(window.responseData[0].mod);
+        if (window.responseData[0].mod == "automation") {
+            blockCritical();
+            automationStatus = true;
+            dampStatus = false;
+            criticalStatus = false;
+            customStatus = false;
+        }
+        if (window.responseData[0].mod == "custom") {
+            blockCritical();
+            buttonAuto.src = "../images/button-auto.svg";
+            customStatus = true;
+            automationStatus = false;
+            dampStatus = false;
+            criticalStatus = false;
+        }
+        if (window.responseData[0].mod == "critical") {
+            criticalStatus = true;
+            customStatus = false;
+            automationStatus = false;
+            dampStatus = false;
+            changeEventsText(window.eventsArray.mod.criticaling.on);
+            unblockCritical();
+            blockAllButtons();
+        }
+        if (window.responseData[0].mod == "damp") {
+            blockCritical();
+            dampStatus = true;
+            criticalStatus = false;
+            customStatus = false;
+            automationStatus = false;
+        }
+    }
+}
 
 function PrintTypeUser(type) {
     console.log(window.typeUser);
@@ -31,21 +85,58 @@ function offlineSystem() {
     changeEventsText(window.eventsArray.systemPi.offline);
 }
 
-function setStatus() {
-    var timeNow = new Date();
-    var timeNowUTC = new Date(timeNow.getTime() + timeNow.getTimezoneOffset() * 60000);
-    var timeDb = moment(window.responseData[0].date).toDate();
-    var now_utc = Date.UTC(timeNowUTC.getUTCFullYear(), timeNowUTC.getUTCMonth(), timeNowUTC.getUTCDate(), timeNowUTC.getUTCHours(), timeNowUTC.getUTCMinutes(), timeNowUTC.getUTCSeconds());
-    var db_utc = Date.UTC(timeDb.getUTCFullYear(), timeDb.getUTCMonth(), timeDb.getUTCDate(), timeDb.getUTCHours(), timeDb.getUTCMinutes(), timeDb.getUTCSeconds());
+function checkCriticalData(data) {
+    
+    if (data == "") {
+        return;
+    }
+    var d = data.replace(/\s/g, '').split(",");
 
-    if ((now_utc - db_utc) <= 15000) {
-        window.typeStatus = typeStatusArray[0];
-    } else {
-        window.typeStatus = typeStatusArray[1];
+    console.log(d);
+
+    for (i = 0; i < d.length; i++) {
+        if ((d[i] == 'critPresTank') && (statusCriticalPressure == false)) {
+            statusCriticalPressure = true;
+            criticalStatus = true;
+            changeEventsText(window.eventsArray.pressureLevel.critical);
+            changeEventsText(window.eventsArray.mod.criticaling.on);
+            unblockCritical();
+            blockAllButtons();
+        }
+        if ((d[i] == 'critGasLev') && (statusCriticalGas == false)) {
+            statusCriticalGas = true;
+            criticalStatus = true;
+            changeEventsText(window.eventsArray.gasLevel.critical);
+            changeEventsText(window.eventsArray.mod.criticaling.on);
+            unblockCritical();
+            blockAllButtons();
+        }
+        if ((d[i] == 'critTmpStove') && (statusCriticalTmpStove == false)) {
+            statusCriticalTmpStove = true;
+            criticalStatus = true;
+            changeEventsText(window.eventsArray.stoveTmpLevel.critical);
+            changeEventsText(window.eventsArray.mod.criticaling.on);
+            unblockCritical();
+            blockAllButtons();
+        }
+        if ((d[i] == 'critTmpRoom') && (statusCriticalTmpRoom == false)) {
+            statusCriticalTmpRoom = true;
+            criticalStatus = true;
+            changeEventsText(window.eventsArray.roomTmpLevel.critical);
+            changeEventsText(window.eventsArray.mod.criticaling.on);
+            unblockCritical();
+            blockAllButtons();
+        }
+        if ((d[i] == 'critwatLevTank') && (statusCriticalWater == false)) {
+            statusCriticalWater = true;
+            criticalStatus = true;
+            changeEventsText(window.eventsArray.waterLevel.small);
+            changeEventsText(window.eventsArray.mod.criticaling.on);
+            unblockCritical();
+            blockAllButtons();
+        }
     }
 }
-
-changeImageGas();
 
 function isEmpty(str) {
     if (str.trim() == '')
@@ -55,7 +146,7 @@ function isEmpty(str) {
 }
 
 function resetAuto() {
-    autoStatus = false;
+    automationStatus = false;
     buttonAuto.src = "../images/button-auto.svg";
 }
 function changeEventsText(text, value) {
@@ -73,16 +164,15 @@ function changeEventsText(text, value) {
 }
 
 
-
 function changeImageGas() {
-    var responsegasRoom = window.responseData[0].gas;
-    if ((0 <= responsegasRoom) && (responsegasRoom <= 100)) {
+    var responseGasRoom = window.responseData[0].gas;
+    if ((window.thresholdsData[0].minGasLevel <= responseGasRoom) && (responseGasRoom <= window.thresholdsData[0].maxGasLevel)) {
         gasStatus = gasStatusArray[0];
     }
-    if ((100 < responsegasRoom) && (responsegasRoom <= 150)) {
+    if ((window.thresholdsData[0].maxGasLevel < responseGasRoom) && (responseGasRoom <= window.thresholdsData[0].criticalGasLevel)) {
         gasStatus = gasStatusArray[1];
     }
-    if (150 < responsegasRoom) {
+    if (window.thresholdsData[0].criticalGasLevel < responseGasRoom) {
         gasStatus = gasStatusArray[2];
     }
     var imageGasRoom = document.getElementById("imageGasRoom");
@@ -100,6 +190,11 @@ function changeImageGas() {
         imageGasRoom.src = "../images/gas-room-0.png";
         gasRoomValue.innerHTML = "CO и CO<sub>2</sub> не обнаружены";
     }
+}
+
+function blockCritical() {
+    buttonCritical.style.opacity = "0.5";
+    buttonCritical.style.cursor = 'default';
 }
 
 function blockSubtractPipe() {
@@ -132,20 +227,25 @@ function blockPower() {
 }
 
 function blockServoButtons() {
-    if (powerStatus == true) {
+    if (dampStatus == true) {
         blockSubtractPipe();
         blockAddPipe();
         blockSubtractStove();
         blockAddStove();
         blockAuto();
     }
-    if (powerStatus == false) {
+    if (dampStatus == false) {
         unblockSubtractPipe();
         unblockAddPipe();
         unblockSubtractStove();
         unblockAddStove();
         unblockAuto();
     }
+}
+
+function unblockCritical() {
+    buttonCritical.style.opacity = "1.0";
+    buttonCritical.style.cursor = 'pointer';
 }
 
 function unblockSubtractPipe() {
@@ -179,7 +279,7 @@ function unblockPower() {
 }
 
 function blockAllButtons() {
-    if (window.typeStatus == typeStatusArray[1]) {
+    if ((window.typeStatus == typeStatusArray[1]) || (criticalStatus == true)) {
         blockSubtractPipe();
         blockAddPipe();
         blockSubtractStove();
@@ -190,7 +290,7 @@ function blockAllButtons() {
 }
 
 function unblockAllButtons() {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         unblockSubtractPipe();
         unblockAddPipe();
         unblockSubtractStove();
@@ -218,8 +318,9 @@ function httpGetServo(servoType, servoValue) {
 
 function httpGetMod(mod) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/TaskCreate?mod=' + mod, false);
+    xhr.open('GET', '/api/TaskCreate?mod=' + mod + '&servoValue=' + -1, false);
     /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
+    /*xhr.open('GET', '/api/TaskCreate?servoType=' + "-1" + '&servoValue=' + "-1" + '&mod=' + mod, false);*/
     xhr.send();
     if (xhr.status != 200) {
         // обработать ошибку
@@ -232,7 +333,7 @@ function httpGetMod(mod) {
 
 subtractForStove.onclick = function () {
     
-    if ((valueStove > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((valueStove > 0) && (dampStatus == false) && (criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGetServo(0, valueStove - 10);
         servoStoveValue.innerText = (valueStove -= 10).toString() + "°";
@@ -243,7 +344,7 @@ subtractForStove.onclick = function () {
 
 addForStove.onclick = function () {
     
-    if ((valueStove < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((valueStove < 90) && (dampStatus == false) && (criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGetServo(0, valueStove + 10);
         servoStoveValue.innerText = (valueStove += 10).toString() + "°";
@@ -254,7 +355,7 @@ addForStove.onclick = function () {
 
 subtractForPipe.onclick = function () {
     
-    if ((valuePipe > 0) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((valuePipe > 0) && (dampStatus == false) && (criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGetServo(1, valuePipe - 10);
         servoPipeValue.innerText = (valuePipe -= 10).toString() + "°";
@@ -265,7 +366,7 @@ subtractForPipe.onclick = function () {
 
 addForPipe.onclick = function () {
     
-    if ((valuePipe < 90) && (powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((valuePipe < 90) && (dampStatus == false) && (criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
         httpGetServo(1, valuePipe + 10);
         servoPipeValue.innerText = (valuePipe += 10).toString() + "°";
@@ -285,49 +386,6 @@ function changeImagePipe(value) {
 }
 
 
-function startIntervalStatistics() {
-    setInterval(function () {
-        setStatus();
-        if ((autoStatus == true) && (window.typeStatus == "online")) {
-            (async () => await updateImage())();
-        }
-        if (window.typeStatus == "online") {
-            changeImageGas();
-        }
-    }, 2000)
-}
-
-function startIntervalEvents() {
-    var startOffline;
-    var freezingAllButtons;
-
-    setInterval(function () {
-        if ((window.typeStatus == "online") && (firstEvent == false))
-        {
-            firstEvent = true;
-            changeEventsText(window.eventsArray.systemPi.online);
-        }
-
-        if ((window.typeStatus == "offline") && (lastEvent == false)) {
-            blockAllButtons();
-            startOffline = setTimeout(() => offlineSystem(), 5000);
-            lastEvent = true;
-            statusButtons = true;
-        }
-        if ((window.typeStatus == "online") && (lastEvent == true)) {
-            changeEventsText(window.eventsArray.systemPi.online);
-        }
-        if (window.typeStatus == "online") {
-            clearTimeout(startOffline);
-            lastEvent = false;
-            if (statusButtons == true) {
-                statusButtons = false;
-                unblockAllButtons();
-            }
-        }
-        
-    }, 5000)
-}
 
 async function updateImage() {
     var responseServoStove = window.responseData[0].servo0;
@@ -349,18 +407,18 @@ async function updateImage() {
 
 
 buttonAuto.onclick = function changeImageAuto() {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
-        if ((autoStatus == true) && (powerStatus == false)) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+        if ((automationStatus == true) && (dampStatus == false)) {
             buttonAuto.src = "../images/button-auto.svg";
-            autoStatus = false;
-            changeEventsText(window.eventsArray.mod.automation.off);
+            automationStatus = false;
+            changeEventsText(window.eventsArray.mod.automating.off);
             httpGetMod(typeMod[2]);
             return;
         }
-        if ((autoStatus == false) && (powerStatus == false)) {
+        if ((automationStatus == false) && (dampStatus == false)) {
             buttonAuto.src = "../images/button-auto--active.svg";
-            autoStatus = true;
-            changeEventsText(window.eventsArray.mod.automation.on);
+            automationStatus = true;
+            changeEventsText(window.eventsArray.mod.automating.on);
             httpGetMod(typeMod[1]);
             return;
         }
@@ -368,19 +426,19 @@ buttonAuto.onclick = function changeImageAuto() {
 }
 
 buttonPower.onclick = function changeImagePower() {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         resetAuto();
-        if (powerStatus == true) {
+        if (dampStatus == true) {
             buttonPower.src = "../images/button-power.svg";
-            powerStatus = false;
+            dampStatus = false;
             blockServoButtons();
             changeEventsText(window.eventsArray.mod.damping.off);
             httpGetMod(typeMod[2]);
             return;
         }
-        if (powerStatus == false) {
+        if (dampStatus == false) {
             buttonPower.src = "../images/button-power--active.svg";
-            powerStatus = true;
+            dampStatus = true;
             blockServoButtons();
             changeEventsText(window.eventsArray.mod.damping.on);
             httpGetMod(typeMod[0]);
@@ -390,12 +448,12 @@ buttonPower.onclick = function changeImagePower() {
 }
 
 buttonAuto.addEventListener("mouseover", function (event) {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
-        if ((autoStatus == true) && (powerStatus == false)) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+        if ((automationStatus == true) && (dampStatus == false)) {
             buttonAuto.src = "../images/button-auto.svg";
             return;
         }
-        if ((autoStatus == false) && (powerStatus == false)) {
+        if ((criticalStatus == false) && (automationStatus == false) && (dampStatus == false)) {
             buttonAuto.src = "../images/button-auto--active.svg";
             return;
         }
@@ -403,12 +461,12 @@ buttonAuto.addEventListener("mouseover", function (event) {
 });
 
 buttonAuto.addEventListener("mouseout", function (event) {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
-        if ((autoStatus == true) && (powerStatus == false)) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+        if ((automationStatus == true) && (dampStatus == false)) {
             buttonAuto.src = "../images/button-auto--active.svg";
             return;
         }
-        if ((autoStatus == false) && (powerStatus == false)) {
+        if ((criticalStatus == false) && (automationStatus == false) && (dampStatus == false)) {
             buttonAuto.src = "../images/button-auto.svg";
             return;
         }
@@ -416,12 +474,12 @@ buttonAuto.addEventListener("mouseout", function (event) {
 });
 
 buttonPower.addEventListener("mouseover", function (event) {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
-        if (powerStatus == true) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+        if (dampStatus == true) {
             buttonPower.src = "../images/button-power.svg";
             return;
         }
-        if (powerStatus == false) {
+        if (dampStatus == false) {
             buttonPower.src = "../images/button-power--active.svg";
             return;
         }
@@ -429,12 +487,12 @@ buttonPower.addEventListener("mouseover", function (event) {
 });
 
 buttonPower.addEventListener("mouseout", function (event) {
-    if ((window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
-        if (powerStatus == true) {
+    if ((criticalStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+        if (dampStatus == true) {
             buttonPower.src = "../images/button-power--active.svg";
             return;
         }
-        if (powerStatus == false) {
+        if (dampStatus == false) {
             buttonPower.src = "../images/button-power.svg";
             return;
         }
@@ -442,57 +500,108 @@ buttonPower.addEventListener("mouseout", function (event) {
 });
 
 buttonSubtractPipe.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractPipe.src = "../images/subtract--active.svg";
         return;
     } 
 });
 
 buttonAddPipe.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddPipe.src = "../images/add--active.svg";
         return;
     }
 });
 
 buttonSubtractStove.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractStove.src = "../images/subtract--active.svg";
         return;
     }
 });
 
 buttonAddStove.addEventListener("mouseover", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddStove.src = "../images/add--active.svg";
         return;
     }
 });
 
 buttonSubtractPipe.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractPipe.src = "../images/subtract.svg";
         return;
     }
 });
 
 buttonAddPipe.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddPipe.src = "../images/add.svg";
         return;
     }
 });
 
 buttonSubtractStove.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonSubtractStove.src = "../images/subtract.svg";
         return;
     }
 });
 
 buttonAddStove.addEventListener("mouseout", function (event) {
-    if ((powerStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
+    if ((criticalStatus == false) && (dampStatus == false) && (window.typeStatus == typeStatusArray[0]) && (window.typeUser == 'user')) {
         buttonAddStove.src = "../images/add.svg";
         return;
     }
 });
+
+
+async function GetThresholds() {
+    let response = await fetch('/api/GetThresholds?count=last');
+    let data = await response.json();
+    window.thresholdsData = data;
+}
+
+function startIntervalStatistics() {
+    setInterval(function () {
+        if (((automationStatus == true) || (dampStatus == true) || (customStatus == true) || (criticalStatus == true)) && (window.typeStatus == "online")) {
+            (async () => await updateImage())();
+            changeImageGas();
+        }
+        checkCriticalData(window.responseData[0].criticalData)
+    }, 2000)
+}
+
+function startIntervalEvents() {
+    var startOffline;
+
+    setInterval(function () {
+        if ((window.typeStatus == "online") && (firstEvent == false)) {
+            /*initValue();*/
+            firstEvent = true;
+            changeEventsText(window.eventsArray.systemPi.online);
+        }
+
+        if ((window.typeStatus == "offline") && (lastEvent == false)) {
+            startSistem = false;
+            blockAllButtons();
+            startOffline = setTimeout(() => offlineSystem(), 5000);
+            lastEvent = true;
+            statusButtons = true;
+        }
+        if ((window.typeStatus == "online") && (lastEvent == true)) {
+            changeEventsText(window.eventsArray.systemPi.online);
+        }
+        if (window.typeStatus == "online") {
+            initValue();
+            clearTimeout(startOffline);
+            lastEvent = false;
+
+            if (statusButtons == true) {
+                statusButtons = false;
+                unblockAllButtons();
+            }
+        }
+
+    }, 1000)
+}

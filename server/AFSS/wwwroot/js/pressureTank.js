@@ -101,15 +101,15 @@ function addChartPressureTank() {
             updateData();
         }
         
-        if (120 < pressureTankValue) {
+        if (window.thresholdsData[0].criticalPressureTank < pressureTankValue) {
             chartPressureTank.config.data.datasets[0].borderColor = '#E00E0F';
             chartPressureTank.config.data.datasets[0].backgroundColor = '#E00E0F';
         }
-        if ((100 < pressureTankValue) && (pressureTankValue <= 120)) {
+        if ((window.thresholdsData[0].maxPressureTank < pressureTankValue) && (pressureTankValue <= window.thresholdsData[0].criticalPressureTank)) {
             chartPressureTank.config.data.datasets[0].borderColor = '#FE611E';
             chartPressureTank.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if ((0 <= pressureTankValue) && (pressureTankValue <= 100)) {
+        if ((window.thresholdsData[0].minPressureTank <= pressureTankValue) && (pressureTankValue <= window.thresholdsData[0].maxPressureTank)) {
             chartPressureTank.config.data.datasets[0].borderColor = '#FEC715';
             chartPressureTank.config.data.datasets[0].backgroundColor = '#FEC715';
         }

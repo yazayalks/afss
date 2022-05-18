@@ -10,6 +10,7 @@ namespace AFSS.Models
         public PiUser()
         {
             PiData = new HashSet<PiData>();
+            PiSettings = new HashSet<PiSettings>();
             PiTask = new HashSet<PiTask>();
             PiThresholds = new HashSet<PiThresholds>();
         }
@@ -20,6 +21,7 @@ namespace AFSS.Models
         public int Id { get; set; }
 
         public virtual ICollection<PiData> PiData { get; set; }
+        public virtual ICollection<PiSettings> PiSettings { get; set; }
         public virtual ICollection<PiTask> PiTask { get; set; }
         public virtual ICollection<PiThresholds> PiThresholds { get; set; }
     }

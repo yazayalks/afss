@@ -19,6 +19,7 @@ namespace AFSS.Models
         public DateTime Date { get; set; }
         public int Id { get; set; }
         public string CriticalData { get; set; }
+        public string Mod { get; set; }
 
         public virtual PiUser PiUser { get; set; }
     }

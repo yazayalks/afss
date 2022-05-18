@@ -103,17 +103,17 @@ function addChartTemperatureTank() {
             updateData();
         }
         
-        if (temperatureTankValue > 80) {
-            chartTemperatureTank.config.data.datasets[0].borderColor = '#E00E0F';
-            chartTemperatureTank.config.data.datasets[0].backgroundColor = '#E00E0F';
+        if (temperatureTankValue > window.thresholdsData[0].criticalTmpTank) {
+            chartTemperatureTank.config.data.datasets[0].borderColor = '#FEC715';
+            chartTemperatureTank.config.data.datasets[0].backgroundColor = '#FEC715';
         }
-        if (90 > temperatureTankValue && temperatureTankValue > 50) {
+        if (window.thresholdsData[0].criticalTmpTank >= temperatureTankValue && temperatureTankValue > window.thresholdsData[0].maxTmpTank) {
             chartTemperatureTank.config.data.datasets[0].borderColor = '#FE611E';
             chartTemperatureTank.config.data.datasets[0].backgroundColor = '#FE611E';
         }
-        if (50 > temperatureTankValue) {
-            chartTemperatureTank.config.data.datasets[0].borderColor = '#FEC715';
-            chartTemperatureTank.config.data.datasets[0].backgroundColor = '#FEC715';
+        if (window.thresholdsData[0].maxTmpTank >= temperatureTankValue && temperatureTankValue >= window.thresholdsData[0].minTmpTank) {
+            chartTemperatureTank.config.data.datasets[0].borderColor = '#E00E0F'; 
+            chartTemperatureTank.config.data.datasets[0].backgroundColor = '#E00E0F'; 
         }
 
         chartTemperatureTank.config.data.labels = timeOnX.slice();
