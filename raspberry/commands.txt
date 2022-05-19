@@ -39,3 +39,4 @@ https://localhost:7131/api/GetThresholds?count=first
 
 https://localhost:7131/api/UpdateThresholds?date=2022-04-15%2020:25:06.1280401&minTmpStove=123&maxTmpStove=123&criticalTmpStove=123&minTmpTank=123&maxTmpTank=1234&criticalTmpTank=123&minTmpRoom=90&maxTmpRoom=90&key=000000002690f5d0&criticalTmpRoom=123&minWaterLevel=123&maxWaterLevel=123&volumeWaterLevel=123&minGasLevel=123&maxGasLevel=123&criticalGasLevel=123&minPressureTank=125&maxPressureTank=124&criticalPressureTank=123
 
+ sudo docker run -t -i --restart no --device=/dev/ttyUSB0  yazayalks/afss-pi 

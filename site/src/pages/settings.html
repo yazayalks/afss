@@ -1,16 +1,34 @@
-﻿@using Newtonsoft.Json
-@{
-    ViewData["Title"] = "Settings";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>settings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles-settings.css">
+
+    <script src="../actions/jquery.js"></script>
 
 
+    <!--menu--> <!--footer-->
+    <link rel="import" href="menu.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu ").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="add__menu" data-source="menu.html"></div>
 
- <link rel="stylesheet" href="~/css/styles-settings.css">
- 
- @await Html.PartialAsync("Menu")
- @await Html.PartialAsync("SubMenu")
- 
- <div class="container">
+<div class="container">
     <div class="settings__inner">
         <div class="settings__items">
             <div class="settings__item settings-system">
@@ -52,14 +70,7 @@
         </div>
     </div>
 </div>
- 
- @await Html.PartialAsync("Footer")
 
-<script src="~/js/actions-settings.js"></script>
-
-<script>
-    //startIntervalSetting();
-    fetchAsync();
-    updateImage();
-</script>
-
+<div class="add__footer" data-source="footer.html"></div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿.settings__items {
+.settings__items {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
@@ -35,17 +35,19 @@
     justify-content: left;
     vertical-align: middle;
     overflow: hidden;
-    white-space: nowrap;
+    white-space:nowrap;
 }
 
 .button-sound {
     cursor: pointer;
     width: 45px;
     height: 45px;
+
 }
 
 .button-light {
     cursor: pointer;
+
     width: 45px;
     height: 45px;
 }
