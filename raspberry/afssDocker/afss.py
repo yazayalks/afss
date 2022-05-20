@@ -29,8 +29,9 @@ statusLight = True
 
 mod = "automation"
 
-servoPipe = 0
-servoStove = 1
+servoStove = 0
+servoPipe = 1
+
 
 baseUrl = 'https://afss.site/api/Update'
 thresholdsUrl = 'https://afss.site/api/GetThresholds'
@@ -92,7 +93,7 @@ def playSoundPressure() :
 def playSoundStove() : 
   global statusCriticalTmpStove
   if statusCriticalTmpStove == False :
-    pygame.mixer.music.load("sounds/stove.wav") 
+    №pygame.mixer.music.load("sounds/stove.wav") 
     pygame.mixer.music.play()
     statusCriticalTmpStove = True
 
