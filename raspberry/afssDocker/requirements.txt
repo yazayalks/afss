@@ -1,4 +1,10 @@
 pyserial
 datetime
 requests
+pytz
+urllib3
+idna
+charset-normalizer
+certifi
+zope.interface
 simpleaudio
