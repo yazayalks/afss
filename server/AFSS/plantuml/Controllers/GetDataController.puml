@@ -1,0 +1,7 @@
+@startuml
+class GetDataController {
+    + GetDataController(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Index(count:int) : IEnumerable<PiData>
+}
+Controller <|-- GetDataController
+@enduml

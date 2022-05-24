@@ -1,0 +1,8 @@
+@startuml
+class ThresholdsController {
+    + ThresholdsController(afssContext:AfssContext, applicationContext:ApplicationContext, userManager:UserManager<User>, roleManager:RoleManager<IdentityRole>)
+    + <<async>> ThresholdsAsync() : Task<IActionResult>
+    + Thresholds(model:ThresholdsViewModel) : IActionResult
+}
+Controller <|-- ThresholdsController
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class GetThresholdsController {
+    + GetThresholdsController(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Index(count:string, key:string) : IEnumerable<PiThresholds>
+}
+Controller <|-- GetThresholdsController
+@enduml

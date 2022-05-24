@@ -1,0 +1,10 @@
+@startuml
+class DataUserViewModel {
+    + Email : string <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+    + Phone : string <<get>> <<set>>
+    + PasswordOld : string <<get>> <<set>>
+    + Password : string <<get>> <<set>>
+    + PasswordConfirm : string <<get>> <<set>>
+}
+@enduml

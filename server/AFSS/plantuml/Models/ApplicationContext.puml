@@ -1,0 +1,8 @@
+@startuml
+class ApplicationContext {
+    + ApplicationContext(options:DbContextOptions<ApplicationContext>)
+}
+class "IdentityDbContext`1"<T> {
+}
+"IdentityDbContext`1" "<User>" <|-- ApplicationContext
+@enduml

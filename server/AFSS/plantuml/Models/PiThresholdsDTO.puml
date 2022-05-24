@@ -1,0 +1,22 @@
+@startuml
+class PiThresholdsDTO {
+    + minTmpStove : int <<get>> <<set>>
+    + maxTmpStove : int <<get>> <<set>>
+    + criticalTmpStove : int <<get>> <<set>>
+    + minTmpTank : int <<get>> <<set>>
+    + maxTmpTank : int <<get>> <<set>>
+    + criticalTmpTank : int <<get>> <<set>>
+    + minTmpRoom : int <<get>> <<set>>
+    + maxTmpRoom : int <<get>> <<set>>
+    + criticalTmpRoom : int <<get>> <<set>>
+    + minWaterLevel : int <<get>> <<set>>
+    + maxWaterLevel : int <<get>> <<set>>
+    + volumeWaterLevel : int <<get>> <<set>>
+    + minGasLevel : int <<get>> <<set>>
+    + maxGasLevel : int <<get>> <<set>>
+    + criticalGasLevel : int <<get>> <<set>>
+    + minPressureTank : int <<get>> <<set>>
+    + maxPressureTank : int <<get>> <<set>>
+    + criticalPressureTank : int <<get>> <<set>>
+}
+@enduml

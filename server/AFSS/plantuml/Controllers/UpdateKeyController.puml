@@ -1,0 +1,7 @@
+@startuml
+class UpdateKeyController {
+    + UpdateKeyController(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Index(PiKey:string) : void
+}
+Controller <|-- UpdateKeyController
+@enduml

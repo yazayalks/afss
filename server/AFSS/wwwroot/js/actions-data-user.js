@@ -3,15 +3,14 @@
 
 buttonConfirmEmail.onclick = function () {
 
-    console.log("Сукааа");
     httpGet();
 };
 
 function httpGet() {
-    console.log("Сукааа");
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', 'api/DataUser/ConfirmEmail', false);
+    xhr.open('GET', 'DataUser/ConfirmEmail', false);
+
     /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
     xhr.send();
     if (xhr.status != 200) {

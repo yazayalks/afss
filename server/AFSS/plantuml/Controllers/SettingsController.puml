@@ -1,0 +1,6 @@
+@startuml
+class SettingsController {
+    + <<async>> Settings() : Task<IActionResult>
+}
+Controller <|-- SettingsController
+@enduml

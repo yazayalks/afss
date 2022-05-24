@@ -1,0 +1,7 @@
+@startuml
+class MenuController {
+    + MenuController(applicationContext:ApplicationContext)
+    + Menu() : IActionResult
+}
+Controller <|-- MenuController
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class CustomRegisrationValidator {
+    + CustomRegisrationValidator(applicationContext:ApplicationContext, afssDbContext:AfssContext)
+    + ValidateAsync(manager:UserManager<User>, user:User) : Task<IdentityResult>
+}
+class "IUserValidator`1"<T> {
+}
+"IUserValidator`1" "<User>" <|-- CustomRegisrationValidator
+@enduml

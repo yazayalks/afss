@@ -1,0 +1,18 @@
+@startuml
+class PiData <<partial>> {
+    + Tmp0 : double <<get>> <<set>>
+    + Tmp1 : double? <<get>> <<set>>
+    + Tmp2 : double? <<get>> <<set>>
+    + Pressure : double <<get>> <<set>>
+    + Gas : int <<get>> <<set>>
+    + Water : int <<get>> <<set>>
+    + Servo0 : int <<get>> <<set>>
+    + Servo1 : int <<get>> <<set>>
+    + PiUserId : int <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+    + CriticalData : string <<get>> <<set>>
+    + Mod : string <<get>> <<set>>
+}
+PiData --> "Date" DateTime
+PiData --> "PiUser" PiUser
+@enduml

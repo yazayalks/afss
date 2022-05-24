@@ -1,0 +1,15 @@
+@startuml
+class PiUser <<partial>> {
+    + PiUser()
+    + CpuSerial : string <<get>> <<set>>
+    + Login : string <<get>> <<set>>
+    + Password : string <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+}
+class "ICollection`1"<T> {
+}
+PiUser --> "PiData<PiData>" "ICollection`1"
+PiUser --> "PiSettings<PiSettings>" "ICollection`1"
+PiUser --> "PiTask<PiTask>" "ICollection`1"
+PiUser --> "PiThresholds<PiThresholds>" "ICollection`1"
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+enum PiTaskType {
+    SERVO1= 0,
+    SERVO2= 1,
+}
+@enduml

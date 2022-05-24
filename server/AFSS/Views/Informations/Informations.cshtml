@@ -10,7 +10,106 @@
  @await Html.PartialAsync("Menu")
  @await Html.PartialAsync("SubMenu")
  
- 
+ <div class="container">
+    <div class="informations__inner">
+        <div class="informations__items">
+
+            <div class="informations__item">
+                <div id = "TmpStoveInfo" class="informations__photo">
+                    <img  alt="">
+                </div>
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Температура в печи</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">На данном графике отображается температура в печи. В зависимости от значения температуры - меняется цвет лини графика.<br> - Жёлтый цвет линии характерезует нормальную температуру. <br> - Оранжевый цвет линии характерезует высокую температуру.  <br> - Красный цвет линии характерезует критическую температуру. <br> При критической температуре система активирует крититический режим.</div></div>
+                </div>
+            </div>
+
+
+            <div class="informations__item">
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Температура в парной</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Свет системы.</div></div>
+                </div>
+                <div  id = "TmpRoomInfo" class="informations__photo">
+                    <img  alt="">
+                </div>
+            </div>
+
+            <div class="informations__item">
+                <div id = "PressureTank" class="informations__photo">
+                    <img  alt="">
+                </div>
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Давление в баке</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Lorem ipsum dolor sit amet, consectetur a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cupiditate debitis enim eos tenetur? Commodi culpa dicta dolores enim, fugit hic id iure laborum mollitia nihil obcaecati, omnis perspiciatis quam quod ratione recusandae saepe. Aperiam asperiores deserunt, eveniet illo inventore itaque, non optio pariatur quo repellendus tempore unde veritatis voluptas. illo itaque labore laborum magni, necessitatibus nulla obcaecati quas qui rerum saepe temporibus, velit voluptatibus.</div></div>
+                </div>
+            </div>
+
+             <div class="informations__item">
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Тяга печи</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Свет системы.</div></div>
+                </div>
+                <div  id = "ServoStove" class="informations__photo">
+                    <img  alt="">
+                </div>
+            </div>
+
+            <div class="informations__item">
+                <div id = "ServoPipe" class="informations__photo">
+                    <img  alt="">
+                </div>
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Тяга трубы</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Lorem ipsum dolor sit amet, consectetur a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cupiditate debitis enim eos tenetur? Commodi culpa dicta dolores enim, fugit hic id iure laborum mollitia nihil obcaecati, omnis perspiciatis quam quod ratione recusandae saepe. Aperiam asperiores deserunt, eveniet illo inventore itaque, non optio pariatur quo repellendus tempore unde veritatis voluptas. illo itaque labore laborum magni, necessitatibus nulla obcaecati quas qui rerum saepe temporibus, velit voluptatibus.</div></div>
+                </div>
+            </div>
+
+             <div class="informations__item">
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Уровень воды и температура в баке</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Свет системы.</div></div>
+                </div>
+                <div  id = "WaterLev" class="informations__photo">
+                    <img  alt="">
+                </div>
+            </div>
+
+            <div class="informations__item">
+                <div id = "Mod" class="informations__photo">
+                    <img  alt="">
+                </div>
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Режим системы</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Lorem ipsum dolor sit amet, consectetur a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cupiditate debitis enim eos tenetur? Commodi culpa dicta dolores enim, fugit hic id iure laborum mollitia nihil obcaecati, omnis perspiciatis quam quod ratione recusandae saepe. Aperiam asperiores deserunt, eveniet illo inventore itaque, non optio pariatur quo repellendus tempore unde veritatis voluptas. illo itaque labore laborum magni, necessitatibus nulla obcaecati quas qui rerum saepe temporibus, velit voluptatibus.</div></div>
+                </div>
+            </div>
+
+             <div class="informations__item">
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Уровень газа</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Свет системы.</div></div>
+                </div>
+                <div  id = "GasRoom" class="informations__photo">
+                    <img  alt="">
+                </div>
+            </div>
+
+            <div class="informations__item">
+                <div id = "Event" class="informations__photo">
+                    <img  alt="">
+                </div>
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">События</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Lorem ipsum dolor sit amet, consectetur a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cupiditate debitis enim eos tenetur? Commodi culpa dicta dolores enim, fugit hic id iure laborum mollitia nihil obcaecati, omnis perspiciatis quam quod ratione recusandae saepe. Aperiam asperiores deserunt, eveniet illo inventore itaque, non optio pariatur quo repellendus tempore unde veritatis voluptas. illo itaque labore laborum magni, necessitatibus nulla obcaecati quas qui rerum saepe temporibus, velit voluptatibus.</div></div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
  
  @await Html.PartialAsync("Footer")
 

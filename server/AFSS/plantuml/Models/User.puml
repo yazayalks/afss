@@ -1,0 +1,6 @@
+@startuml
+class User {
+    + PiKey : string <<get>> <<set>>
+}
+IdentityUser <|-- User
+@enduml

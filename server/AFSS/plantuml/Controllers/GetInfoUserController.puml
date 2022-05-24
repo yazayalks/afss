@@ -1,0 +1,7 @@
+@startuml
+class GetInfoUserController {
+    + GetInfoUserController(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Index(PiKey:string) : UserDTO
+}
+Controller <|-- GetInfoUserController
+@enduml

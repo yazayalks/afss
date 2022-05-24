@@ -1,0 +1,7 @@
+@startuml
+class GetPiSettings {
+    + GetPiSettings(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Index(key:string) : IEnumerable<PiSettings>
+}
+Controller <|-- GetPiSettings
+@enduml

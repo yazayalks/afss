@@ -1,0 +1,13 @@
+@startuml
+class ChangeRoleViewModel {
+    + UserId : string <<get>> <<set>>
+    + UserEmail : string <<get>> <<set>>
+    + ChangeRoleViewModel()
+}
+class "List`1"<T> {
+}
+class "IList`1"<T> {
+}
+ChangeRoleViewModel --> "AllRoles<IdentityRole>" "List`1"
+ChangeRoleViewModel --> "UserRoles<string>" "IList`1"
+@enduml

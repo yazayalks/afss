@@ -1,0 +1,14 @@
+@startuml
+class AccountController {
+    + AccountController(userManager:UserManager<User>, roleManager:RoleManager<IdentityRole>, signInManager:SignInManager<User>, afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Register() : IActionResult
+    + <<async>> Register(model:RegisterViewModel) : Task<IActionResult>
+    + Login(returnUrl:string) : IActionResult
+    + <<async>> Login(model:LoginViewModel) : Task<IActionResult>
+    + <<async>> ConfirmEmail(userId:string, code:string) : Task<IActionResult>
+    + <<async>> Logout() : Task<IActionResult>
+    + Observe() : IActionResult
+    + <<async>> Observe(model:ObserveViewModel) : Task<IActionResult>
+}
+Controller <|-- AccountController
+@enduml

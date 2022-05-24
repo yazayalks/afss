@@ -1,0 +1,7 @@
+@startuml
+class GetPiKeysController {
+    + GetPiKeysController(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Index() : IEnumerable<PiKey>
+}
+Controller <|-- GetPiKeysController
+@enduml
