@@ -1,0 +1,8 @@
+@startuml
+class RegisterViewModel {
+    + Email : string <<get>> <<set>>
+    + PiKey : string <<get>> <<set>>
+    + Password : string <<get>> <<set>>
+    + PasswordConfirm : string <<get>> <<set>>
+}
+@enduml

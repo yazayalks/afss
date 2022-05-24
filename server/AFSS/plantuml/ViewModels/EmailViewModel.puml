@@ -1,0 +1,5 @@
+@startuml
+class EmailViewModel {
+    + Email : string <<get>> <<set>>
+}
+@enduml

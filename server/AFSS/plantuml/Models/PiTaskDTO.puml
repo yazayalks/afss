@@ -1,0 +1,8 @@
+@startuml
+class PiTaskDTO {
+    + servoType : int <<get>> <<set>>
+    + servoValue : int <<get>> <<set>>
+    + thresholdType : string <<get>> <<set>>
+    + mod : string <<get>> <<set>>
+}
+@enduml

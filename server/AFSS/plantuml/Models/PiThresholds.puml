@@ -1,0 +1,26 @@
+@startuml
+class PiThresholds <<partial>> {
+    + MinTmpStove : int <<get>> <<set>>
+    + MaxTmpStove : int <<get>> <<set>>
+    + CriticalTmpStove : int <<get>> <<set>>
+    + MinTmpTank : int <<get>> <<set>>
+    + MaxTmpTank : int <<get>> <<set>>
+    + CriticalTmpTank : int <<get>> <<set>>
+    + MinTmpRoom : int <<get>> <<set>>
+    + MaxTmpRoom : int <<get>> <<set>>
+    + CriticalTmpRoom : int <<get>> <<set>>
+    + MinWaterLevel : int <<get>> <<set>>
+    + MaxWaterLevel : int <<get>> <<set>>
+    + VolumeWaterLevel : int <<get>> <<set>>
+    + MinGasLevel : int <<get>> <<set>>
+    + MaxGasLevel : int <<get>> <<set>>
+    + CriticalGasLevel : int <<get>> <<set>>
+    + MinPressureTank : int <<get>> <<set>>
+    + MaxPressureTank : int <<get>> <<set>>
+    + CriticalPressureTank : int <<get>> <<set>>
+    + PiKeyId : int <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+}
+PiThresholds --> "Date" DateTime
+PiThresholds --> "PiKey" PiUser
+@enduml

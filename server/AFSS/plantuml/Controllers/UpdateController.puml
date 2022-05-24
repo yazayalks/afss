@@ -1,0 +1,7 @@
+@startuml
+class UpdateController {
+    + UpdateController(afssDbContext:AfssContext)
+    + Get(date:DateTime, gasRoom:int, temperatureStove:double, temperatureTank:double, temperatureRoom:double, pressureTank:double, waterLevelTank:int, servoStove:int, servoPipe:int, key:string, criticalData:string, mod:string) : List<PiTaskDTO>
+}
+ControllerBase <|-- UpdateController
+@enduml

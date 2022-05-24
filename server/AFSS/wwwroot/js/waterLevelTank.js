@@ -104,7 +104,7 @@ function addChartWaterLevelTank() {
     setInterval(function () {
         if (window.typeStatus == "online") {
             updateData();
-        }
+        
         if ((window.thresholdsData[0].maxWaterLevel < waterLevelTankValue) && (waterLevelTankValue < window.thresholdsData[0].volumeWaterLevel)) {
             chartWaterLevelTank.config.data.datasets[0].borderColor = '#FEC715';
             chartWaterLevelTank.config.data.datasets[0].backgroundColor = '#FEC715';
@@ -121,7 +121,7 @@ function addChartWaterLevelTank() {
         chartWaterLevelTank.config.data.labels = timeOnX.slice();
         chartWaterLevelTank.config.data.datasets[0].data = waterLevelTankOnY.slice();
         chartWaterLevelTank.update();
-
+        }
     }, 2000)
 // render init block
     const chartWaterLevelTank = new Chart(

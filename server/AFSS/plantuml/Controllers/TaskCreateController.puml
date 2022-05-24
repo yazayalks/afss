@@ -1,0 +1,7 @@
+@startuml
+class TaskCreateController {
+    + TaskCreateController(afssContext:AfssContext, applicationContext:ApplicationContext)
+    + Get(servoType:PiTaskType, servoValue:int, mod:string) : void
+}
+ControllerBase <|-- TaskCreateController
+@enduml

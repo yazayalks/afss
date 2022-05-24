@@ -1,0 +1,6 @@
+@startuml
+class SmsAeroService {
+    + <<async>> SendMessage(message:string, phone:string) : Task
+}
+ISmsService <|-- SmsAeroService
+@enduml

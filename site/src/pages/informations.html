@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>informations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles-informations.css">
+
+    <script src="../actions/jquery.js"></script>
+
+
+    <!--menu--> <!--footer-->
+    <link rel="import" href="menu.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu ").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="add__menu" data-source="menu.html"></div>
+
+<div class="container">
+    <div class="informations__inner">
+        <div class="informations__items">
+
+            <div class="informations__item">
+                <div class="informations__photo">
+                    <img src = "../images/test.png" alt="">
+                </div>
+
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Система</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Свет системы. Lorem ipsum dolor sit amet, consectetur a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cupiditate debitis enim eos tenetur? Commodi culpa dicta dolores enim, fugit hic id iure laborum mollitia nihil obcaecati, omnis perspiciatis quam quod ratione recusandae saepe. Aperiam asperiores deserunt, eveniet illo inventore itaque, non optio pariatur quo repellendus tempore unde veritatis voluptas. illo itaque labore laborum magni, necessitatibus nulla obcaecati quas qui rerum saepe temporibus, velit voluptatibus.</div></div>
+                </div>
+            </div>
+
+
+            <div class="informations__item">
+                <div class="informations__text">
+                    <div class="item__link"><div class = "text-bold text-bold--black">Система</div></div>
+                    <div class="item__text"><div class = "text-light text-light--black">Свет системы.</div></div>
+                </div>
+                <div class="informations__photo">
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="add__footer" data-source="footer.html"></div>
+</body>
+</html>

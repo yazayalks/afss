@@ -90,50 +90,52 @@ function checkCriticalData(data) {
     if (data == "") {
         return;
     }
-    var d = data.replace(/\s/g, '').split(",");
+    if (window.typeStatus == typeStatusArray[0]) {
+        var d = data.replace(/\s/g, '').split(",");
 
-    console.log(d);
+        console.log(d);
 
-    for (i = 0; i < d.length; i++) {
-        if ((d[i] == 'critPresTank') && (statusCriticalPressure == false)) {
-            statusCriticalPressure = true;
-            criticalStatus = true;
-            changeEventsText(window.eventsArray.pressureLevel.critical);
-            changeEventsText(window.eventsArray.mod.criticaling.on);
-            unblockCritical();
-            blockAllButtons();
-        }
-        if ((d[i] == 'critGasLev') && (statusCriticalGas == false)) {
-            statusCriticalGas = true;
-            criticalStatus = true;
-            changeEventsText(window.eventsArray.gasLevel.critical);
-            changeEventsText(window.eventsArray.mod.criticaling.on);
-            unblockCritical();
-            blockAllButtons();
-        }
-        if ((d[i] == 'critTmpStove') && (statusCriticalTmpStove == false)) {
-            statusCriticalTmpStove = true;
-            criticalStatus = true;
-            changeEventsText(window.eventsArray.stoveTmpLevel.critical);
-            changeEventsText(window.eventsArray.mod.criticaling.on);
-            unblockCritical();
-            blockAllButtons();
-        }
-        if ((d[i] == 'critTmpRoom') && (statusCriticalTmpRoom == false)) {
-            statusCriticalTmpRoom = true;
-            criticalStatus = true;
-            changeEventsText(window.eventsArray.roomTmpLevel.critical);
-            changeEventsText(window.eventsArray.mod.criticaling.on);
-            unblockCritical();
-            blockAllButtons();
-        }
-        if ((d[i] == 'critwatLevTank') && (statusCriticalWater == false)) {
-            statusCriticalWater = true;
-            criticalStatus = true;
-            changeEventsText(window.eventsArray.waterLevel.small);
-            changeEventsText(window.eventsArray.mod.criticaling.on);
-            unblockCritical();
-            blockAllButtons();
+        for (i = 0; i < d.length; i++) {
+            if ((d[i] == 'critPresTank') && (statusCriticalPressure == false)) {
+                statusCriticalPressure = true;
+                criticalStatus = true;
+                changeEventsText(window.eventsArray.pressureLevel.critical);
+                changeEventsText(window.eventsArray.mod.criticaling.on);
+                unblockCritical();
+                blockAllButtons();
+            }
+            if ((d[i] == 'critGasLev') && (statusCriticalGas == false)) {
+                statusCriticalGas = true;
+                criticalStatus = true;
+                changeEventsText(window.eventsArray.gasLevel.critical);
+                changeEventsText(window.eventsArray.mod.criticaling.on);
+                unblockCritical();
+                blockAllButtons();
+            }
+            if ((d[i] == 'critTmpStove') && (statusCriticalTmpStove == false)) {
+                statusCriticalTmpStove = true;
+                criticalStatus = true;
+                changeEventsText(window.eventsArray.stoveTmpLevel.critical);
+                changeEventsText(window.eventsArray.mod.criticaling.on);
+                unblockCritical();
+                blockAllButtons();
+            }
+            if ((d[i] == 'critTmpRoom') && (statusCriticalTmpRoom == false)) {
+                statusCriticalTmpRoom = true;
+                criticalStatus = true;
+                changeEventsText(window.eventsArray.roomTmpLevel.critical);
+                changeEventsText(window.eventsArray.mod.criticaling.on);
+                unblockCritical();
+                blockAllButtons();
+            }
+            if ((d[i] == 'critwatLevTank') && (statusCriticalWater == false)) {
+                statusCriticalWater = true;
+                criticalStatus = true;
+                changeEventsText(window.eventsArray.waterLevel.small);
+                changeEventsText(window.eventsArray.mod.criticaling.on);
+                unblockCritical();
+                blockAllButtons();
+            }
         }
     }
 }

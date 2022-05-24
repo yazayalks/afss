@@ -1,0 +1,6 @@
+@startuml
+class MenuViewModel {
+    + Name : string <<get>> <<set>>
+    + PiKey : string <<get>> <<set>>
+}
+@enduml

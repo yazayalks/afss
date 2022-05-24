@@ -1,0 +1,12 @@
+@startuml
+class DataUserController {
+    + DataUserController(applicationContext:ApplicationContext, _userManager:UserManager<User>, signInManager:SignInManager<User>, smsService:ISmsService)
+    + DataUser(model:DataUserViewModel) : IActionResult
+    + <<async>> EditName(model:NameViewModel) : Task<IActionResult>
+    + <<async>> EditEmail(model:EmailViewModel) : Task<IActionResult>
+    + <<async>> ConfirmEmail() : Task<IActionResult>
+    + <<async>> EditPhone(model:PhoneViewModel) : Task<IActionResult>
+    + <<async>> EditPassword(model:PasswordViewModel) : Task<IActionResult>
+}
+Controller <|-- DataUserController
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class StatisticsController {
+    + StatisticsController(applicationContext:ApplicationContext)
+    + Statistics() : IActionResult
+}
+Controller <|-- StatisticsController
+@enduml

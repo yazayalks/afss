@@ -1,0 +1,5 @@
+@startuml
+interface ISmsService {
+    + SendMessage(message:string, phone:string) : Task
+}
+@enduml

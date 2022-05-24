@@ -101,7 +101,7 @@ function addChartTemperatureTank() {
     setInterval(function () {
         if (window.typeStatus == "online") {
             updateData();
-        }
+        
         
         if (temperatureTankValue > window.thresholdsData[0].criticalTmpTank) {
             chartTemperatureTank.config.data.datasets[0].borderColor = '#FEC715';
@@ -119,7 +119,7 @@ function addChartTemperatureTank() {
         chartTemperatureTank.config.data.labels = timeOnX.slice();
         chartTemperatureTank.config.data.datasets[0].data = temperatureTankOnY.slice();
         chartTemperatureTank.update();
-
+        }
     }, 2000)
 // render init block
     const chartTemperatureTank = new Chart(

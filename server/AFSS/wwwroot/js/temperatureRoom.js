@@ -70,7 +70,7 @@ function addChartTemperatureRoom() {
             responsiveAnimationDuration: 0, // animation duration after a resize
             scales: {
                 yAxes: {
-                    max: 100,
+                    max: 140,
                     stepSize: 10,
                     title: {
                         color: 'black',
@@ -114,7 +114,7 @@ function addChartTemperatureRoom() {
     setInterval(function () {
         if (window.typeStatus == "online") {
             updateData();
-        }
+        
         if (temperatureRoomValue > window.thresholdsData[0].criticalTmpRoom) {
             chartTemperatureRoom.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureRoom.config.data.datasets[0].backgroundColor = '#E00E0F';
@@ -130,7 +130,7 @@ function addChartTemperatureRoom() {
         chartTemperatureRoom.config.data.labels = timeOnX.slice();
         chartTemperatureRoom.config.data.datasets[0].data = temperatureRoomOnY.slice();
         chartTemperatureRoom.update();
-
+        }
     }, 2000)
     const chartTemperatureRoom = new Chart(
         document.getElementById('chartTemperatureRoom'),

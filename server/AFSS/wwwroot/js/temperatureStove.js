@@ -98,7 +98,7 @@ function addChartTemperatureStove() {
     setInterval(function () {
         if (window.typeStatus == "online") {
             updateDataStove();
-        }
+        
         if (temperatureStoveValue > window.thresholdsData[0].criticalTmpStove) {
             chartTemperatureStove.config.data.datasets[0].borderColor = '#E00E0F';
             chartTemperatureStove.config.data.datasets[0].backgroundColor = '#E00E0F';
@@ -115,7 +115,7 @@ function addChartTemperatureStove() {
         chartTemperatureStove.config.data.labels = timeOnX.slice();
         chartTemperatureStove.config.data.datasets[0].data = temperatureStoveOnY.slice();
         chartTemperatureStove.update();
-
+        }
     }, 2000)
     // render init block
     const chartTemperatureStove = new Chart(

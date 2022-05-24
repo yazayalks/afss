@@ -1,0 +1,24 @@
+@startuml
+class VerifyThresholdsController {
+    + VerifyMinTmpStove(MinTmpStove:string, MaxTmpStove:string, CriticalTmpStove:string) : IActionResult
+    + VerifyMaxTmpStove(MinTmpStove:string, MaxTmpStove:string, CriticalTmpStove:string) : IActionResult
+    + VerifyCriticalTmpStove(MinTmpStove:string, MaxTmpStove:string, CriticalTmpStove:string) : IActionResult
+    + VerifyMinTmpTank(MinTmpTank:string, MaxTmpTank:string, CriticalTmpTank:string) : IActionResult
+    + VerifyMaxTmpTank(MinTmpTank:string, MaxTmpTank:string, CriticalTmpTank:string) : IActionResult
+    + VerifyCriticalTmpTank(MinTmpTank:string, MaxTmpTank:string, CriticalTmpTank:string) : IActionResult
+    + VerifyMinTmpRoom(MinTmpRoom:string, MaxTmpRoom:string, CriticalTmpRoom:string) : IActionResult
+    + VerifyMaxTmpRoom(MinTmpRoom:string, MaxTmpRoom:string, CriticalTmpRoom:string) : IActionResult
+    + VerifyCriticalTmpRoom(MinTmpRoom:string, MaxTmpRoom:string, CriticalTmpRoom:string) : IActionResult
+    + VerifyMinGasLevel(MinGasLevel:string, MaxGasLevel:string, CriticalGasLevel:string) : IActionResult
+    + VerifyMaxGasLevel(MinGasLevel:string, MaxGasLevel:string, CriticalGasLevel:string) : IActionResult
+    + VerifyCriticalGasLevel(MinGasLevel:string, MaxGasLevel:string, CriticalGasLevel:string) : IActionResult
+    + VerifyMinPressureTank(MinPressureTank:string, MaxPressureTank:string, CriticalPressureTank:string) : IActionResult
+    + VerifyMaxPressureTank(MinPressureTank:string, MaxPressureTank:string, CriticalPressureTank:string) : IActionResult
+    + VerifyCriticalPressureTank(MinPressureTank:string, MaxPressureTank:string, CriticalPressureTank:string) : IActionResult
+    + VerifyMinWaterLevel(MinWaterLevel:string, MaxWaterLevel:string, VolumeWaterLevel:string) : IActionResult
+    + VerifyMaxWaterLevel(MinWaterLevel:string, MaxWaterLevel:string, VolumeWaterLevel:string) : IActionResult
+    + VerifyVolumeWaterLevel(MinWaterLevel:string, MaxWaterLevel:string, VolumeWaterLevel:string) : IActionResult
+    + editValue(value:int) : string
+}
+Controller <|-- VerifyThresholdsController
+@enduml

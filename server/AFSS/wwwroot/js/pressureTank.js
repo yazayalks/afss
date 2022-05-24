@@ -90,16 +90,18 @@ function addChartPressureTank() {
     function updateData(/*dataY, dataX*/) {
         time = (moment().format('h:mm:ss'));
         pressureTankValue = (window.responseData[0].pressure / 10).toFixed(3);
-        timeOnX.push(time);
         timeOnX.shift();
-        pressureTankOnY.push(pressureTankValue);
+        timeOnX.push(time);
+        
         pressureTankOnY.shift();
+        pressureTankOnY.push(pressureTankValue);
+       
     }
 
     setInterval(function () {
         if (window.typeStatus == "online") { 
             updateData();
-        }
+        
         
         if (window.thresholdsData[0].criticalPressureTank < pressureTankValue) {
             chartPressureTank.config.data.datasets[0].borderColor = '#E00E0F';
@@ -116,7 +118,8 @@ function addChartPressureTank() {
         
         chartPressureTank.config.data.labels = timeOnX.slice();
         chartPressureTank.config.data.datasets[0].data = pressureTankOnY.slice();
-        chartPressureTank.update();
+            chartPressureTank.update();
+        }
 
     }, 2000)
 // render init block

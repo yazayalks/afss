@@ -1,0 +1,22 @@
+@startuml
+class ThresholdsViewModel {
+    + MinTmpStove : string <<get>> <<set>>
+    + MaxTmpStove : string <<get>> <<set>>
+    + CriticalTmpStove : string <<get>> <<set>>
+    + MinTmpTank : string <<get>> <<set>>
+    + MaxTmpTank : string <<get>> <<set>>
+    + CriticalTmpTank : string <<get>> <<set>>
+    + MinTmpRoom : string <<get>> <<set>>
+    + MaxTmpRoom : string <<get>> <<set>>
+    + CriticalTmpRoom : string <<get>> <<set>>
+    + MinWaterLevel : string <<get>> <<set>>
+    + MaxWaterLevel : string <<get>> <<set>>
+    + VolumeWaterLevel : string <<get>> <<set>>
+    + MinGasLevel : string <<get>> <<set>>
+    + MaxGasLevel : string <<get>> <<set>>
+    + CriticalGasLevel : string <<get>> <<set>>
+    + MinPressureTank : string <<get>> <<set>>
+    + MaxPressureTank : string <<get>> <<set>>
+    + CriticalPressureTank : string <<get>> <<set>>
+}
+@enduml

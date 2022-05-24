@@ -8,7 +8,7 @@ sudo docker build -t afss .
 sudo docker run -t -i --restart no --device=/dev/ttyUSB0 --device /dev/snd afss
 
 // Запуск контейнера с консолью с рестартом
-sudo docker run -t -i --restart always --device=/dev/ttyUSB0 afss
+sudo docker run -t -i --restart always --device=/dev/ttyUSB0 --device /dev/snd afss
 
 
 // always
@@ -42,3 +42,18 @@ https://localhost:7131/api/UpdateThresholds?date=2022-04-15%2020:25:06.1280401&m
  sudo docker run -t -i --restart no --device=/dev/ttyUSB0  yazayalks/afss-pi 
 
 bP0ddSSq48io3J6Y
+
+docker run -d --name watchtower --rm -v /var/run/docker.sock:/var/run/docker.sock v2tec/watchtower --interval 30
+
+
+docker run -p 80:80 yazayalks/afss:latest
+
+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
+
+
+
+89.108.70.214
+Логин: root
+Пароль: thkWV#J%3Vus
+
+

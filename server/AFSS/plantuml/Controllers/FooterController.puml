@@ -1,0 +1,6 @@
+@startuml
+class FooterController {
+    + Footer() : IActionResult
+}
+Controller <|-- FooterController
+@enduml

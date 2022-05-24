@@ -1,0 +1,12 @@
+@startuml
+class "AddDbContext`1"<T> {
+}
+class "AddTransient`2"<T1,T2> {
+}
+class "AddIdentity`2"<T1,T2> {
+}
+class "AddEntityFrameworkStores`1"<T> {
+}
+class "AddTokenProvider`1"<T> {
+}
+@enduml

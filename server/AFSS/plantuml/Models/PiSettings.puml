@@ -1,0 +1,10 @@
+@startuml
+class PiSettings <<partial>> {
+    + Id : int <<get>> <<set>>
+    + PiKeyId : int <<get>> <<set>>
+    + Sounds : bool <<get>> <<set>>
+    + Light : bool <<get>> <<set>>
+}
+PiSettings --> "Date" DateTime
+PiSettings --> "PiKey" PiUser
+@enduml

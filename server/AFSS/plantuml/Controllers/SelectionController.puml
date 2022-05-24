@@ -1,0 +1,6 @@
+@startuml
+class SelectionController {
+    + Index() : IActionResult
+}
+Controller <|-- SelectionController
+@enduml

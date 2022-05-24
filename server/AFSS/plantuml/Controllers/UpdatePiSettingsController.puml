@@ -1,0 +1,7 @@
+@startuml
+class UpdatePiSettings {
+    + UpdatePiSettings(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Get(sound:bool, light:bool) : void
+}
+ControllerBase <|-- UpdatePiSettings
+@enduml

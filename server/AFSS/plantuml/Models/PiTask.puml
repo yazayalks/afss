@@ -1,0 +1,12 @@
+@startuml
+class PiTask <<partial>> {
+    + PiKeyId : int <<get>> <<set>>
+    + ServoType : int <<get>> <<set>>
+    + ServoValue : int <<get>> <<set>>
+    + Complete : bool <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+    + Mod : string <<get>> <<set>>
+}
+PiTask --> "CreateDate" DateTime
+PiTask --> "PiKey" PiUser
+@enduml

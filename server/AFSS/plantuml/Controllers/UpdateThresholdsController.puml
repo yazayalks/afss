@@ -1,0 +1,7 @@
+@startuml
+class UpdateThresholds {
+    + UpdateThresholds(afssDbContext:AfssContext, applicationContext:ApplicationContext)
+    + Get(date:DateTime, minTmpStove:int, maxTmpStove:int, criticalTmpStove:int, minTmpTank:int, maxTmpTank:int, criticalTmpTank:int, minTmpRoom:int, maxTmpRoom:int, criticalTmpRoom:int, minWaterLevel:int, maxWaterLevel:int, volumeWaterLevel:int, minGasLevel:int, maxGasLevel:int, criticalGasLevel:int, minPressureTank:int, maxPressureTank:int, criticalPressureTank:int, key:string) : List<PiThresholds>
+}
+ControllerBase <|-- UpdateThresholds
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class AfssContext <<partial>> {
+    + AfssContext()
+    + AfssContext(options:DbContextOptions<AfssContext>)
+    <<partial>> OnModelCreatingPartial(modelBuilder:ModelBuilder) : void
+}
+class "DbSet`1"<T> {
+}
+DbContext <|-- AfssContext
+AfssContext --> "PiData<PiData>" "DbSet`1"
+AfssContext --> "PiSettings<PiSettings>" "DbSet`1"
+AfssContext --> "PiTask<PiTask>" "DbSet`1"
+AfssContext --> "PiThresholds<PiThresholds>" "DbSet`1"
+AfssContext --> "PiUser<PiUser>" "DbSet`1"
+@enduml

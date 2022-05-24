@@ -1,0 +1,9 @@
+@startuml
+class HomeController {
+    + HomeController(logger:ILogger<HomeController>)
+    + Index() : IActionResult
+    + Privacy() : IActionResult
+    + Error() : IActionResult
+}
+Controller <|-- HomeController
+@enduml
