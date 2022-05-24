@@ -5,7 +5,7 @@ Scaffold-DbContext "Data Source=31.31.196.234;Initial Catalog=u1410979_afss;Pers
 sudo docker build -t afss .
 
 // Запуск контейнера с консолью без рестарта
-sudo docker run -t -i --restart no --device=/dev/ttyUSB0 afss
+sudo docker run -t -i --restart no --device=/dev/ttyUSB0 --device /dev/snd afss
 
 // Запуск контейнера с консолью с рестартом
 sudo docker run -t -i --restart always --device=/dev/ttyUSB0 afss

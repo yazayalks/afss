@@ -5,12 +5,12 @@ import serial
 import datetime
 import requests
 import json
-import pygame
+
+import simpleaudio as sa
+
 from time import sleep
 import operator
 from timer import Timer
-
-pygame.init()
 
 
 timerCritical= Timer()
@@ -32,7 +32,6 @@ mod = "automation"
 servoStove = 0
 servoPipe = 1
 
-
 baseUrl = 'https://afss.site/api/Update'
 thresholdsUrl = 'https://afss.site/api/GetThresholds'
 settingsUrl = 'https://afss.site/api/GetPiSettings'
@@ -47,55 +46,50 @@ def playSoundStart() :
   global statusStart
   global statusSound
   if statusStart == False and statusSound == True :
-    pygame.mixer.music.load("sounds/start.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/start.wav").play()
     statusStart = True
 
 def playSoundMaxGas() : 
   global statusMaxGas
   global statusSound
   if statusMaxGas == False and statusSound == True :
-    pygame.mixer.music.load("sounds/maxGas.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/maxGas.wav").play()
     statusMaxGas = True
 
 def playSoundCritGas() : 
   global statusCriticalGas
   global statusSound
   if statusCriticalGas == False and statusSound == True :
-    pygame.mixer.music.load("sounds/critGas.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/critGas.wav").play()
     statusCriticalGas = True
 
 def playSoundRoom() : 
   global statusCriticalTmpRoom
   global statusSound
   if statusCriticalTmpRoom == False and statusSound == True :
-    pygame.mixer.music.load("sounds/room.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/room.wav").play()
     statusCriticalTmpRoom = True
 
 def playSoundWater() : 
   global statusCriticalWater
   global statusSound
   if statusCriticalWater == False and statusSound == True :
-    pygame.mixer.music.load("sounds/water.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/water.wav").play()
     statusCriticalWater = True
 
 def playSoundPressure() : 
   global statusCriticalPressure
   if statusCriticalPressure == False :
-    pygame.mixer.music.load("sounds/pressure.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/pressure.wav").play()
     statusCriticalPressure = True
 
 def playSoundStove() : 
   global statusCriticalTmpStove
   if statusCriticalTmpStove == False :
-    №pygame.mixer.music.load("sounds/stove.wav") 
-    pygame.mixer.music.play()
+    sa.WaveObject.from_wave_file("sounds/stove.wav").play()
     statusCriticalTmpStove = True
+
+
 
 def automating(valuesData, thresholdsData) :
   print('automating')
