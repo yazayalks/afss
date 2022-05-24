@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env python
 #FROM python:3.10-slim-buster
-#FROM tiangolo/uwsgi-nginx:python3.6-alpine3.7
+FROM python:3.10-slim
 #FROM python:3.10
-FROM python:latest
+#FROM python:latest
 
 # установка рабочей директории в контейнере
-WORKDIR /codeы
+#WORKDIR /codeы
 
 # копирование файла зависимостей в рабочую директорию
 COPY . .
@@ -14,7 +14,7 @@ RUN apt-get -qq update && apt-get -qq install libmariadb-dev unixodbc-dev libffi
 
 
 # установка зависимостей
-RUN pip3 install simpleaudio
+#RUN pip3 install simpleaudio
 RUN pip3 install -r requirements.txt
 
 # копирование содержимого локальной директории src в рабочую директорию
