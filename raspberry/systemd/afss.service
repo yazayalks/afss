@@ -1,0 +1,12 @@
+[Unit]
+Description=AFSSpi
+Requires=network-online.target docker.service
+After=docker.service
+[Service]
+# Don't restart, conflicts with Watchtower
+Restart=never
+ExecStartPre=-/usr/bin/docker rm -f afss-pi
+ExecStart=/usr/bin/docker run --name afss-pi -v /var/run/docker.sock:/var/run/docker.sock -t yazayalks/afss-pi
+ExecStop=/usr/bin/docker stop -t 2 afss-pi
+[Install]
+WantedBy=default.target

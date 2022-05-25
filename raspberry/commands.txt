@@ -6,9 +6,11 @@ sudo docker build -t afss .
 
 // Запуск контейнера с консолью без рестарта
 sudo docker run -t -i --restart no --device=/dev/ttyUSB0 --device /dev/snd afss
+sudo docker run -t -i --restart no --device=/dev/ttyUSB0 --device /dev/snd yazayalks/afss-pi
 
 // Запуск контейнера с консолью с рестартом
 sudo docker run -t -i --restart always --device=/dev/ttyUSB0 --device /dev/snd afss
+
 
 
 // always
@@ -48,6 +50,7 @@ docker run -d --name watchtower --rm -v /var/run/docker.sock:/var/run/docker.soc
 
 docker run -p 80:80 yazayalks/afss:latest
 
+//Токен
 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
 
 
@@ -57,3 +60,16 @@ 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
 Пароль: thkWV#J%3Vus
 
 
+sudo systemctl enable watchtower.service
+sudo systemctl start watchtower.service
+
+
+sudo systemctl enable afss.service
+sudo systemctl start afss.service
+
+docker run -p 80:80 -p 443:443 yazayalks/afss-server
+
+// For Raspberry
+sudo apt-get update
+sudo apt-get upgrade
+sudo raspi_config
