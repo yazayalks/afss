@@ -92,7 +92,7 @@ def playSoundStove() :
 
 
 def automating(valuesData, thresholdsData) :
-  print('automating')
+  print('Mod: automating')
   timerDamp.stop()
 
   if valuesData['tmpStove'] >= thresholdsData['minTmpStove'] and valuesData['tmpStove'] <= thresholdsData['maxTmpStove'] :
@@ -104,7 +104,7 @@ def automating(valuesData, thresholdsData) :
     sendActionServo(servoPipe, 70)
     
 def criticaling() :
-  print('criticaling')
+  print('Mod: criticaling')
   timerDamp.stop()
   timerCritical.start()
   print(timerCritical.getTime())
@@ -126,8 +126,8 @@ def criticaling() :
     sendActionServo(servoPipe, 30)
 
 def damping():
-  print('damping')
-
+  print('Mod: damping')
+  sendTypeColor(4)
   timerDamp.start()
   print(timerDamp.getTime())
 
@@ -144,7 +144,7 @@ def damping():
     sendActionServo(servoPipe, 40)
 
 def customing():
-  print('customing')
+  print('Mod: customing')
   timerDamp.stop()
   sendActionServo(servoType, servoValue)
 
@@ -161,7 +161,7 @@ def sendTypeColor(typeColor) :
   if statusLight == True :
     valueSend = typeColor
   else :
-    valueSend = 4
+    valueSend = 5
   newStr = "\n"
   ser.write((str(valueSend) + newStr).encode ('utf-8'))
 
@@ -229,7 +229,7 @@ def checkValue(valuesData, thresholdsData, criticalData) :
       #playSoundMaxGas()
       sendTypeColor(2)
 
-    if len(criticalData) == 0 :
+    if len(criticalData) == 0 and mod != "damp" :
       sendTypeColor(1)
 
 def getserial():
@@ -252,8 +252,9 @@ playSoundStart()
 
 t = requests.get(thresholdsUrl, params={'count': "last", 'key': key}, headers=headers)
 
+sleep(0.5)
+
 if t.status_code == 200 :
-  print(t.json())
   thresholds = json.loads(t.text)
 
   thresholdsData = {
@@ -275,7 +276,8 @@ if t.status_code == 200 :
   'minPressureTank' : int(thresholds[0]["minPressureTank"]),
   'maxPressureTank' : int(thresholds[0]["maxPressureTank"]),
   'criticalPressureTank' : int(thresholds[0]["criticalPressureTank"])}
-  
+  print('Thresholds data from Server')
+  print(thresholdsData)
 else : 
   
   thresholdsData = {
@@ -297,6 +299,8 @@ else :
   'minPressureTank' : 0,
   'maxPressureTank' : 100,
   'criticalPressureTank' : 120}
+  print('Thresholds data from Raspberry')
+  print(thresholdsData)
 
 while True :
     if ser.in_waiting > 0 :
@@ -312,6 +316,8 @@ while True :
             'gasLev' : int(data[5]),
             'servoStove' : int(data[6]),
             'servoPipe' : int(data[7])}
+            
+            print('Values data from Arduino')
             print(valuesData)
 
             date = str(datetime.datetime.now())
@@ -323,12 +329,17 @@ while True :
             if s.status_code == 200 :
               statusSound = settings[0]["sounds"]
               statusLight = settings[0]["light"]
+              print('Setting from Server')
+              print('statusSound: ' + str(statusSound) + ', ' 'statusLight: ' + str(statusLight))
             else :
-                statusSound = True
-                statusLight = True
+              statusSound = True
+              statusLight = True
+              print('Setting from Raspberry')
+              print('statusSound: ' + str(statusSound) + ', ' 'statusLight: ' + str(statusLight))
 
             checkValue(valuesData, thresholdsData, criticalData)
-
+            
+            sleep(0.5)
             
             r = requests.get(baseUrl, params = {
             'temperatureStove' : str(valuesData['tmpStove']),
@@ -347,6 +358,7 @@ while True :
 
             if  mod != "critical" :
               if r.status_code == 200 :
+                print('Task from Server')
                 print(r.json())
                 tasks = json.loads(r.text)
                 if (str(r.json()) != "[]") :
@@ -356,7 +368,7 @@ while True :
                   mod = tasks[coutnTask]["mod"]
               else :
                 mod = "automation"
-                print('send error data value')
+                print('Send error data value')
 
             if mod == "critical" :
               criticaling()
@@ -369,4 +381,5 @@ while True :
 
             if mod == "damp" :
               damping()
-              
+
+            sleep(0.5)
