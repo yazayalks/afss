@@ -51,7 +51,7 @@ docker run -d --name watchtower --rm -v /var/run/docker.sock:/var/run/docker.soc
 docker run -p 80:80 yazayalks/afss:latest
 
 //Токен
-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
+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
 
 
 

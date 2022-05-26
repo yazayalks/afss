@@ -2,9 +2,10 @@
 
 namespace AFSS.Controllers
 {
+    [Route("[controller]")]
     public class MainInfoController : Controller
     {
-        public IActionResult Index()
+        public IActionResult MainInfo()
         {
             return View();
         }

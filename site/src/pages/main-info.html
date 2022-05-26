@@ -1,16 +1,34 @@
-﻿@using Newtonsoft.Json
-@{
-    ViewData["Title"] = "Main info";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>main-info</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles-main-info.css">
+
+    <script src="../actions/jquery.js"></script>
 
 
+    <!--menu--> <!--footer-->
+    <link rel="import" href="menu.html">
+    <link rel="import" href="footer.html">
+    <script>
+        $(function () {
+            $(".add__menu ").each(function () {
+                $(this).load(this.dataset.source);
+            });
+            $(".add__footer").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="add__menu" data-source="menu.html"></div>
 
-
- 
-@await Html.PartialAsync("MenuInput")
- <link rel="stylesheet" href="~/css/styles-main-info.css">
- 
- <div class="container">
+<div class="container">
     <div class="main-info__inner">
         <div class="main-info__items">
 
@@ -49,7 +67,7 @@
 
             <div class="main-info__item item-4">
                 <div class="informations__photo">
-                    <img src = "../images/logo-big.svg" alt="">
+                    <img src = "../images/logo-big.svg" wight="370" height="370" alt="">
                 </div>
 
 
@@ -94,7 +112,7 @@
         </div>
     </div>
 </div>
- 
- @await Html.PartialAsync("Footer")
 
-
+<div class="add__footer" data-source="footer.html"></div>
+</body>
+</html>

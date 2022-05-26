@@ -10,4 +10,6 @@ observation.onclick = function() {
     document.location.href = "/Account/Observe";
 };
 
-
+mainInfo.onclick = function () {
+    document.location.href = "/MainInfo";
+};

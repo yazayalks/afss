@@ -30,7 +30,7 @@ int valueServoStove = 0;
 int valueServoPipe = 0;
 unsigned long delayTime;
 int sendTimer = 0;
-int typeColor = 4;
+int typeColor = 5;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 MAX6675 thermocoupleStove(TEMPERATURE_STOVE_SCK, TEMPERATURE_STOVE_CS, TEMPERATURE_STOVE_SO);
@@ -84,14 +84,23 @@ void loop() {
       }
       typeColor = 3;
     }
-    
+
     if (value == 4)
     {
       if (typeColor != 4)
       {
-        setColor(0, 0, 0);
+        setColor(0, 0, 255);
       }
       typeColor = 4;
+    }
+    
+    if (value == 5)
+    {
+      if (typeColor != 5)
+      {
+        setColor(0, 0, 0);
+      }
+      typeColor = 5;
     }
 
     if (value >= 100 && value <= 190)
