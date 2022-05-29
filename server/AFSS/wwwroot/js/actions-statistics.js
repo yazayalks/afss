@@ -307,29 +307,22 @@ function httpGetServo(servoType, servoValue) {
     var xhr = new XMLHttpRequest();
     var mod = typeMod[2];
     xhr.open('GET', '/api/TaskCreate?servoType=' + servoType + '&servoValue=' + servoValue + '&mod=' + mod, false);
-    /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
     xhr.send();
     if (xhr.status != 200) {
-        // обработать ошибку
-        console.log(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
+        console.log(xhr.status + ': ' + xhr.statusText); 
     } else {
-        // вывести результат
-        console.log(xhr.responseText); // responseText -- текст ответа.
+        console.log(xhr.responseText); 
     }
 }
 
 function httpGetMod(mod) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/TaskCreate?mod=' + mod + '&servoValue=' + -1, false);
-    /*xhr.open('GET', 'localhost:7131/api/TaskCreate?type=' + type + '&value=' + value, false);*/
-    /*xhr.open('GET', '/api/TaskCreate?servoType=' + "-1" + '&servoValue=' + "-1" + '&mod=' + mod, false);*/
     xhr.send();
     if (xhr.status != 200) {
-        // обработать ошибку
-        console.log(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
+        console.log(xhr.status + ': ' + xhr.statusText);
     } else {
-        // вывести результат
-        console.log(xhr.responseText); // responseText -- текст ответа.
+        console.log(xhr.responseText);
     }
 }
 
@@ -579,7 +572,6 @@ function startIntervalEvents() {
 
     setInterval(function () {
         if ((window.typeStatus == "online") && (firstEvent == false)) {
-            /*initValue();*/
             firstEvent = true;
             changeEventsText(window.eventsArray.systemPi.online);
         }

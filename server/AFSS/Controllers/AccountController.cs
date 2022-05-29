@@ -157,11 +157,6 @@ namespace AFSS.Controllers
             return View();
         }
 
-        /*[HttpGet]
-        public IActionResult Observe(string returnUrl = null)
-        {
-            return View(new ObserveViewModel { ReturnUrl = returnUrl });
-        }*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Observe(ObserveViewModel model)

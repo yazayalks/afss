@@ -11,10 +11,12 @@ using System.Security.Claims;
 using System.Xml;
 using Microsoft.EntityFrameworkCore;
 using AFSS.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AFSS.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class DataUserController : Controller
     {
         private readonly ApplicationContext applicationContext;

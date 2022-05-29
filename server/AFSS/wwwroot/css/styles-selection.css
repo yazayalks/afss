@@ -9,6 +9,11 @@
     cursor: pointer;
 }
 
+#mainInfo2:hover {
+    cursor: pointer;
+}
+
+
 .selection__photo {
     margin-top: 25px;
     text-align: center;

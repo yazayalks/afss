@@ -24,7 +24,7 @@ namespace AFSS.ViewModels
             {
                 errors.Add(new IdentityError
                 {
-                    Description = "Данный логин используется"
+                    Description = "Данная почта используется"
                 });
             }
             /*var a = afssDbContext.PiUsers.Select(u => u.CpuSerial).ToList();

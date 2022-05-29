@@ -5,9 +5,8 @@ namespace AFSS.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Логин не указан")]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "Логин необходим от 3 до 30 символов")]
-        /*[Remote("UsernameExists", "Account", HttpMethod = "POST", ErrorMessage = "User name already registered.")]*/
+        [Required(ErrorMessage = "Почта не указана")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Почта необходима от 3 до 30 символов")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

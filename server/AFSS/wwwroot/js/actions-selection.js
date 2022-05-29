@@ -13,3 +13,8 @@ observation.onclick = function() {
 mainInfo.onclick = function () {
     document.location.href = "/MainInfo";
 };
+
+
+mainInfo2.onclick = function () {
+    document.location.href = "/MainInfo";
+};

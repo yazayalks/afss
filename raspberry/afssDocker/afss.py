@@ -5,9 +5,7 @@ import serial
 import datetime
 import requests
 import json
-
 import simpleaudio as sa
-
 from time import sleep
 import operator
 from timer import Timer

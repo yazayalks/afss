@@ -4,7 +4,7 @@ namespace AFSS.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Логин не указан")]
+        [Required(ErrorMessage = "Почта не указана")]
         [Display(Name = "Логин")]
         public string Email { get; set; }
 
